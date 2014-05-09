@@ -1,0 +1,17 @@
+#container{
+width=700px;
+}
+
+.left
+{
+float:left;
+width:350px;
+position:relative;
+}
+
+.right
+{
+float:right;
+width:350px;
+}
+

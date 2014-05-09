@@ -34,11 +34,30 @@
             <br>
             <p class="lead">
                 <h2 class="cover-heading">connect with </h2>
-              <a href="#" class="btn btn-lg btn-default">facebook</a>
-              <a href="#" class="btn btn-lg btn-default">twitter</a>
-              <a href="#" class="btn btn-lg btn-default">linkedin</a>
+              <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#facebook">facebook</button>
+              <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#facebook">twitter</button>
             </p>
-          </div>            
+          </div> 
+            
+<!--modal here-->
+
+<div class="modal fade" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">facebook</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
             <%@include file="footer.jsp" %> 
         </div>
 
