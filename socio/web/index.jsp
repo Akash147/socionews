@@ -23,6 +23,7 @@
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="#">Trending</a></li>
                 <li><a href="#">Sign up</a></li>
+                <li><a href="dashboard">Dash</a></li>
               </ul>
             </div>
           </div>
@@ -39,25 +40,7 @@
             </p>
           </div> 
             
-<!--modal here-->
-
-<div class="modal fade" id="facebook" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">facebook</h4>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+            
             <%@include file="footer.jsp" %> 
         </div>
 
