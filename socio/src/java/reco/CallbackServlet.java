@@ -82,7 +82,7 @@ public class CallbackServlet extends HttpServlet {
         request.setAttribute("hast_tags",hashTags);
         request.setAttribute("accessToken",accessToken.getToken());
         request.setAttribute("accessTokenSecret",accessToken.getTokenSecret());
-//        request.getRequestDispatcher("/userInfo.jsp").forward(request, response);
+        request.getRequestDispatcher("/userInfo.jsp").forward(request, response);
        // response.sendRedirect(request.getContextPath() + "/userInfo.jsp?user="+userTweets);
     }
 }
