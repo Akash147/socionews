@@ -36,7 +36,7 @@
             <p class="lead">
                 <h2 class="cover-heading">connect with </h2>
               <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#facebook">facebook</button>
-              <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#facebook">twitter</button>
+              <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#facebook"><a href="TwitterSignin">twitter</a></button>
             </p>
           </div> 
             
