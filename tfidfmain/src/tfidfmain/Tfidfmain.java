@@ -25,7 +25,7 @@ public class Tfidfmain {
     public static void main(String args[]) throws FileNotFoundException, IOException
     {
         DocumentParser dp = new DocumentParser();
-        dp.parseFiles("/home/ravi/reuters21578");
+        dp.parseFiles("/home/ravi/NetBeansProjects/socionews/document");
         dp.tfIdfCalculator(); //calculates tfidf
 //        dp.getCosineSimilarity(); //calculated cosine similarity   
     }
