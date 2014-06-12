@@ -10,6 +10,8 @@ import cc.mallet.classify.Classifier;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletContext;
 
 /**
@@ -36,6 +38,15 @@ public class SentimentAnalyzer {
     
     public String classify(String tweet){
         return classifier.classify(tweet).getLabeling().getBestLabel().toString();
+    }
+    
+    public List<String> filterPositiveTweets(List<String> input){
+        List<String> res = new ArrayList<String>();
+        for (String each : input){
+            if (this.classify(each).equals("4"))
+                res.add(each);
+        }
+        return res;
     }
     
 

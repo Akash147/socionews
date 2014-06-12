@@ -82,8 +82,10 @@ public class CallbackServlet extends HttpServlet {
             Logger.getLogger(CallbackServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
+        List<String> stringified = new ArrayList<String>(); // @TODO
         for (Status status : statuses) {
+            stringified.add(status.getText()); // @TODO
+            
             System.out.println(status.getUser().getName() + ":" +
                                status.getText());
             String sentiment = analyzer.classify(status.getText());
@@ -93,6 +95,12 @@ public class CallbackServlet extends HttpServlet {
                 hashTags.add(hash.getText());
             }
         }
+        List<String> positiveOnlyTweets = analyzer.filterPositiveTweets(stringified); // @TODO
+        userTweets.add( "<br /><br /><b>Positive Only tweets</b><br />");
+        for(String eachPositive : positiveOnlyTweets){
+            userTweets.add(eachPositive + "<br />");
+        }
+        
         response.setContentType("text/html");
         request.setAttribute("todo", userTweets);
         request.setAttribute("hast_tags",hashTags);
