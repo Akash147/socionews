@@ -30,7 +30,7 @@ public class UserTimeline {
         twitter.setOAuthAccessToken(at);
         user = twitter.verifyCredentials();
     }
-    public void getUserTweets()
+public void getUserTweets()
     {
         
     }

@@ -16,9 +16,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author noones
  */
-@WebServlet(urlPatterns = {"/dasha"})
-public class dash extends HttpServlet {
-
+@WebServlet(urlPatterns = {"/testing"})
+public class testing extends HttpServlet {
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -31,23 +30,17 @@ public class dash extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet dash</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet dash at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
-        }
+        Object data = "Some data, can be a String or a Javabean";
+        About a = new About();
+        a.title="News Recommendation Based on Social Media Activity";
+        a.content="Get News what you like before you even realise!! We focus on your interests and filter out the rest."
+                + "For you ease,we will take care of all the news you need.When you have ";
+        request.setAttribute("data", a);
+        request.getRequestDispatcher("about.jsp").forward(request, response);
+        
+        
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

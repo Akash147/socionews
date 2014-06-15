@@ -33,7 +33,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="header.jsp" %>
 
-        <title>Dashboard</title>
+        <title>Dashboard: ${user.getUserName()}</title>
     </head>
     <body class="fixed-top">
        <%@include file="navigation.jsp" %>
