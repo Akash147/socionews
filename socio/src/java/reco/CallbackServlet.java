@@ -4,6 +4,7 @@
  */
 package reco;
 
+import java.io.FileNotFoundException;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.auth.RequestToken;
@@ -22,6 +23,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.List;
 import javax.servlet.http.HttpSession;
+import maxentclassifier.SentimentAnalyzer;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
@@ -39,8 +41,10 @@ public class CallbackServlet extends HttpServlet {
         try {
             accessToken = twitter.getOAuthAccessToken(requestToken, verifier);
             request.getSession().removeAttribute("requestToken");
+//            request.getSession().setAttribute("access_token", accessToken);
         } catch (TwitterException e) {
             throw new ServletException(e);
+//            accessToken = (AccessToken) request.getSession().getAttribute("access_token");
         }
         userId = accessToken.getUserId();
         try {
@@ -68,15 +72,35 @@ public class CallbackServlet extends HttpServlet {
         System.out.println("Showing home timeline.");
         ArrayList<String> userTweets = new ArrayList<String>();
         ArrayList<String> hashTags = new ArrayList<String>();
+        
+        maxentclassifier.SentimentAnalyzer analyzer = null ;
+        try {
+            analyzer = new maxentclassifier.SentimentAnalyzer(getServletContext());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CallbackServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CallbackServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        List<String> stringified = new ArrayList<String>(); // @TODO
         for (Status status : statuses) {
+            stringified.add(status.getText()); // @TODO
+            
             System.out.println(status.getUser().getName() + ":" +
                                status.getText());
-            userTweets.add(status.getText());
+            String sentiment = analyzer.classify(status.getText());
+            userTweets.add(status.getText() + " <b>" + sentiment + "</b><br />");
             for(HashtagEntity hash : status.getHashtagEntities())
             {
                 hashTags.add(hash.getText());
             }
         }
+        List<String> positiveOnlyTweets = analyzer.filterPositiveTweets(stringified); // @TODO
+        userTweets.add( "<br /><br /><b>Positive Only tweets</b><br />");
+        for(String eachPositive : positiveOnlyTweets){
+            userTweets.add(eachPositive + "<br />");
+        }
+        
         response.setContentType("text/html");
         request.setAttribute("todo", userTweets);
         request.setAttribute("hast_tags",hashTags);

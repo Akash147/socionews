@@ -11,7 +11,15 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
+<<<<<<< HEAD
                     <file>${file.reference.mongo-java-driver-2.12.1.jar}</file>
+=======
+                    <file>${file.reference.mallet-deps.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.mallet.jar}</file>
+>>>>>>> 5a478220fe8133ae2b734a89123722631a8264e1
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>
