@@ -7,8 +7,10 @@
 package maxentclassifier;
 
 import cc.mallet.classify.Classifier;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +33,8 @@ public class SentimentAnalyzer {
     }
     
     private Classifier getSavedKnowledgeBase() throws FileNotFoundException, IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(context.getResourceAsStream("/resources/maxentClassifier.bin"));
+//        ObjectInputStream ois = new ObjectInputStream(context.getResourceAsStream("/resources/maxentClassifier.bin"));
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("/home/siranami/NetBeansProjects/MaxEntClassifier/maxentClassifier.bin"));
         return (cc.mallet.classify.Classifier) ois.readObject();
 
     }
