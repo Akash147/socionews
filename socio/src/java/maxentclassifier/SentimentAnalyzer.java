@@ -31,7 +31,7 @@ public class SentimentAnalyzer {
     }
     
     private Classifier getSavedKnowledgeBase() throws FileNotFoundException, IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(context.getResourceAsStream("/maxentClassifier.bin"));
+        ObjectInputStream ois = new ObjectInputStream(context.getResourceAsStream("/resources/maxentClassifier.bin"));
         return (cc.mallet.classify.Classifier) ois.readObject();
 
     }
