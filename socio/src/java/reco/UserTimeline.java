@@ -43,11 +43,8 @@ public class UserTimeline {
         twitter.setOAuthAccessToken(at);
         user = twitter.verifyCredentials();
     }
-<<<<<<< HEAD
-public void getUserTweets()
-=======
+
     public UserTimeline(Twitter twitter, RequestToken requestToken, String verifier)
->>>>>>> 5a478220fe8133ae2b734a89123722631a8264e1
     {
         try {
             at = twitter.getOAuthAccessToken(requestToken, verifier);
