@@ -4,6 +4,7 @@
  */
 package reco;
 
+import akash.configuration.Configuration;
 import java.io.FileNotFoundException;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -23,7 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.List;
 import javax.servlet.http.HttpSession;
-import maxentclassifier.SentimentAnalyzer;
+import akash.maxentclassifier.SentimentAnalyzer;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
@@ -73,9 +74,14 @@ public class CallbackServlet extends HttpServlet {
         ArrayList<String> userTweets = new ArrayList<String>();
         ArrayList<String> hashTags = new ArrayList<String>();
         
-        maxentclassifier.SentimentAnalyzer analyzer = null ;
+        
+        /* Sentiment processing things... Will load via config file */
+        // These steps shouldnot be here...... Just for demo... IDK where it should be
+        
+        Configuration config = new Configuration(getServletContext());
+        akash.maxentclassifier.SentimentAnalyzer analyzer = null ;
         try {
-            analyzer = new maxentclassifier.SentimentAnalyzer(getServletContext());
+            analyzer = new akash.maxentclassifier.SentimentAnalyzer(config.getSentimentModelFile());
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CallbackServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -100,6 +106,8 @@ public class CallbackServlet extends HttpServlet {
         for(String eachPositive : positiveOnlyTweets){
             userTweets.add(eachPositive + "<br />");
         }
+        
+        /* End of sentiment processing thing */
         
         response.setContentType("text/html");
         request.setAttribute("todo", userTweets);
