@@ -15,7 +15,7 @@ public class Configuration {
     // Lucene related parameters
     private String luceneLocation;
     
-    // Mongo related parameters
+    // Mongo related parametersj
     private String mongoHost;
     private int mongoPort;
     private String mongoDB;

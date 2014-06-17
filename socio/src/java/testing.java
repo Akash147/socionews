@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author noones
  */
-@WebServlet(urlPatterns = {"/testing"})
+@WebServlet(urlPatterns = {"/about"})
 public class testing extends HttpServlet {
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
