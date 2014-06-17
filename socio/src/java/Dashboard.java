@@ -45,8 +45,9 @@ public class Dashboard extends HttpServlet {
         LuceneSearcher searcher = new LuceneSearcher(config.getLuceneLocation());
         MongoWorker mongo = new MongoWorker(config.getMongoHost(), config.getMongoPort(), config.getMongoDB(), config.getMongoCollection());
         try {
-            List<String> matchIDs = searcher.search("messi");
+            List<String> matchIDs = searcher.search("rooney");
             request.setAttribute("recentNews", renderNews( mongo.findDocumentById(matchIDs.get(0)) ));
+            request.setAttribute("recentNewsList", mongo.findAllDocumentByID(matchIDs.toArray(new String[matchIDs.size()])) );
         } catch (ParseException ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -63,7 +64,8 @@ public class Dashboard extends HttpServlet {
                 + "<span class=\"small italic\">Category:<a href=\"cricket.jsp\">cricket </a></span>"
                 + "</div>"
                 + "</div>";
-        return String.format(text, news.getHeadLine(), news.getNewsContent());
+//        return String.format(text, news.getHeadLine(), news.getNewsContent());
+        return String.format(text, news.getHeadLine(), "");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

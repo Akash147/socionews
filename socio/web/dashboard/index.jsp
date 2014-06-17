@@ -3,7 +3,7 @@
     Created on : May 9, 2014, 8:55:31 PM
     Author     : noones
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% String category="cricket" ;%>
 <% String miniContent="This tutorial will help tutorial will help you to Boost your android Virtual device on Linuxytutorial will help you to Boost your android Virtual device on Linuxou to Boost your android Virtual device on Linux";%>
@@ -276,6 +276,29 @@
                              <div class="clearfix no-top-space no-bottom-space"></div>
                               </div></div>
             <!-- News recommendation End--> 
+            
+
+            <!-- Akash Here -->
+            <div class="profile-side-box green">
+                <div class="desk">
+                    <h1><i class="icon-filter"></i> Recommended News</h1>
+                    <c:forEach var="eachNews" items="${recentNewsList}">
+                        <div class="row-fluid experience">
+                            <h4>${eachNews.headLine}</h4>
+                            <p>Description of news</p>
+                            <a href="http://www.techtach.com#">${eachNews.sourceLink}</a>
+                            <div class="pull-right">
+                                <span class="small italic">Category:<a href="cricket.jsp">cricket </a></span>
+                            </div>
+                        </div>
+                    </c:forEach>
+
+                    <a href="#" class="pull-right">View all</a>
+                    <div class="clearfix no-top-space no-bottom-space"></div>
+                </div>
+            </div>
+            <!-- End of Akash here.. Remove this and make this code better -->
+            
             </div>
             </div>
             </div>

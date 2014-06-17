@@ -76,6 +76,8 @@ public class LuceneSearcher {
             MongoWorker m = new MongoWorker("localhost", 27017, "newscrawl", "news");
             DisplayNews obj = m.findDocumentById(searcher.search("messi").get(1));
             System.out.println( obj.getHeadLine() );
+            for(String id : searcher.search("messi"))
+                System.out.println(id);
             
         } catch (IOException ex) {
             Logger.getLogger(LuceneSearcher.class.getName()).log(Level.SEVERE, null, ex);

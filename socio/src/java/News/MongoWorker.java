@@ -12,6 +12,8 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 import org.bson.types.ObjectId;
 
 /**
@@ -56,5 +58,12 @@ public class MongoWorker {
         news.setSourceLink( dbObj.get("URL").toString() );
         news.setNewsId( dbObj.get("_id").toString() );
         return news;
+    }
+    
+    public List<DisplayNews> findAllDocumentByID(String[] ids){
+        List<DisplayNews> resultList = new ArrayList<DisplayNews>();
+        for(String id : ids)
+            resultList.add( this.findDocumentById(id) );
+        return resultList;
     }
 }
