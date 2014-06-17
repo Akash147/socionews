@@ -4,13 +4,21 @@
  * and open the template in the editor.
  */
 
+import News.DisplayNews;
+import News.LuceneSearcher;
+import News.MongoWorker;
+import akash.configuration.Configuration;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.lucene.queryparser.classic.ParseException;
 
 /**
  *
@@ -31,11 +39,33 @@ public class Dashboard extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Dash dashObject = new Dash();
-        request.setAttribute("user", dashObject);
+//        Dash dashObject = new Dash();
+//        request.setAttribute("user", dashObject);
+        Configuration config = new Configuration(getServletContext());
+        LuceneSearcher searcher = new LuceneSearcher(config.getLuceneLocation());
+        MongoWorker mongo = new MongoWorker(config.getMongoHost(), config.getMongoPort(), config.getMongoDB(), config.getMongoCollection());
+        try {
+            List<String> matchIDs = searcher.search("rooney");
+            request.setAttribute("recentNews", renderNews( mongo.findDocumentById(matchIDs.get(0)) ));
+            request.setAttribute("recentNewsList", mongo.findAllDocumentByID(matchIDs.toArray(new String[matchIDs.size()])) );
+        } catch (ParseException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
         request.getRequestDispatcher("dashboard/index.jsp").forward(request, response);
         /* TODO output your page here. You may use following sample code. */;
         
+    }
+    
+    private String renderNews(DisplayNews news){
+        String text = "<div class=\"row-fluid experience\">"
+                + "<h4>%s</h4>" //headling
+                + "%s" // content
+                + "<a href=\"http://www.techtach.com#\">www.techtach.com</a><div class=\"pull-right\">"
+                + "<span class=\"small italic\">Category:<a href=\"cricket.jsp\">cricket </a></span>"
+                + "</div>"
+                + "</div>";
+//        return String.format(text, news.getHeadLine(), news.getNewsContent());
+        return String.format(text, news.getHeadLine(), "");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
