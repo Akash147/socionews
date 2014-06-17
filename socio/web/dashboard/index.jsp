@@ -13,13 +13,13 @@
 <% String time = "2 m" ;%>
 <% String userNames = "noones" ;%>
 <% String fullName = "Ganesh Pandey" ;%>
-<% String recentNews = ""
+<% /*String recentNews = ""
         + "<div class=\"row-fluid experience\">"
         + "<h4>"+headLine+"</h4><p>"+miniContent+"</p>"
         + "<a href=\""+link+"#\">"+domain+"</a>"
         + "<div class=\"pull-right\">"
         + "<span class=\"small italic\">Category:<a href=\""+category+".jsp\">"+category+" </a></span></div>"
-        + "</div><div class=\"space10\"></div>"; 
+        + "</div><div class=\"space10\"></div>"; */
 %>
 
 <% String hotnews="<div class=\"metro-nav-block nav-block-green long\">"
@@ -256,7 +256,7 @@
                               <div class="desk">
                                      <h1><i class="icon-time"></i> Latest News</h1>
                          <%for ( int f = 1; f <= 10; f++){ %>
-                                            <%= recentNews %>
+                                            { recentNews }
                                      <%}%>
                              <a href="#" class="pull-right">View all</a>
                              <div class="clearfix no-top-space no-bottom-space"></div>
@@ -270,7 +270,7 @@
                               <div class="desk">
                                      <h1><i class="icon-filter"></i> Recommended News</h1>
                          <%for ( int f = 1; f <= 10; f++){ %>
-                                            <%= recentNews %>
+                                            ${recentNews}
                                      <%}%>
                              <a href="#" class="pull-right">View all</a>
                              <div class="clearfix no-top-space no-bottom-space"></div>

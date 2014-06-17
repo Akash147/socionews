@@ -74,8 +74,8 @@ public class LuceneSearcher {
         try {
             LuceneSearcher searcher = new LuceneSearcher("/home/siranami/NetBeansProjects/newsIndex");
             MongoWorker m = new MongoWorker("localhost", 27017, "newscrawl", "news");
-            DBObject obj = m.findDocumentById(searcher.search("messi").get(1));
-            System.out.println( obj.get("Content") );
+            DisplayNews obj = m.findDocumentById(searcher.search("messi").get(1));
+            System.out.println( obj.getHeadLine() );
             
         } catch (IOException ex) {
             Logger.getLogger(LuceneSearcher.class.getName()).log(Level.SEVERE, null, ex);

@@ -45,10 +45,16 @@ public class MongoWorker {
         return true;
     }
     
-    public DBObject findDocumentById(String id) { // test
+    public DisplayNews findDocumentById(String id) { // test
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(id));
         DBObject dbObj = collection.findOne(query);
-        return dbObj;
+        DisplayNews news = new DisplayNews();
+        news.setHeadLine( dbObj.get("Title").toString() );
+        news.setNewsContent( dbObj.get("Content").toString() );
+        news.setNewsTime( dbObj.get("Date").toString() );
+        news.setSourceLink( dbObj.get("URL").toString() );
+        news.setNewsId( dbObj.get("_id").toString() );
+        return news;
     }
 }
