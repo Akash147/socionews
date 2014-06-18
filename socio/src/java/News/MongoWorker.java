@@ -11,6 +11,8 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +49,7 @@ public class MongoWorker {
         return true;
     }
     
-    public DisplayNews findDocumentById(String id) { // test
+    public DisplayNews findDocumentById(String id) throws URISyntaxException { // test
         BasicDBObject query = new BasicDBObject();
         query.put("_id", new ObjectId(id));
         DBObject dbObj = collection.findOne(query);
@@ -57,13 +59,20 @@ public class MongoWorker {
         news.setNewsTime( dbObj.get("Date").toString() );
         news.setSourceLink( dbObj.get("URL").toString() );
         news.setNewsId( dbObj.get("_id").toString() );
+        news.setSourceDomain( getDomainName(dbObj.get("URL").toString()) );
         return news;
     }
     
-    public List<DisplayNews> findAllDocumentByID(String[] ids){
+    public List<DisplayNews> findAllDocumentByID(String[] ids) throws URISyntaxException{
         List<DisplayNews> resultList = new ArrayList<DisplayNews>();
         for(String id : ids)
             resultList.add( this.findDocumentById(id) );
         return resultList;
+    }
+    
+    public static String getDomainName(String url) throws URISyntaxException {
+        URI uri = new URI(url);
+        String domain = uri.getHost();
+        return domain.startsWith("www.") ? domain.substring(4) : domain;
     }
 }

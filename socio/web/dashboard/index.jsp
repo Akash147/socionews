@@ -286,11 +286,12 @@
                         <div class="row-fluid experience">
                             <h4>${eachNews.headLine}</h4>
                             <p>Description of news</p>
-                            <a href="http://www.techtach.com#">${eachNews.sourceLink}</a>
+                            <a href="http://${eachNews.sourceDomain}">${eachNews.sourceDomain}</a>
                             <div class="pull-right">
                                 <span class="small italic">Category:<a href="cricket.jsp">cricket </a></span>
                             </div>
                         </div>
+                            <hr />
                     </c:forEach>
 
                     <a href="#" class="pull-right">View all</a>

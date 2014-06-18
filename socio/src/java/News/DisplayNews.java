@@ -3,29 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package News;
+
 /**
  *
  * @author noones
  */
 public class DisplayNews {
-    
-   private Boolean priority; 
-   private String newsId;
-   private String newsCategory;
-   private String headLine;
-   private String metaDescription;
-   private String sourceLink;
-   private String imageThumbs;
-   private String newsContent;
-   private String newsTime;
-   private String path;
-   
+
+    private Boolean priority;
+    private String newsId;
+    private String newsCategory;
+    private String headLine;
+    private String metaDescription;
+    private String sourceLink;
+    private String sourceDomain;
+    private String imageThumbs;
+    private String newsContent;
+    private String newsTime;
+    private String path;
+
 // constructor
-   public DisplayNews(){
-       this.imageThumbs = path+"default."+"png";
-   }
+    public DisplayNews() {
+        this.imageThumbs = path + "default." + "png";
+    }
+
+    public void setSourceDomain(String sourceDomain) {
+        this.sourceDomain = sourceDomain;
+    }
+
+    public String getSourceDomain() {
+        return sourceDomain;
+    }
 
     public String getNewsId() {
         return newsId;
@@ -98,6 +107,5 @@ public class DisplayNews {
     public void setNewsTime(String newsTime) {
         this.newsTime = newsTime;
     }
-    
 
 }

@@ -9,6 +9,7 @@ package News;
 import com.mongodb.DBObject;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -74,14 +75,20 @@ public class LuceneSearcher {
         try {
             LuceneSearcher searcher = new LuceneSearcher("/home/siranami/NetBeansProjects/newsIndex");
             MongoWorker m = new MongoWorker("localhost", 27017, "newscrawl", "news");
-            DisplayNews obj = m.findDocumentById(searcher.search("messi").get(1));
-            System.out.println( obj.getHeadLine() );
-            for(String id : searcher.search("messi"))
+//            DisplayNews obj = m.findDocumentById(searcher.search("brazil").get(1));
+//            System.out.println( obj.getHeadLine() );
+            for(String id : searcher.search("brazil")){
                 System.out.println(id);
+                DisplayNews obj = m.findDocumentById(id);
+                System.out.println( obj.getHeadLine() );
+                System.out.println( obj.getSourceLink() );
+            }
             
         } catch (IOException ex) {
             Logger.getLogger(LuceneSearcher.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ParseException ex) {
+            Logger.getLogger(LuceneSearcher.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
             Logger.getLogger(LuceneSearcher.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

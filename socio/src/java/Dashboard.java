@@ -10,6 +10,8 @@ import News.MongoWorker;
 import akash.configuration.Configuration;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +26,7 @@ import org.apache.lucene.queryparser.classic.ParseException;
  *
  * @author noones
  */
-@WebServlet(urlPatterns = {"/dash"})
+@WebServlet(urlPatterns = {"/dashboard/"})
 public class Dashboard extends HttpServlet {
 
     /**
@@ -45,13 +47,15 @@ public class Dashboard extends HttpServlet {
         LuceneSearcher searcher = new LuceneSearcher(config.getLuceneLocation());
         MongoWorker mongo = new MongoWorker(config.getMongoHost(), config.getMongoPort(), config.getMongoDB(), config.getMongoCollection());
         try {
-            List<String> matchIDs = searcher.search("rooney");
-            request.setAttribute("recentNews", renderNews( mongo.findDocumentById(matchIDs.get(0)) ));
+            List<String> matchIDs = searcher.search("neymar");
+//            request.setAttribute("recentNews", renderNews( mongo.findDocumentById(matchIDs.get(0)) ));
             request.setAttribute("recentNewsList", mongo.findAllDocumentByID(matchIDs.toArray(new String[matchIDs.size()])) );
         } catch (ParseException ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.getRequestDispatcher("dashboard/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/dashboard/index.jsp").forward(request, response);
         /* TODO output your page here. You may use following sample code. */;
         
     }
@@ -66,6 +70,12 @@ public class Dashboard extends HttpServlet {
                 + "</div>";
 //        return String.format(text, news.getHeadLine(), news.getNewsContent());
         return String.format(text, news.getHeadLine(), "");
+    }
+    
+    public static String getDomainName(String url) throws URISyntaxException {
+        URI uri = new URI(url);
+        String domain = uri.getHost();
+        return domain.startsWith("www.") ? domain.substring(4) : domain;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
