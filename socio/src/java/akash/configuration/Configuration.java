@@ -27,7 +27,7 @@ public class Configuration {
     public Configuration(ServletContext _context) throws IOException {
         this.context = _context;
         config = new Properties();
-        config.load(context.getResourceAsStream("/conf/config.properties"));
+        config.load(context.getResourceAsStream("/WEB-INF/config.properties"));
         mongoHost = config.getProperty("mongoHost");
         mongoPort = Integer.parseInt( config.getProperty("mongoPort") );
         mongoDB = config.getProperty("mongoDB");

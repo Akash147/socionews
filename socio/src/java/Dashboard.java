@@ -43,11 +43,11 @@ public class Dashboard extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 //        Dash dashObject = new Dash();
 //        request.setAttribute("user", dashObject);
-        Configuration config = new Configuration(getServletContext());
+        Configuration config = new Configuration(getServletConfig().getServletContext());
         LuceneSearcher searcher = new LuceneSearcher(config.getLuceneLocation());
         MongoWorker mongo = new MongoWorker(config.getMongoHost(), config.getMongoPort(), config.getMongoDB(), config.getMongoCollection());
         try {
-            List<String> matchIDs = searcher.search("neymar");
+            List<String> matchIDs = searcher.search("rooney");
 //            request.setAttribute("recentNews", renderNews( mongo.findDocumentById(matchIDs.get(0)) ));
             request.setAttribute("recentNewsList", mongo.findAllDocumentByID(matchIDs.toArray(new String[matchIDs.size()])) );
         } catch (ParseException ex) {
