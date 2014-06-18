@@ -9,15 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+    <link rel="shortcut icon" href="<c:url value="/assets/ico/favicon.ico"/>">
 
     <title>Socionews</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<c:url value="/assets/css/bootstrap.min.css"/>">
 
     <!-- Custom styles for this template -->
-    <link href="socio.css" rel="stylesheet">
+    <link rel ="stylesheet" href="<c:url value="/socio.css"/ >">
 
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
