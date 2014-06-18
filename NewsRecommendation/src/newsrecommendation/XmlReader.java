@@ -23,7 +23,7 @@ public class XmlReader {
  
     try {
  
-	File fXmlFile = new File("/home/ravi/reut2-001.xml");
+	File fXmlFile = new File("reut2-000.xml");
 	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	Document doc = dBuilder.parse(fXmlFile);

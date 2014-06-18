@@ -4,6 +4,7 @@
     Author     : noones
 --%>
 
+
    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
    <meta content="" name="description" />
    <meta content="noones" name="author" />
@@ -15,4 +16,3 @@
    <link href="<c:url value="/dashboard/css/style-responsive.css"/>" rel="stylesheet" />
    <link href="<c:url value="/dashboard/css/style-gray.css"/>" rel="stylesheet" id="style_color" />
    <link rel="stylesheet" type="text/css" href="<c:url value="/dashboard/assets/metr-folio/css/metro-gallery.css"/>" media="screen" />
-

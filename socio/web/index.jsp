@@ -68,7 +68,7 @@
                         <h4>Turns any web page into a clean view for reading.</h4>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
-                            <li><a href="twittersignin" class="btn btn-default btn-lg"><i class="icon-twitter"></i> <span class="network-name">Twitter</span></a>
+                            <li><a href="TwitterSignin" class="btn btn-default btn-lg"><i class="icon-twitter"></i> <span class="network-name">Twitter</span></a>
                             </li>
                             <li><a href="facebooksignin" class="btn btn-default btn-lg"><i class="icon-facebook-sign"></i> <span class="network-name">Facebook</span></a>
                             </li>

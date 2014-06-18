@@ -28,7 +28,7 @@ import java.util.Map.Entry;
  */
 public class WordExtraction {
     private final List<String> tokenizedTerms; //to hold all words after removing stop words
-    private final List<String> allWords; //to hold all words after stemming
+    private List<String> allWords; //to hold all words after stemming
 //    private final List<String> beforeStemAllWords; //to hold all words before stemming
     private final List<String> keyword; //to hold all keyword
     private List<String> permAllWords; //to hold all permuted terms of the all words
@@ -36,6 +36,7 @@ public class WordExtraction {
     List<String> titleWord = new ArrayList<>();
     List<Double> value_Chi = new ArrayList<>(); // to hold the chisquare value of the word
     StopWord stop=new StopWord();
+   
         
     public WordExtraction() throws IOException {
         this.permAllWords = new ArrayList<>();
@@ -44,6 +45,7 @@ public class WordExtraction {
 //        this.beforeStemAllWords = new ArrayList<>();
         this.keyword = new ArrayList<>();
         this.stop.extractStopWords();
+       
     }
     public void parseFile(String aline ,String title) throws FileNotFoundException, IOException{
 //        FileReader readFile= new FileReader(File.separator+"home"+File.separator+"ravi"+File.separator+"test.txt");
@@ -53,7 +55,8 @@ public class WordExtraction {
 //        while((aline=textReader.readLine())!=null){            
 //            allWords.addAll(Arrays.asList(aline.replaceAll("[\\W&&[^\\s]]", "").split(" ")));  //to get individual terms
 //        }
-        allWords.addAll(Arrays.asList(aline.toLowerCase().replaceAll("[\\W&&[^\\s]]", "").split(" ")));  //to get individual terms
+//        allWords= POs_tagger.POSTag(aline);  //to get individual terms
+        allWords.addAll(Arrays.asList(aline.toLowerCase().replaceAll("[\\W&&[^\\s]]", "").split(" ")));
         titleWord.addAll(Arrays.asList(title.toLowerCase().replaceAll("[\\W&&[^\\s]]", "").split(" ")));  //to get title word
 //        Stemming stem = new Stemming();
 //        String stemmedWord= new String();
