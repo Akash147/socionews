@@ -23,6 +23,10 @@ public class Configuration {
     
     // Sentiment analyser trained thing
     private String sentimentModelFile;
+    
+    // twitter app credentials oauth
+    private String consumerKey;
+    private String consumerSecret;
 
     public Configuration(ServletContext _context) throws IOException {
         this.context = _context;
@@ -34,6 +38,8 @@ public class Configuration {
         mongoCollection = config.getProperty("mongoCollection");
         luceneLocation = config.getProperty("indexLocation");
         sentimentModelFile = config.getProperty("sentimentModel");
+        consumerKey = config.getProperty("vJ3dChUEdLKrK7ciMdtbcXPjz");
+        consumerSecret = config.getProperty("XnbW32jqk9jTTY5ZtLHMh0FY9UNC1Wb1ohC0ehIaWUXfpJereQ");
     }
 
     public String getSentimentModelFile() {
@@ -60,4 +66,11 @@ public class Configuration {
         return mongoCollection;
     }
     
+    public String getConsumerKey() {
+        return consumerKey;
+    }
+    
+    public String getConsumerSecret() {
+        return consumerSecret;
+    }
 }
