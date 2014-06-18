@@ -38,46 +38,22 @@ public class CallbackServlet extends HttpServlet {
         Twitter twitter = (Twitter) request.getSession().getAttribute("twitter");
         RequestToken requestToken = (RequestToken) request.getSession().getAttribute("requestToken");
         String verifier = request.getParameter("oauth_verifier");
-        AccessToken accessToken = null;
-        try {
-            accessToken = twitter.getOAuthAccessToken(requestToken, verifier);
-            request.getSession().removeAttribute("requestToken");
-//            request.getSession().setAttribute("access_token", accessToken);
-        } catch (TwitterException e) {
-            throw new ServletException(e);
-//            accessToken = (AccessToken) request.getSession().getAttribute("access_token");
-        }
-        userId = accessToken.getUserId();
-        try {
-            user = twitter.showUser(userId);
-        } catch (TwitterException ex) {
-            Logger.getLogger(CallbackServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //testing passing the list
+        
+        // use of UserTimeline.java
+        
+        UserTimeline userTimeline = new UserTimeline(twitter, requestToken, verifier);
+        request.getSession().removeAttribute("requestToken");
+        userTimeline.setUser(twitter);
+        
+        //declaring List variable to store tweets
         List<Status> statuses = null;
-        try {
-            //        try {
-//            Query query = new Query("football");
-//            QueryResult result = twitter.search(query);
-//            statuses = result.getTweets();
-//            for (Status status : result.getTweets()) {
-//                System.out.println("@" + status.getUser().getScreenName() + ":" + status.getText());
-//            }
-//        } catch (TwitterException ex) {
-//            Logger.getLogger(CallbackServlet.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-            statuses = twitter.getUserTimeline();
-        } catch (TwitterException ex) {
-            Logger.getLogger(CallbackServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        System.out.println("Showing home timeline.");
-        ArrayList<String> userTweets = new ArrayList<String>();
-        ArrayList<String> hashTags = new ArrayList<String>();
+        ArrayList<Tweets> twit = new ArrayList<Tweets>();
+        String temp_user,temp_tweets,temp_sent;
         
+        //collect status from twitter
+        statuses = userTimeline.getPagedTweets(1,twitter);
         
-        /* Sentiment processing things... Will load via config file */
-        // These steps shouldnot be here...... Just for demo... IDK where it should be
-        
+        //sentiment calculation
         Configuration config = new Configuration(getServletContext());
         akash.maxentclassifier.SentimentAnalyzer analyzer = null ;
         try {
@@ -88,32 +64,37 @@ public class CallbackServlet extends HttpServlet {
             Logger.getLogger(CallbackServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        List<String> stringified = new ArrayList<String>(); // @TODO
-        for (Status status : statuses) {
-            stringified.add(status.getText()); // @TODO
-            
-            System.out.println(status.getUser().getName() + ":" +
-                               status.getText());
-            String sentiment = analyzer.classify(status.getText());
-            userTweets.add(status.getText() + " <b>" + sentiment + "</b><br />");
-            for(HashtagEntity hash : status.getHashtagEntities())
-            {
-                hashTags.add(hash.getText());
+        //create Tweets objects
+        for(Status status : statuses){
+            ArrayList<String> temp_hash_tags = new ArrayList<String>();
+            if(status.getHashtagEntities() != null){
+                for(HashtagEntity hash : status.getHashtagEntities())
+                {
+                    temp_hash_tags.add(hash.getText());
+                }
             }
+            temp_user = status.getUser().getScreenName();
+            temp_sent = analyzer.classify(status.getText());
+            General_String_manipulation gsm = new General_String_manipulation();
+            temp_tweets = gsm.get_separateHyperlink(status);
+            
+            twit.add(new Tweets(temp_user, temp_tweets, temp_sent, temp_hash_tags));
         }
-        List<String> positiveOnlyTweets = analyzer.filterPositiveTweets(stringified); // @TODO
-        userTweets.add( "<br /><br /><b>Positive Only tweets</b><br />");
-        for(String eachPositive : positiveOnlyTweets){
-            userTweets.add(eachPositive + "<br />");
-        }
+        //get keywords here
         
-        /* End of sentiment processing thing */
+        //store keyworkd in tweetKeyword collection here
+        //includes userID(long) and keywords(String[])
+
+        //store in MongoDB
+        userTimeline.storeUserDetailsInMongoDB(twitter);
         
+        //send data to userInfo.JSP
         response.setContentType("text/html");
-        request.setAttribute("todo", userTweets);
-        request.setAttribute("hast_tags",hashTags);
-        request.setAttribute("accessToken",accessToken.getToken());
-        request.setAttribute("accessTokenSecret",accessToken.getTokenSecret());
+        request.setAttribute("todo",twit);
+        
+        request.setAttribute("prof", userTimeline.getProfileImage(twitter));
+        request.setAttribute("accessToken",userTimeline.getAccessToken());
+        request.setAttribute("accessTokenSecret",userTimeline.getTokenSecret());
         request.getRequestDispatcher("/userInfo.jsp").forward(request, response);
        // response.sendRedirect(request.getContextPath() + "/userInfo.jsp?user="+userTweets);
     }
