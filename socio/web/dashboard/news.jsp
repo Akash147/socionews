@@ -54,9 +54,9 @@
                             <div class="row-fluid">
                                 <div class="span12">
                                     <div class="news-head">
-                                    <h1>${nowShowingNews.headLine}</h1><hr>
+                                    <h1>${nowShowingNews.headLine}</h1>
                                     <p>By: <a href="http://${nowShowingNews.sourceDomain}">${nowShowingNews.sourceDomain}</a> </p>
-                                    <span>Jun 19, 2014</span>
+                                    <span>Jun 19, 2014</span><hr>
                                     </div>
                                     ${nowShowingNews.newsContent}
                                 </div>
