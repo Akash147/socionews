@@ -16,5 +16,5 @@ hs_err_pid*
 /WekaImplementation/build/
 /SportsCrawler/nbproject/private/
 /SportsCrawler/build/
-socio/web/WEB-INF/*.properties
+/socio/web/WEB-INF/*.properties
 
