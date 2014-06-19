@@ -53,7 +53,9 @@
 
                             <div class="row-fluid">
                                 <div class="span12">
-                                    <h4 class="ramronews">Yo headline ho ${nowShowingNews.headLine}</h4><hr>
+                                    <div class="news-head">
+                                    <h2 class="ramro">Yo headline ho ${nowShowingNews.headLine}</h4><hr>
+                                    </div>
                                     ${nowShowingNews.newsContent}
                                 </div>
 

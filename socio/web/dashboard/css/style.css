@@ -4640,7 +4640,9 @@ margin-right: 21px;
 .d-sel-filter span {
     margin-right: 10px;
 }
-h2 ramro{
-    font-family: serif;
-    font-size: 40px;
+
+.news-head {
+    background: #FCFCFC;
+    padding:1px;
+    min-height: 86px;
 }
