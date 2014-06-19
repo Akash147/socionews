@@ -278,7 +278,7 @@ h3 small, h2 small, h5 small {
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
-    font-family: "-webkit-body";
+    font-family: "initial";
     margin-top: 0px;
 }
 
