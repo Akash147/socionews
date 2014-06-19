@@ -38,8 +38,8 @@ public class Configuration {
         mongoCollection = config.getProperty("mongoCollection");
         luceneLocation = config.getProperty("indexLocation");
         sentimentModelFile = config.getProperty("sentimentModel");
-        consumerKey = config.getProperty("vJ3dChUEdLKrK7ciMdtbcXPjz");
-        consumerSecret = config.getProperty("XnbW32jqk9jTTY5ZtLHMh0FY9UNC1Wb1ohC0ehIaWUXfpJereQ");
+        consumerKey = config.getProperty("consumerKey");
+        consumerSecret = config.getProperty("consumerSecret");
     }
 
     public String getSentimentModelFile() {
