@@ -65,16 +65,16 @@ public final class Tweets{
         }
         cleanTweets = str;
     }
-    public void analyseSentiment(Status status, ServletContext context) throws IOException{
-        maxentclassifier.SentimentAnalyzer analyzer = null ;
-        try {
-            analyzer = new maxentclassifier.SentimentAnalyzer(context);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(CallbackServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CallbackServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        separateHyperlink(status);
-        this.sentiment = analyzer.classify(this.cleanTweets);
-    }
+//    public void analyseSentiment(Status status, ServletContext context) throws IOException{
+//        maxentclassifier.SentimentAnalyzer analyzer = null ;
+//        try {
+//            analyzer = new maxentclassifier.SentimentAnalyzer(context);
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(CallbackServlet.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(CallbackServlet.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        separateHyperlink(status);
+//        this.sentiment = analyzer.classify(this.cleanTweets);
+//    }
 }

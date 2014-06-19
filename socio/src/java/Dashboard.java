@@ -47,11 +47,7 @@ public class Dashboard extends HttpServlet {
         LuceneSearcher searcher = new LuceneSearcher(config.getLuceneLocation());
         MongoWorker mongo = new MongoWorker(config.getMongoHost(), config.getMongoPort(), config.getMongoDB(), config.getMongoCollection());
         try {
-<<<<<<< HEAD
-            List<String> matchIDs = searcher.search("fifa");
-=======
-            List<String> matchIDs = searcher.search("rooney");
->>>>>>> ca26d410a1ed9c0976e5baa0c64d72c2c74522ee
+ List<String> matchIDs = searcher.search("rooney");
 //            request.setAttribute("recentNews", renderNews( mongo.findDocumentById(matchIDs.get(0)) ));
             request.setAttribute("recentNewsList", mongo.findAllDocumentByID(matchIDs.toArray(new String[matchIDs.size()])) );
         } catch (ParseException ex) {
