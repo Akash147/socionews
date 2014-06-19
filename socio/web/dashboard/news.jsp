@@ -55,7 +55,7 @@
                                 <div class="span12">
                                     <div class="news-head">
                                     <h1>${nowShowingNews.headLine}</h1><hr>
-                                    <p>By: <a href="http://${eachNews.sourceDomain}">${eachNews.sourceDomain}</a> </p>
+                                    <p>By: <a href="http://${nowShowingNews.sourceDomain}">${eachNews.sourceDomain}</a> </p>
                                     <span>Jun 19, 2014</span>
                                     </div>
                                     ${nowShowingNews.newsContent}
