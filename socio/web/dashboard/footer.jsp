@@ -23,7 +23,7 @@
    <script src="js/excanvas.js"></script>
    <script src="js/respond.js"></script>
    <![endif]-->
-
+   <script src="<c:url value="/dashboard/assets/bootstrap/js/bootstrap.min.js"/>"></script>
    <script src="<c:url value="/dashboard/js/jquery.sparkline.js"/>" type="text/javascript"></script>
 
    <!--common script for all pages-->
