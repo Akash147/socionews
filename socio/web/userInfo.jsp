@@ -11,7 +11,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
    // New location to be redirected
-   String site = new String("http://127.0.0.1:8080/socio/dashboard/profile.jsp");
+   String site = new String("dashboard/profile.jsp");
    response.setStatus(response.SC_MOVED_TEMPORARILY);
    response.setHeader("Location", site); 
 %>

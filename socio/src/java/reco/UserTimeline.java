@@ -156,6 +156,29 @@ public class UserTimeline {
         }
     }
     
+    public boolean checkRepeatOnMongoDB(Twitter twitter) {
+        boolean flag = false;
+        Integer document_count = 0;
+            //check access token already exists
+        try {
+            MongoClient mongo = new MongoClient("localhost", 27017);
+            DB db = mongo.getDB("userDB");
+            DBCollection table = db.getCollection("userProfileInfo");
+            BasicDBObject searchQuery = new BasicDBObject();
+            //searching parameter set to accessToken
+            searchQuery.put("token", this.getAccessToken());
+            DBCursor cursor = table.find(searchQuery);
+        
+            while (cursor.hasNext()) {
+//                    System.out.println("Found 1 "+ cursor.next().get("name"));
+                document_count++;
+            }
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(UserTimeline.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return true;
+    }
+    
     public String getProfileImage(Twitter twitter){
         String addr = new String();
         addr = ""+this.getUser().getFriendsCount();

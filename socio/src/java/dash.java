@@ -4,87 +4,136 @@
  * and open the template in the editor.
  */
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 /**
  *
  * @author noones
  */
-@WebServlet(urlPatterns = {"/dasha"})
-public class dash extends HttpServlet {
+import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.WriteConcern;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.DBCursor;
+import com.mongodb.ServerAddress;
+import java.net.UnknownHostException;
+import java.util.Arrays;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet dash</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet dash at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        } finally {
-            out.close();
+
+public class Dash {
+private String category;
+private String miniContent;
+private String domain;
+private String link;
+private String headLine;
+private String time;
+private String userName;
+private String fullName;
+
+private final String host;
+    private final int port;
+    private final String dbName;
+    private final String collectionName;
+    private MongoClient mongoClient;
+    private DBCollection collection;
+
+    public Dash(String host, int port, String dbName, String collectionName){
+        this.host = host;
+        this.port = port;
+        this.dbName = dbName;
+        this.collectionName = collectionName;
+        this.establishConnection();
+    } 
+    
+    public static void main(String[] args) {
+    Dash dashb = new Dash("localhost", 27017, "mydb", "testData");
+    
+}
+
+    Dash() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getCategory() {
+        return "football";
+    }
+
+    public void setCategory(String category) {
+        
+        this.category = category;
+    }
+
+    public String getMiniContent() {
+        return miniContent;
+    }
+
+    public void setMiniContent(String miniContent) {
+        this.miniContent = miniContent;
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public String getHeadLine() {
+        return headLine;
+    }
+
+    public void setHeadLine(String headLine) {
+        this.headLine = headLine;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getUserName() {
+        return "noones";
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    private boolean establishConnection() {
+     try {
+            mongoClient = new MongoClient( host , port );
+            DB db = mongoClient.getDB(dbName);
+            collection = db.getCollection(collectionName);
+        } catch (UnknownHostException ex) {
+            return false;
         }
+        return true;
+        
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    
+    public void close(){
+        mongoClient.close();
     }
-
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    
 }

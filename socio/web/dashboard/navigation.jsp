@@ -3,7 +3,7 @@
     Created on : May 15, 2014, 7:12:01 PM
     Author     : noones
 --%>
-<% String userName="noones";%>
+<% String userName=(String)request.getAttribute("userName");%>
    <!-- BEGIN HEADER -->
    <div id="header" class="navbar navbar-inverse navbar-fixed-top">
        <!-- BEGIN TOP NAVIGATION BAR -->
