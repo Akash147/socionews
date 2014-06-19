@@ -17,6 +17,8 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import org.bson.types.ObjectId;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 /**
  *
@@ -55,7 +57,9 @@ public class MongoWorker {
         DBObject dbObj = collection.findOne(query);
         DisplayNews news = new DisplayNews();
         news.setHeadLine( dbObj.get("Title").toString() );
-        news.setNewsContent( dbObj.get("Content").toString() );
+        Document doc = Jsoup.parse( dbObj.get("Content").toString() ); 
+        news.setNewsContent( doc.toString() );
+        news.setMetaDescription( doc.text().substring(0, 100)+"..." );
         news.setNewsTime( dbObj.get("Date").toString() );
         news.setSourceLink( dbObj.get("URL").toString() );
         news.setNewsId( dbObj.get("_id").toString() );

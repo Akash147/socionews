@@ -26,8 +26,8 @@ import org.apache.lucene.queryparser.classic.ParseException;
  *
  * @author noones
  */
-@WebServlet(urlPatterns = {"/dashboard/"})
-public class Dashboard extends HttpServlet {
+@WebServlet(urlPatterns = {"/news/"})
+public class ShowEachNews extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,20 +41,25 @@ public class Dashboard extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-//        Dash dashObject = new Dash();
-//        request.setAttribute("user", dashObject);
+        String id = request.getParameter("id"); // news ID
+        if (id==null){
+            // @TODO
+        }
         Configuration config = new Configuration(getServletConfig().getServletContext());
         LuceneSearcher searcher = new LuceneSearcher(config.getLuceneLocation());
         MongoWorker mongo = new MongoWorker(config.getMongoHost(), config.getMongoPort(), config.getMongoDB(), config.getMongoCollection());
         try {
             List<String> matchIDs = searcher.search("rooney+brazil");
             request.setAttribute("recentNewsList", mongo.findAllDocumentByID(matchIDs.toArray(new String[matchIDs.size()])) );
+            request.setAttribute("nowShowingNews", mongo.findDocumentById(id) );
         } catch (ParseException ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         } catch (URISyntaxException ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
-        request.getRequestDispatcher("/dashboard/index.jsp").forward(request, response);
+        
+        
+        request.getRequestDispatcher("/dashboard/news.jsp").forward(request, response);
         /* TODO output your page here. You may use following sample code. */;
         
     }
