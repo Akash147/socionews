@@ -40,7 +40,7 @@ public class LuceneSearcher {
     private Directory dir;
     private IndexSearcher searcher;
     private Analyzer analyzer;
-    private static int hitsPerPage = 1000;
+    private static int hitsPerPage = 15;
     
 
     public LuceneSearcher(String _indexLocation) throws IOException {
