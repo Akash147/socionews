@@ -278,7 +278,7 @@ h3 small, h2 small, h5 small {
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
-    font-family: "MyriadPro-Light";
+    font-family: "initial";
     margin-top: 0px;
 }
 
@@ -4423,6 +4423,7 @@ margin-right: 21px;
 
 .profile-side-box {
     background: #f5f5f5;
+    
 }
 
 .profile-side-box h1 {
@@ -4464,6 +4465,7 @@ margin-right: 21px;
 
 .profile-side-box.green {
     border-bottom: 1px solid #0da38a;
+    padding: 0px 25px 10px 10px;
 }
 
 .profile-side-box img {
@@ -4637,4 +4639,22 @@ margin-right: 21px;
 
 .d-sel-filter span {
     margin-right: 10px;
+}
+
+.news-head {
+    background: #FCFCFC;
+    padding:1px;
+    min-height: 86px;
+}
+
+.news-head h1 {
+    color: #000000;
+    font-size: 40px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    line-height: normal;
+}
+
+.news-head p {
+    color: #979797;
 }

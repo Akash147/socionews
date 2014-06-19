@@ -18,7 +18,7 @@
          <!-- BEGIN SIDEBAR MENU -->
           <ul class="sidebar-menu">
               <li class="sub-menu active">
-                  <a class="" href="index.jsp">
+                  <a class="" href="<c:url value="/dashboard/"/>">
                       <i class="icon-dashboard"></i>
                       <span>Dashboard</span>
                   </a>
