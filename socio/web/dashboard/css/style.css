@@ -4646,3 +4646,15 @@ margin-right: 21px;
     padding:1px;
     min-height: 86px;
 }
+
+.news-head h1 {
+    color: #fff;
+    font-size: 40px;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    line-height: normal;
+}
+
+.news-head p {
+    color: #979797;
+}

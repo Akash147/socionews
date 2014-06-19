@@ -54,7 +54,9 @@
                             <div class="row-fluid">
                                 <div class="span12">
                                     <div class="news-head">
-                                    <h2 class="ramro">Yo headline ho ${nowShowingNews.headLine}</h4><hr>
+                                    <h1>${nowShowingNews.headLine}</h1><hr>
+                                    <p>By: <b>${nowShowingNews.sourceDomain}</b> /p>
+                                    <span>Jun 19, 2014</span>
                                     </div>
                                     ${nowShowingNews.newsContent}
                                 </div>
