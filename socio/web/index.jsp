@@ -64,15 +64,15 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
-                        <h1>FreshArticles</h1>
-                        <h4>Turns any web page into a clean view for reading.</h4>
+                        <h1>Introducing Socionews</h1>
+                        <h3>Explore and Share the news from different sources.</h3>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                             <li><a href="TwitterSignin" class="btn btn-default btn-lg"><i class="icon-twitter"></i> <span class="network-name">Twitter</span></a>
                             </li>
-                            <li><a href="facebooksignin" class="btn btn-default btn-lg"><i class="icon-facebook-sign"></i> <span class="network-name">Facebook</span></a>
+                            <li><a href="facebooksignin" class="btn btn-default btn-lg"><i class="icon-facebook"></i> <span class="network-name">Facebook</span></a>
                             </li>
-                            <li><a href="linkedinsignin" class="btn btn-default btn-lg"><i class="icon-linkedin-sign"></i> <span class="network-name">Linkedin</span></a>
+                            <li><a href="linkedinsignin" class="btn btn-default btn-lg"><i class="icon-linkedin"></i> <span class="network-name">Linkedin</span></a>
                             </li>
                         </ul>
                     </div>
@@ -164,11 +164,11 @@
                 </div>
                 <div class="col-lg-6">
                     <ul class="list-inline banner-social-buttons">
-                        <li><a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="icon-twitter-sign"></i> <span class="network-name">Twitter</span></a>
+                        <li><a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="icon-twitter"></i> <span class="network-name">Twitter</span></a>
                         </li>
-                        <li><a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="icon-facebook-sign"></i> <span class="network-name">Github</span></a>
+                        <li><a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="icon-facebook"></i> <span class="network-name">facebook</span></a>
                         </li>
-                        <li><a href="#" class="btn btn-default btn-lg"><i class="icon-linkedin-sign"></i> <span class="network-name">Linkedin</span></a>
+                        <li><a href="#" class="btn btn-default btn-lg"><i class="icon-linkedin"></i> <span class="network-name">Linkedin</span></a>
                         </li>
                     </ul>
                 </div>
