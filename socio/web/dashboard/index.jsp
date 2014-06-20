@@ -5,14 +5,25 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="reco.DbForWeb"%>
+
+<% 
+    DbForWeb dbd = new DbForWeb();
+    String u_id = request.getParameter("user");
+    long user_id = Long.parseLong(u_id);
+    dbd.fetchAll(user_id);
+    request.setAttribute("screenName", dbd.getScreenName());
+    request.setAttribute("fullName", dbd.getFullName());
+    request.setAttribute("profileImage", dbd.getImageURL());
+%>
+
 <% String category = "cricket";%>
 <% String miniContent = "This tutorial will help tutorial will help you to Boost your android Virtual device on Linuxytutorial will help you to Boost your android Virtual device on Linuxou to Boost your android Virtual device on Linux";%>
 <% String domain = "www.techtach.com";%>
 <% String link = "http://www.techtach.com";%>
 <% String headLine = "Red Sox bats remain silent in loss to Tigers";%>
 <% String time = "2 m";%>
-<% String userNames = "noones";%>
-<% String fullName = "Ganesh Pandey";%>
+
 
 <% String hotnews = "<div class=\"metro-nav-block nav-block-green long\">"
             + "<a href=\"#\" class=\"text-center\" data-original-title=\"\"><span class=\"value\">"
@@ -62,7 +73,11 @@
                                     <div class="thumbnail">
                                         <img data-src="holder.js/300x200" alt="300x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4=">
                                         <div class="caption">
-                                            <h3>Thumbnail label</h3>
+                                            <h3>
+                                                <%
+                                                    request.getAttribute("fullName");
+                                                %>
+                                            </h3>
                                             <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
                                             <span><a href="#" class="btn btn-primary" role="button"><i class="icon-link"></i> Read</a> 
 
