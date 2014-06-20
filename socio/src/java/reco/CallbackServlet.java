@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import akash.maxentclassifier.SentimentAnalyzer;
+import tweet_keyword.Keyword;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
@@ -65,6 +66,7 @@ public class CallbackServlet extends HttpServlet {
         }
         
         //create Tweets objects
+//        Keyword key= new Keyword();
         for(Status status : statuses){
             ArrayList<String> temp_hash_tags = new ArrayList<String>();
             if(status.getHashtagEntities() != null){
@@ -78,12 +80,15 @@ public class CallbackServlet extends HttpServlet {
             General_String_manipulation gsm = new General_String_manipulation();
             temp_tweets = gsm.get_separateHyperlink(status);
             
-            twit.add(new Tweets(temp_user, temp_tweets, temp_sent, temp_hash_tags));
+            
+            
+            twit.add(new Tweets(temp_user, temp_tweets, temp_sent, temp_hash_tags, Keyword.POSTag(temp_tweets)));
         }
         //get keywords here
         
         //store keyworkd in tweetKeyword collection here
         //includes userID(long) and keywords(String[])
+        
 
         //store in MongoDB
         userTimeline.storeUserDetailsInMongoDB(twitter);
