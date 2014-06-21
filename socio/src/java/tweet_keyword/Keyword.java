@@ -6,11 +6,13 @@
 
 package tweet_keyword;
 
+import akash.configuration.Configuration;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.ServletContext;
 import opennlp.tools.cmdline.PerformanceMonitor;
 import opennlp.tools.cmdline.postag.POSModelLoader;
 import opennlp.tools.postag.POSModel;
@@ -25,8 +27,13 @@ import opennlp.tools.util.PlainTextByLineStream;
  * @author ravi
  */
 public class Keyword {
+    
 
     public static ArrayList<String> POSTag(String input) throws IOException {
+        String filelocation;
+        Configuration config = new Configuration();
+        filelocation=config.getKeyLocation();
+        
         ArrayList <String> keywords = new ArrayList<String>();
         POSModel model = new POSModelLoader()
                 .load(new File("en-pos-maxent.bin"));
