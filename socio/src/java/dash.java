@@ -21,7 +21,7 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 
 
-public class Dash {
+public class dash {
 private String category;
 private String miniContent;
 private String domain;
