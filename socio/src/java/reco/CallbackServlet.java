@@ -82,7 +82,7 @@ public class CallbackServlet extends HttpServlet {
             
             
             
-            twit.add(new Tweets(temp_user, temp_tweets, temp_sent, temp_hash_tags, Keyword.POSTag(temp_tweets)));
+            twit.add(new Tweets(temp_user, temp_tweets, temp_sent, temp_hash_tags));
         }
         //get keywords here
         

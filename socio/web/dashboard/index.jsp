@@ -8,13 +8,18 @@
 <%@page import="reco.DbForWeb"%>
 
 <% 
-    DbForWeb dbd = new DbForWeb();
+    // collect data at the start and make it valid througout the session
+    DbForWeb dfw = new DbForWeb();
     String u_id = request.getParameter("user");
     long user_id = Long.parseLong(u_id);
-    dbd.fetchAll(user_id);
-    request.setAttribute("screenName", dbd.getScreenName());
-    request.setAttribute("fullName", dbd.getFullName());
-    request.setAttribute("profileImage", dbd.getImageURL());
+    dfw.fetchAll(user_id);
+    session.setAttribute("screenName", dfw.getScreenName());
+    session.setAttribute("fullName", dfw.getFullName());
+    session.setAttribute("profileImage", dfw.getImageURL());
+    session.setAttribute("location", dfw.getLocation());
+    session.setAttribute("userDescription", dfw.getUserDescription());
+    session.setAttribute("createdDate", dfw.getStringDate());
+    session.setAttribute("following", dfw.getFollowingNum());
 %>
 
 <% String category = "cricket";%>
@@ -36,7 +41,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="header.jsp" %>
 
-        <title>Dashboard: ${user.getUserName()}</title>
+        <title>Dashboard: <%=dfw.getScreenName() %></title>
     </head>
     <body class="fixed-top">
         <%@include file="navigation.jsp" %>

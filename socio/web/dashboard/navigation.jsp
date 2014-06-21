@@ -62,8 +62,8 @@
                        <!-- BEGIN USER LOGIN DROPDOWN -->
                        <li class="dropdown">
                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                               <img src="img/msmall.jpg" alt="" height="29px" width="29px">
-                               <span class="username"><%= request.getAttribute("screenName") %></span>
+                               <img src="<%=session.getAttribute("profileImage")%>" alt="" height="29px" width="29px">
+                               <span class="username"><%= session.getAttribute("screenName") %></span>
                                <b class="caret"></b>
                            </a>
                            <ul class="dropdown-menu extended logout">

@@ -28,12 +28,12 @@ public final class Tweets{
     public ArrayList<String> keywords;
     public int temp;
     public String sentiment;
-    public Tweets(String user, String twits, String senti, ArrayList<String> tags, ArrayList<String> keys){
+    public Tweets(String user, String twits, String senti, ArrayList<String> tags){
         userName = user;
         cleanTweets = twits;
         sentiment = senti;
         hashTags = tags;
-        keywords = keys;
+//        keywords = keys;
     }
     public void setTweets(Status status, ServletContext context){
         this.setUserName(status);
