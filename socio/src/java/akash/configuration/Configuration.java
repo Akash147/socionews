@@ -27,6 +27,9 @@ public class Configuration {
     // twitter app credentials oauth
     private String consumerKey;
     private String consumerSecret;
+    
+    // twtter keyword ko training data location
+    private String keyLocation;
 
     public Configuration(ServletContext _context) throws IOException {
         this.context = _context;
@@ -40,6 +43,11 @@ public class Configuration {
         sentimentModelFile = config.getProperty("sentimentModel");
         consumerKey = config.getProperty("consumerKey");
         consumerSecret = config.getProperty("consumerSecret");
+        keyLocation=config.getProperty("keylocation");
+    }
+
+    public Configuration() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getSentimentModelFile() {
@@ -72,5 +80,8 @@ public class Configuration {
     
     public String getConsumerSecret() {
         return consumerSecret;
+    }
+    public String getKeyLocation(){
+        return keyLocation;
     }
 }

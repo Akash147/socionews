@@ -33,6 +33,7 @@ public final class Tweets{
         cleanTweets = twits;
         sentiment = senti;
         hashTags = tags;
+//        keywords = keys;
     }
     public void setTweets(Status status, ServletContext context){
         this.setUserName(status);

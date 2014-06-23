@@ -3,7 +3,10 @@
     Created on : May 15, 2014, 7:12:01 PM
     Author     : noones
 --%>
-<% String userName=(String)request.getAttribute("userName");%>
+<% 
+    String userName=(String)request.getAttribute("userName");
+    
+%>
    <!-- BEGIN HEADER -->
    <div id="header" class="navbar navbar-inverse navbar-fixed-top">
        <!-- BEGIN TOP NAVIGATION BAR -->
@@ -59,8 +62,8 @@
                        <!-- BEGIN USER LOGIN DROPDOWN -->
                        <li class="dropdown">
                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                               <img src="img/msmall.jpg" alt="" height="29px" width="29px">
-                               <span class="username"><%= userName %></span>
+                               <img src="<%=session.getAttribute("profileImage")%>" alt="" height="29px" width="29px">
+                               <span class="username"><%= session.getAttribute("screenName") %></span>
                                <b class="caret"></b>
                            </a>
                            <ul class="dropdown-menu extended logout">

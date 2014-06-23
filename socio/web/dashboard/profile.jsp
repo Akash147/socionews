@@ -27,7 +27,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="header.jsp" %>
-        <title><%= userNames %>  ::Profile</title>
+        <title><%=session.getAttribute("screenName") %>  ::Profile</title>
     </head>
     <body class="fixed-top">
        <%@include file="navigation.jsp" %>
@@ -55,7 +55,7 @@
                  <div class=" profile span12">
                      <div class="span2">
                          <div class="profile-photo">
-                             <img src="img/m.jpg" alt="">
+                             <img src="<%=session.getAttribute("profileImage") %>" alt="">
                              Connected:<span class="pull-right">
                                  
                                      <a href="#">
@@ -102,8 +102,8 @@
                      <div class="span10">
                          <div class="profile-head">
                              <div class="span4">
-                                 <h3><b><%= fullName %></b></h3>
-                                 <p>Joined <b>2 days ago.</b></p>
+                                 <h3><b><%=session.getAttribute("fullName") %></b></h3>
+                                 <p>Joined Since : <b><%=session.getAttribute("createdDate") %></b></p>
                              </div>
                              <div class="span4">
                              </div>
@@ -117,13 +117,13 @@
                              <div class="span4 bio">
                                  <div class="space15"></div>
                                  <h3>Bio Graph</h3>
-                                 <p><label>Country </label>: Australia</p>
-                                 <p><label>Bithday </label>: 13 July 1983</p>
-                                 <p><label>Email </label>: <a href="#">noones@noones.com</a></p>
-                                 <p><label>Phone </label>: (12) 03 4567890</p>
-                                 <p><label><i class="icon-facebook large"></i> Facebook </label>: <a href="http://#">http://fb.me/white.hat.inside</a></p>
-                                 <p><label><i class="icon-twitter large"></i> Twitter </label>: <a href="http://#">@_GPandey</a></p>
-                                 <p><label><i class="icon-linkedin large"></i> Linkedin </label>: <a href="http://#">http://techtach.com</a></p>
+                                 <p><label>Location </label>: <%=session.getAttribute("location") %></p>
+                                 <p><label>User Description </label>: <%=session.getAttribute("userDescription") %></p>
+                                 <p><label>Following  </label>: <%=session.getAttribute("following") %></p>
+                                 
+                                 
+                                 <p><label><i class="icon-twitter large"></i> Twitter </label>: <a href="https://twitter.com/<%=session.getAttribute("screenName") %>" target="_BLANK">@<%=session.getAttribute("screenName") %></a></p>
+                                 
                                  <div class="space15"></div>
                                  <hr>
                                  <div class="space15"></div>

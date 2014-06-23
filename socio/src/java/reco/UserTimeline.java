@@ -131,32 +131,34 @@ public class UserTimeline {
     }
     public void storeUserDetailsInMongoDB(Twitter twitter) throws UnknownHostException
     {
-        
-        //start mongoDB
-        try{
-            MongoClient mongo = new MongoClient("localhost", 27017);
-            DB db = mongo.getDB("userDB");
-            DBCollection table = db.getCollection("userProfileInfo");
-            BasicDBObject document = new BasicDBObject();
-            document.put("fullName", this.getUser().getName());
-            document.put("userID", this.getUserID());
-            document.put("createdDate", this.getUser().getCreatedAt());
-            document.put("screenName", this.getUser().getScreenName());
-            document.put("token", this.getAccessToken());
-            document.put("tokenSecret", this.getTokenSecret());
-            document.put("userDescription", this.getUser().getDescription());
-            document.put("location", this.getUser().getLocation());
-            document.put("following", this.getUser().getFriendsCount());
-            document.put("profileImage", this.getUser().getOriginalProfileImageURL());
-            table.insert(document);
-        }catch (UnknownHostException e) {
-            e.printStackTrace();
-        } catch (MongoException e) {
-            e.printStackTrace();
+        if(!this.checkRepeatOnMongoDB()){
+            //start mongoDB
+            try{
+                MongoClient mongo = new MongoClient("localhost", 27017);
+                DB db = mongo.getDB("userDB");
+                DBCollection table = db.getCollection("userProfileInfo");
+                BasicDBObject document = new BasicDBObject();
+                document.put("fullName", this.getUser().getName());
+                document.put("userID", this.getUserID());
+                document.put("createdDate", this.getUser().getCreatedAt());
+                document.put("screenName", this.getUser().getScreenName());
+                document.put("token", this.getAccessToken());
+                document.put("tokenSecret", this.getTokenSecret());
+                document.put("userDescription", this.getUser().getDescription());
+                document.put("location", this.getUser().getLocation());
+                document.put("following", this.getUser().getFriendsCount());
+                document.put("profileImage", this.getUser().getOriginalProfileImageURL());
+                table.insert(document);
+            }catch (UnknownHostException e) {
+                e.printStackTrace();
+            } catch (MongoException e) {
+                e.printStackTrace();
+            }
         }
+        
     }
     
-    public boolean checkRepeatOnMongoDB(Twitter twitter) {
+    public boolean checkRepeatOnMongoDB() {
         boolean flag = false;
         Integer document_count = 0;
             //check access token already exists
@@ -170,13 +172,19 @@ public class UserTimeline {
             DBCursor cursor = table.find(searchQuery);
         
             while (cursor.hasNext()) {
-//                    System.out.println("Found 1 "+ cursor.next().get("name"));
+                cursor.next();
                 document_count++;
             }
         } catch (UnknownHostException ex) {
             Logger.getLogger(UserTimeline.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return true;
+        
+        //make logic for check
+        if(document_count == 1 || document_count >= 1){
+            return true;
+        }else{
+            return false;
+        }
     }
     
     public String getProfileImage(Twitter twitter){
