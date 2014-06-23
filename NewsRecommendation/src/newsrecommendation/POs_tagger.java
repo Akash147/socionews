@@ -48,15 +48,15 @@ public class POs_tagger {
             for(int i=0;i<tags.length;i++){
 //            System.out.println(tags[i]);
 //            System.out.println(whitespaceTokenizerLine[i]);
-            if(("NN".equals(tags[i]) || "FW".equals(tags[i]) || "VB".equals(tags[i])) && !allWords.contains(whitespaceTokenizerLine[i])){
+            if("NN".equals(tags[i]) || "FW".equals(tags[i]) || "VB".equals(tags[i]) || "ADJ".equals(tags[i]) || "AD".equals(tags[i])){
                 allWords.add(whitespaceTokenizerLine[i]);
             }
         }
 //            System.out.println(sample.toString());
 
-            perfMon.incrementCounter();
+//            perfMon.incrementCounter();
         }
-        perfMon.stopAndPrintFinalResult();
+//        perfMon.stopAndPrintFinalResult();
         return allWords;
     }
 
