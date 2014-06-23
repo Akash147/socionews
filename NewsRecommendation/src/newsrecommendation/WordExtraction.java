@@ -32,6 +32,7 @@ public class WordExtraction {
 //    private final List<String> beforeStemAllWords; //to hold all words before stemming
     private final List<String> keyword; //to hold all keyword
     private List<String> permAllWords; //to hold all permuted terms of the all words
+    private List<String> posTerm;
     List<Integer> termCount = new ArrayList<>(); // to hold the frequency of the word
     List<String> titleWord = new ArrayList<>();
     List<Double> value_Chi = new ArrayList<>(); // to hold the chisquare value of the word
@@ -42,6 +43,7 @@ public class WordExtraction {
         this.permAllWords = new ArrayList<>();
         this.allWords = new ArrayList<>();
         this.tokenizedTerms = new ArrayList<>();
+        this.posTerm= new ArrayList<>();
 //        this.beforeStemAllWords = new ArrayList<>();
         this.keyword = new ArrayList<>();
         this.stop.extractStopWords();
@@ -56,11 +58,13 @@ public class WordExtraction {
 //            allWords.addAll(Arrays.asList(aline.replaceAll("[\\W&&[^\\s]]", "").split(" ")));  //to get individual terms
 //        }
 //        allWords= POs_tagger.POSTag(aline);  //to get individual terms
+//        System.out.println("allwords "+allWords);
         allWords.addAll(Arrays.asList(aline.toLowerCase().replaceAll("[\\W&&[^\\s]]", "").split(" ")));
         titleWord.addAll(Arrays.asList(title.toLowerCase().replaceAll("[\\W&&[^\\s]]", "").split(" ")));  //to get title word
 //        Stemming stem = new Stemming();
 //        String stemmedWord= new String();
-        for (String eachWord : allWords) {
+        posTerm= POs_tagger.POSTag(aline);
+        for (String eachWord : posTerm) {
 //            stemmedWord = stem.stripAffixes(eachWord);
             if (!tokenizedTerms.contains(eachWord)) {
                 if (!this.stop.isStopWord(eachWord)) {
@@ -153,9 +157,10 @@ public class WordExtraction {
         
 //        System.out.println("ravi"+value_Chi);
     }
+    float precision=0;
 public void calculatePrecision(){
     float  count=0;
-    float precision;
+    
     for(String Title:titleWord){
         for(String Keyword:keyword){
             if(Title.equals(Keyword)){
@@ -163,8 +168,9 @@ public void calculatePrecision(){
             }
         }
     }
+//    precision=count/(float)keyword.size();
     System.out.println("count"+count);
-    System.out.println("key tot"+keyword.size());
+    System.out.println("key tot"+titleWord.size());
     precision=count/(float)keyword.size();
     System.out.println("title word"+titleWord);
     System.out.println("pre is"+precision);
