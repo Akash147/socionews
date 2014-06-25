@@ -31,10 +31,19 @@ public class CharSequence2CleanCharSequence extends Pipe implements Serializable
     public Instance pipe(Instance carrier) {
         CharSequence string = (CharSequence) carrier.getData();
         String cleanString = "";
-        List<String> tokens = tokenize(string.toString());
+        
+        String stringAfterSentenceLevelPreprocess = removeRT(
+                                                            removeAtMentions(
+                                                                    removeLinks(
+                                                                            string.toString().toLowerCase()
+                                                                    )
+                                                            )
+                                                    );
+        List<String> tokens = tokenize( stringAfterSentenceLevelPreprocess );
         for(String token : tokens)
             cleanString += token + " ";
-        cleanString = cleanString.substring(0, cleanString.length()-1);
+        if(cleanString.length()!=0)
+            cleanString = cleanString.substring(0, cleanString.length()-1);
         carrier.setData(cleanString);
         return carrier;
     }
