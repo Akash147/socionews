@@ -70,12 +70,12 @@ public class Keyword {
 
 //            perfMon.incrementCounter();
         }
-<<<<<<< Updated upstream
+
 //        perfMon.stopAndPrintFinalResult();
-=======
-        perfMon.stopAndPrintFinalResult();
+
+//        perfMon.stopAndPrintFinalResult();
         System.out.println(keywords);
->>>>>>> Stashed changes
+
         return keywords;
     }
 
