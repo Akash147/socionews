@@ -49,7 +49,7 @@ public class Dashboard extends HttpServlet {
         try {
 //            request.setAttribute("recentNews", renderNews( mongo.findDocumentById(matchIDs.get(0)) ));
 
-            List<String> matchIDs = searcher.search("rooney+brazil");
+            List<String> matchIDs = searcher.search("rooney + brazil - Neymar");
 //>>>>>>> eb389f86a252d139b853ed9e36ee0e8b4b1dff4d
             request.setAttribute("recentNewsList", mongo.findAllDocumentByID(matchIDs.toArray(new String[matchIDs.size()])) );
         } catch (ParseException ex) {

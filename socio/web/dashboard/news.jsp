@@ -24,7 +24,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="header.jsp" %>
-
+        <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville:400,700' rel='stylesheet' type='text/css'>
         <title>${nowShowingNews.headLine}</title>
     </head>
     <body class="fixed-top">
@@ -54,9 +54,36 @@
                             <div class="row-fluid">
                                 <div class="span12">
                                     <div class="news-head">
-                                    <h1>${nowShowingNews.headLine}</h1>
-                                    <p>By: <a href="http://${nowShowingNews.sourceDomain}">${nowShowingNews.sourceDomain}</a> </p>
-                                    <span>Jun 19, 2014</span><hr>
+                                        <h1>${nowShowingNews.headLine}</h1>
+                                        <div style="margin-bottom:0px; padding-bottom:1px;">
+                                            <p style="text-align:left; margin-bottom:0px; padding-bottom:1px;">
+                                                <button type="button" class="btn btn-large btn-default"style="height:60px; width:74px"><i class="icon-2x icon-share"></i></button>
+                                                <button type="button" class="btn btn-large btn-primary"style="height:60px; width:74px"><i class="icon-2x icon-facebook"></i></button>
+                                                <button type="button" class="btn btn-large btn-success"style="height:60px; width:74px"><i class="icon-2x icon-twitter"></i></button>
+                                                <button type="button" class="btn btn-large btn-danger"style="height:60px; width:74px"><i class="icon-2x icon-google-plus"></i></button>
+                                            </p>
+                                            <p style="float: right">By: <a href="http://${nowShowingNews.sourceDomain}">${nowShowingNews.sourceDomain}</a>
+                                                <span>Jun 19, 2014</span></p>
+                                        </div>
+                                        <div class="alert alert-success fade in" style="position: fixed;bottom: 0;right: 0; z-index: 1000; text-align:center";>
+                                            <h4>Feedback!</h4>
+                                            <p>Helps us to improve your news dashboard.</p>
+                                            <form>
+                                            <div class="control-group" style="text-align:center; margin: auto">
+                                                <label class="control-label">Do you like this news?</label>
+                                               <label class="radio-inline">
+                                                <input type="radio" id="inlineCheckbox1" name="feed1" value="1"> yes
+                                              </label>
+                                              <label class="radio-inline">
+                                                <input type="radio" id="inlineCheckbox2" name="feed1" value="0"> No
+                                              </label>
+                                            </div>
+                                        </form>
+                                            <button type="button" data-dismiss="alert" class="btn btn-medium btn-danger">feedback</button>
+                                        </div>
+                                        
+                                        <hr>
+
                                     </div>
                                     ${nowShowingNews.newsContent}
                                 </div>
@@ -80,7 +107,7 @@
                             <!-- Recent News End--> 
                         </div>
 
-                    <!-- Recommended News SideBar -->
+                        <!-- Recommended News SideBar -->
                         <div class="span4">
                             <!-- Akash Here -->
                             <div class="profile-side-box green">

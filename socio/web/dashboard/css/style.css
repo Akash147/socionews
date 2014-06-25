@@ -54,13 +54,17 @@ body {
     font-style: normal;
 }
 
+ @font-face{
+     font-family:"FranklinITCProBold";src:url("http://www.washingtonpost.com/pb/resources/assets/fonts/webtype/Franklin-ITC-Pro-Bold/e9e4c4dc-e548-4fef-9aa1-80c9cd0f02ce-2.eot");src:url("http://www.washingtonpost.com/pb/resources/assets/fonts/webtype/Franklin-ITC-Pro-Bold/e9e4c4dc-e548-4fef-9aa1-80c9cd0f02ce-2.eot?") format("embedded-opentype"),url("http://www.washingtonpost.com/pb/resources/assets/fonts/webtype/Franklin-ITC-Pro-Bold/e9e4c4dc-e548-4fef-9aa1-80c9cd0f02ce-3.woff") format("woff"),url("http://www.washingtonpost.com/pb/resources/assets/fonts/webtype/Franklin-ITC-Pro-Bold/e9e4c4dc-e548-4fef-9aa1-80c9cd0f02ce-1.ttf") format("truetype"),url("http://www.washingtonpost.com/pb/resources/assets/fonts/webtype/Franklin-ITC-Pro-Bold/e9e4c4dc-e548-4fef-9aa1-80c9cd0f02ce-4.svg#web") format("svg");font-style:normal;font-weight:normal}@font-face{font-family:"FranklinITCProLight";src:url("http://www.washingtonpost.com/pb/resources/assets/fonts/webtype/Franklin-ITC-Pro-Light/b147bee6-eb48-46e1-86e1-2538a46794b6-2.eot");src:url("http://www.washingtonpost.com/pb/resources/assets/fonts/webtype/Franklin-ITC-Pro-Light/b147bee6-eb48-46e1-86e1-2538a46794b6-2.eot?") format("embedded-opentype"),url("http://www.washingtonpost.com/pb/resources/assets/fonts/webtype/Franklin-ITC-Pro-Light/b147bee6-eb48-46e1-86e1-2538a46794b6-3.woff") format("woff"),url("http://www.washingtonpost.com/pb/resources/assets/fonts/webtype/Franklin-ITC-Pro-Light/b147bee6-eb48-46e1-86e1-2538a46794b6-1.ttf") format("truetype"),url("http://www.washingtonpost.com/pb/resources/assets/fonts/webtype/Franklin-ITC-Pro-Light/b147bee6-eb48-46e1-86e1-2538a46794b6-4.svg#web") format("svg");font-style:normal;font-weight:normal}@font-face{font-family:"FranklinITCProThin";src:url("http://www.washingtonpost.com/pb/resources/assets/fonts/webtype/Franklin-ITC-Pro-Thin/56bcaf21-92ef-486a-836d-19f261762e57-2.eot");src:url("http://www.washingtonpost.com/pb/resources/assets/fonts/webtype/Franklin-ITC-Pro-Thin/56bcaf21-92ef-486a-836d-19f261762e57-2.eot?") format("embedded-opentype"),url("http://www.washingtonpost.com/pb/resources/assets/fonts/webtype/Franklin-ITC-Pro-Thin/56bcaf21-92ef-486a-836d-19f261762e57-3.woff") format("woff"),url("http://www.washingtonpost.com/pb/resources/assets/fonts/webtype/Franklin-ITC-Pro-Thin/56bcaf21-92ef-486a-836d-19f261762e57-1.ttf") format("truetype"),url("http://www.washingtonpost.com/pb/resources/assets/fonts/webtype/Franklin-ITC-Pro-Thin/56bcaf21-92ef-486a-836d-19f261762e57-4.svg#web") format("svg");font-style:normal;font-weight:normal}@font-face{font-family:"FontAwesome";src:url('http://www.washingtonpost.com/pb/resources/assets/fonts/fontawesome/4.0.3/fonts/fontawesome-webfont.eot?v=4.0.3');src:url('http://www.washingtonpost.com/pb/resources/assets/fonts/fontawesome/4.0.3/fonts/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'),url('http://www.washingtonpost.com/pb/resources/assets/fonts/fontawesome/4.0.3/fonts/fontawesome-webfont.woff?v=4.0.3') format('woff'),url('http://www.washingtonpost.com/pb/resources/assets/fonts/fontawesome/4.0.3/fonts/fontawesome-webfont.ttf?v=4.0.3') format('truetype'),url('http://www.washingtonpost.com/pb/resources/assets/fonts/fontawesome/4.0.3/fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');font-style:normal;font-weight:normal}h1{font-family:"FranklinITCProBold","HelveticaNeue","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif}h2{font-family:"FranklinITCProThin","HelveticaNeue","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif}body{font-family:"FranklinITCProLight","HelveticaNeue","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif}.fa{font-family:"FontAwesome"
+ }       
+
 div, input, select, textarea, span, img, table, td, th, p, a, button, ul, li {
     border-radius: 0 !important;
     -moz-border-radius: 0 !important;
     -webkit-border-radius: 0 !important;
 }
 
-/*buttons style*/
+/*buttons style
 
 .btn{
     border-radius: 0;
@@ -148,7 +152,7 @@ div, input, select, textarea, span, img, table, td, th, p, a, button, ul, li {
 
 .btn-group.open .dropdown-toggle {
     box-shadow: none;
-}
+}*/
 
 .uneditable-input {
     width: 135px;
@@ -163,93 +167,6 @@ div, input, select, textarea, span, img, table, td, th, p, a, button, ul, li {
 }
 .switch-table tr td {
     padding: 20px 0;
-}
-
-/* style switcher */
-#theme-change {
-    position: fixed;
-    width: 20px;
-    height: 22px;
-    overflow: hidden;
-    top:70px;
-    right: 0px;
-    white-space: nowrap;
-    padding: 5px 10px 5px 8px;
-    background-color: #dcdcdc;
-    z-index: 110;
-    color: #737373;
-}
-
-#theme-change > i {
-    font-size: 18px;
-    cursor: pointer;
-    display: inline-block;
-    margin-right: 2px;
-    margin-top: 2px;
-}
-
-#theme-change:hover, #theme-change > i:hover {
-    color: #737373;
-}
-
-#theme-change label {
-    display: inline-block !important;
-}
-
-#theme-change .text {
-    margin-right: 2px;
-    font-weight: bold;
-    font-size: 14px;
-}
-
-#theme-change .settings {
-    display: none;
-}
-
-#theme-change .colors {
-    display: block;
-}
-
-#theme-change .checker {
-    display: inline-block !important;
-    margin-top:-1px;
-}
-
-#theme-change .colors span {
-    display: inline-block;
-    width: 35px;
-    height: 30px;
-    margin: 2px 1px -7px 1px;
-    border: 2px solid #ddd;
-    cursor: pointer;
-}
-
-#theme-change .layout {
-    width: 100px;
-    margin-top: 7px;
-    margin-left: 63px;
-    margin-bottom: 5px;
-    display: block;
-}
-
-#theme-change .colors span.active, #theme-change .colors span:hover {
-    border: 2px solid white;
-}
-
-#theme-change .colors .color-default {
-    background-color: #4A8BC2;
-}
-#theme-change .colors .color-green {
-    background-color: #74B749;
-}
-#theme-change .colors .color-purple {
-    background-color: #7265ae;
-}
-#theme-change .colors .color-gray {
-    background-color: #2d2d2d;
-}
-#theme-change .colors .color-red {
-    background-color: #DE577B;
 }
 
 
@@ -4648,13 +4565,50 @@ margin-right: 21px;
 }
 
 .news-head h1 {
-    color: #000000;
-    font-size: 40px;
-    padding-bottom: 0;
-    margin-bottom: 0;
-    line-height: normal;
+    font: normal 48px "FranklinITCProBold","HelveticaNeue","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    line-height: 52px;
+    color: #2a2a2a;
+    margin-top: 0;
+    margin-bottom: .45em;
 }
 
 .news-head p {
+    position: relative;
     color: #979797;
+    font-size: small;
+    font-family: 'Libre Baskerville', serif;
+    margin-right: 10px;
+}
+
+#readability-content {
+    position: relative;
+    font: normal 19px "FranklinITCProLight","HelveticaNeue","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+    line-height: 20px;
+    color: #333;
+    padding: 0px 20px 0px 20px;
+    
+}
+#readability-content img {
+    float:left; 
+    margin-right:10px;  
+    border:none
+}
+
+#readability-content p {
+    line-height: 1.8em;
+    margin-bottom: 19px;
+    font-family: Georgia;
+    font-size: 19px;
+}
+
+#readability-content a {
+    color: #B94A48;
+    
+}
+
+label, input, button, select, textarea {
+font-size: 20px;
+font-weight: normal;
+line-height: 20px;
+
 }

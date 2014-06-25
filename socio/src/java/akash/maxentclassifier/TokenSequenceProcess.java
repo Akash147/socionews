@@ -29,16 +29,23 @@ public class TokenSequenceProcess extends Pipe implements Serializable {
             boolean weighted = false;
             Token t = ts.get(i);
             String each = t.getText();
-            if (_NEG_flag) each += "_NEG";
+            
             if (each.matches(negationWord)) _NEG_flag=true;
-            else _NEG_flag = false;
+            else if (_NEG_flag && each.matches(clausePunctuation)) _NEG_flag = false;
+
+            Stemmer s = new Stemmer();
+            each = s.stem(each);
+            
+            if (_NEG_flag) each += "_NEG";
             if (each.matches(CharSequence2CleanCharSequence.emoticon)) { each+="_EMO"; weighted=true; }
             if (each.matches(CharSequence2CleanCharSequence.Hashtag)) { each+="_TAG"; weighted=true; }
             
-            if(weighted){
-                for(int j=0; j<weight; j++)
-                    each += each + " ";
-            }
+//            if(weighted){
+//                for(int j=0; j<weight-1; j++){
+//                    Token stang = ts.get(i);
+//                    stang.setText(each);
+//                }
+//            }
             t.setText(each);
         }
 
