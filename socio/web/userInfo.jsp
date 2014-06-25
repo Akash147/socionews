@@ -23,10 +23,11 @@
     </head>
     <body>
         <%
-            ArrayList<Tweets> tweets = (ArrayList<Tweets>)request.getAttribute("todo");
-            for(Tweets twt : tweets){
-                out.println(twt.keywords);
-            }
+//            ArrayList<String> tweets = (ArrayList<String>)request.getAttribute("doto");
+//            out.println(tweets);
+            ArrayList<String> tweets = (ArrayList<String>)request.getAttribute("mongo");
+            out.println(tweets.size());
+                        
         %>
         <%
             String image_url = (String)request.getAttribute("prof");
