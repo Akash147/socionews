@@ -49,7 +49,7 @@ public class ShowEachNews extends HttpServlet {
         LuceneSearcher searcher = new LuceneSearcher(config.getLuceneLocation());
         MongoWorker mongo = new MongoWorker(config.getMongoHost(), config.getMongoPort(), config.getMongoDB(), config.getMongoCollection());
         try {
-            List<String> matchIDs = searcher.search("rooney+brazil");
+            List<String> matchIDs = searcher.search("suarez");
             request.setAttribute("recentNewsList", mongo.findAllDocumentByID(matchIDs.toArray(new String[matchIDs.size()])) );
             request.setAttribute("nowShowingNews", mongo.findDocumentById(id) );
         } catch (ParseException ex) {

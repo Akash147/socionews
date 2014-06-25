@@ -73,7 +73,7 @@ public class LuceneSearcher {
     
     public static void main(String[] args) {
         try {
-            LuceneSearcher searcher = new LuceneSearcher("/home/siranami/NetBeansProjects/newsIndex");
+            LuceneSearcher searcher = new LuceneSearcher("/home/noones/Desktop/newsIndex");
             MongoWorker m = new MongoWorker("localhost", 27017, "newscrawl", "news");
 //            DisplayNews obj = m.findDocumentById(searcher.search("brazil").get(1));
 //            System.out.println( obj.getHeadLine() );
