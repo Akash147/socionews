@@ -68,7 +68,7 @@ public class CallbackServlet extends HttpServlet {
         
         //create Tweets objects
 //        Keyword key= new Keyword();
-        Keyword keyword = new Keyword(getServletContext());
+        
         for(Status status : statuses){
             ArrayList<String> temp_hash_tags = new ArrayList<String>();
             if(status.getHashtagEntities() != null){
@@ -82,11 +82,6 @@ public class CallbackServlet extends HttpServlet {
             General_String_manipulation gsm = new General_String_manipulation();
             temp_tweets = gsm.get_separateHyperlink(status);
             
-            
-<<<<<<< HEAD
-=======
-            
->>>>>>> c15d48b88ac302514f6e89ab5d09de9ac0c0e741
             twit.add(new Tweets(temp_user, temp_tweets, temp_sent, temp_hash_tags, keyword.POSTag(temp_tweets)));
         }
         //get keywords here
