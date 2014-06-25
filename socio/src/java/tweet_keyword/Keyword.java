@@ -27,24 +27,30 @@ import opennlp.tools.util.PlainTextByLineStream;
  * @author ravi
  */
 public class Keyword {
+    private ServletContext context;
+    private String filelocation;
+    private POSModel model;
     
-
-    public static ArrayList<String> POSTag(String input) throws IOException {
-        String filelocation;
-        Configuration config = new Configuration();
+    public Keyword(ServletContext _context) throws IOException{
+        context = _context;
+        Configuration config = new Configuration(context);
         filelocation=config.getKeyLocation();
+        model = new POSModelLoader().load(new File(filelocation));
+    }
+
+    public ArrayList<String> POSTag(String input) throws IOException {
+
         
         ArrayList <String> keywords = new ArrayList<String>();
-        POSModel model = new POSModelLoader()
-                .load(new File("en-pos-maxent.bin"));
-        PerformanceMonitor perfMon = new PerformanceMonitor(System.err, "sent");
+                
+//        PerformanceMonitor perfMon = new PerformanceMonitor(System.err, "sent");
         POSTaggerME tagger = new POSTaggerME(model);
 
 //        String input = "Hi. How are you? This is Mike.";
         ObjectStream<String> lineStream = new PlainTextByLineStream(
                 new StringReader(input));
 
-        perfMon.start();
+//        perfMon.start();
         String line;
         while ((line = lineStream.read()) != null) {
 
@@ -62,9 +68,9 @@ public class Keyword {
             }
         }
 
-            perfMon.incrementCounter();
+//            perfMon.incrementCounter();
         }
-        perfMon.stopAndPrintFinalResult();
+//        perfMon.stopAndPrintFinalResult();
         return keywords;
     }
 

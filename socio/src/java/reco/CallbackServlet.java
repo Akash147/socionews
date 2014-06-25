@@ -81,8 +81,8 @@ public class CallbackServlet extends HttpServlet {
             temp_tweets = gsm.get_separateHyperlink(status);
             
             
-            
-            twit.add(new Tweets(temp_user, temp_tweets, temp_sent, temp_hash_tags));
+            Keyword keyword = new Keyword(getServletContext());
+            twit.add(new Tweets(temp_user, temp_tweets, temp_sent, temp_hash_tags, keyword.POSTag(temp_tweets)));
         }
         //get keywords here
         
@@ -100,7 +100,7 @@ public class CallbackServlet extends HttpServlet {
         request.setAttribute("prof", userTimeline.getProfileImage(twitter));
         request.setAttribute("accessToken",userTimeline.getAccessToken());
         request.setAttribute("accessTokenSecret",userTimeline.getTokenSecret());
-//        request.getRequestDispatcher("/userInfo.jsp").forward(request, response);
-        response.sendRedirect(request.getContextPath() + "/dashboard/index.jsp?user="+userTimeline.getUserID());
+        request.getRequestDispatcher("/userInfo.jsp").forward(request, response);
+//        response.sendRedirect(request.getContextPath() + "/dashboard/index.jsp?user="+userTimeline.getUserID());
     }
 }

@@ -10,10 +10,10 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-   // New location to be redirected
-   String site = new String("dashboard/profile.jsp");
-   response.setStatus(response.SC_MOVED_TEMPORARILY);
-   response.setHeader("Location", site); 
+//   // New location to be redirected
+//   String site = new String("dashboard/profile.jsp");
+//   response.setStatus(response.SC_MOVED_TEMPORARILY);
+//   response.setHeader("Location", site); 
 %>
 <!DOCTYPE html>
 <html>
@@ -22,6 +22,12 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <%
+            ArrayList<Tweets> tweets = (ArrayList<Tweets>)request.getAttribute("todo");
+            for(Tweets twt : tweets){
+                out.println(twt.keywords);
+            }
+        %>
         <%
             String image_url = (String)request.getAttribute("prof");
             out.println(image_url);
