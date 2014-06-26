@@ -6,21 +6,7 @@
 
 package reco;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import twitter4j.Paging;
-import twitter4j.Status;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
-import twitter4j.User;
-import twitter4j.IDs;
-import twitter4j.auth.AccessToken;
-import twitter4j.auth.RequestToken;
-
+import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
@@ -28,6 +14,20 @@ import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import twitter4j.IDs;
+import twitter4j.Paging;
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.User;
+import twitter4j.auth.AccessToken;
+import twitter4j.auth.RequestToken;
 
 /**
  *
@@ -46,13 +46,6 @@ public class UserTimeline {
     ArrayList<String> userTweets = new ArrayList<String>();
     ArrayList<String> hashTags = new ArrayList<String>();
         
-//    private UserTimeline(String AccessToken,String access_token_secret) throws TwitterException{
-//        twitter = new TwitterFactory().getInstance();
-//        twitter.setOAuthConsumer("vJ3dChUEdLKrK7ciMdtbcXPjz", "XnbW32jqk9jTTY5ZtLHMh0FY9UNC1Wb1ohC0ehIaWUXfpJereQ");
-//        at = new AccessToken(AccessToken,access_token_secret);
-//        twitter.setOAuthAccessToken(at);
-//        user = twitter.verifyCredentials();
-//    }
     public UserTimeline(Twitter twitter, RequestToken requestToken, String verifier)
     {
         count = 0;
@@ -193,4 +186,53 @@ public class UserTimeline {
         return addr;
     }
     
+    public ArrayList<String> mergeKeywords(ArrayList<Tweets> T) {
+        ArrayList<String> temp = new ArrayList<String>();
+        for(Tweets twt : T) {
+            temp.addAll(twt.hashTags);
+            temp.addAll(twt.keywords);
+        }
+        return temp;
+    }
+    
+    public void storeKeywords(ArrayList<Tweets> T) {
+        ArrayList<String> keywords = new ArrayList<String>();
+        keywords = this.mergeKeywords(T);
+        try {
+            DBCollection table = this.userMongoStart("tweetKeywords");
+            BasicDBObject document = new BasicDBObject();
+            document.put("userID", this.getUserID());
+            document.put("keywords", keywords);
+            table.insert(document);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(UserTimeline.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public DBCollection userMongoStart(String tableName) throws UnknownHostException {
+        MongoClient mongo = new MongoClient("localhost", 27017);
+        DB db = mongo.getDB("userDB");
+        DBCollection table = db.getCollection(tableName);
+        return table;  
+    }
+    
+    public ArrayList<String> getKeywordsFromMongo() {
+        ArrayList<String> keywords = new ArrayList<String>();
+        try {
+            DBCollection table = this.userMongoStart("tweetKeywords");
+            BasicDBObject searchQuery = new BasicDBObject();
+            searchQuery.put("userID", this.getUserID());
+
+            DBCursor cursor = table.find(searchQuery);
+
+            while (cursor.hasNext()) {
+                keywords = (ArrayList<String>)cursor.next().get("keywords");
+            }
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(UserTimeline.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return keywords;
+    }
 }

@@ -53,6 +53,7 @@ public class CallbackServlet extends HttpServlet {
         
         //collect status from twitter
         statuses = userTimeline.getPagedTweets(1,twitter);
+        Keyword keyword = new Keyword(getServletContext());
         
         //sentiment calculation
         Configuration config = new Configuration(getServletContext());
@@ -67,6 +68,7 @@ public class CallbackServlet extends HttpServlet {
         
         //create Tweets objects
 //        Keyword key= new Keyword();
+        
         for(Status status : statuses){
             ArrayList<String> temp_hash_tags = new ArrayList<String>();
             if(status.getHashtagEntities() != null){
@@ -80,27 +82,26 @@ public class CallbackServlet extends HttpServlet {
             General_String_manipulation gsm = new General_String_manipulation();
             temp_tweets = gsm.get_separateHyperlink(status);
             
-            
-            Keyword keyword = new Keyword(getServletContext());
             twit.add(new Tweets(temp_user, temp_tweets, temp_sent, temp_hash_tags, keyword.POSTag(temp_tweets)));
         }
         //get keywords here
         
         //store keyworkd in tweetKeyword collection here
         //includes userID(long) and keywords(String[])
-        
 
         //store in MongoDB
         userTimeline.storeUserDetailsInMongoDB(twitter);
+        userTimeline.storeKeywords(twit);
         
         //send data to userInfo.JSP
         response.setContentType("text/html");
-        request.setAttribute("todo",twit);
-        
+//        request.setAttribute("doto",userTimeline.mergeKeywords(twit));
+//        request.setAttribute("mongo", userTimeline.getKeywordsFromMongo());
+//        request.setAttribute("todo",twit);
         request.setAttribute("prof", userTimeline.getProfileImage(twitter));
         request.setAttribute("accessToken",userTimeline.getAccessToken());
         request.setAttribute("accessTokenSecret",userTimeline.getTokenSecret());
-        request.getRequestDispatcher("/userInfo.jsp").forward(request, response);
-//        response.sendRedirect(request.getContextPath() + "/dashboard/index.jsp?user="+userTimeline.getUserID());
+//        request.getRequestDispatcher("/userInfo.jsp").forward(request, response);
+        response.sendRedirect(request.getContextPath() + "/dashboard/index.jsp?user="+userTimeline.getUserID());
     }
 }
