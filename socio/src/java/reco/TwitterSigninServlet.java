@@ -38,7 +38,8 @@ public class TwitterSigninServlet extends HttpServlet {
         Twitter twitter = new TwitterFactory().getInstance();
         request.getSession().setAttribute("twitter", twitter);
         //Configuration file load
-        Configuration config = new Configuration(getServletContext());
+        Configuration config;
+        config = new Configuration(getServletContext());
         twitter.setOAuthConsumer(config.getConsumerKey(), config.getConsumerSecret());
         try {
             StringBuffer callbackURL = request.getRequestURL();

@@ -69,7 +69,7 @@
                            <ul class="dropdown-menu extended logout">
                                <li><a href="profile.jsp"><i class="icon-user"></i> My Profile</a></li>
                                <li><a href="#"><i class="icon-cog"></i> My Settings</a></li>
-                               <li><a href="#"><i class="icon-key"></i> Log Out</a></li>
+                               <li><a href="../"><i class="icon-key"></i> Log Out</a></li>
                            </ul>
                        </li>
                        <!-- END USER LOGIN DROPDOWN -->

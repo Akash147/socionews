@@ -101,7 +101,8 @@ public class CallbackServlet extends HttpServlet {
         request.setAttribute("prof", userTimeline.getProfileImage(twitter));
         request.setAttribute("accessToken",userTimeline.getAccessToken());
         request.setAttribute("accessTokenSecret",userTimeline.getTokenSecret());
+//        request.setAttribute("userid", userTimeline.getUserID());
 //        request.getRequestDispatcher("/userInfo.jsp").forward(request, response);
-        response.sendRedirect(request.getContextPath() + "/dashboard/index.jsp?user="+userTimeline.getUserID());
+        response.sendRedirect(request.getContextPath() + "/dashboard/index?user="+userTimeline.getUserID());
     }
 }

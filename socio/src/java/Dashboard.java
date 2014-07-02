@@ -23,12 +23,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.lucene.queryparser.classic.ParseException;
+import reco.DbForWeb;
 
 /**
  *
  * @author noones
  */
-@WebServlet(urlPatterns = {"/dashboard/"})
+@WebServlet(urlPatterns = {"/dashboard/index"})
 public class Dashboard extends HttpServlet {
 
     /**
@@ -43,6 +44,24 @@ public class Dashboard extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession(true);
+        
+        session.setAttribute("testName", "Ganesh Pandey");
+        
+        DbForWeb dfw = new DbForWeb();
+//        String u_id = (String) session.getAttribute("user");
+        String u_id = request.getParameter("user");
+        long user_id = Long.parseLong(u_id);
+        session.setAttribute("UserID", user_id);
+        dfw.fetchAll(user_id);
+        session.setAttribute("screenName", dfw.getScreenName());
+        session.setAttribute("fullName", dfw.getFullName());
+        session.setAttribute("profileImage", dfw.getImageURL());
+        session.setAttribute("location", dfw.getLocation());
+        session.setAttribute("userDescription", dfw.getUserDescription());
+        session.setAttribute("createdDate", dfw.getStringDate());
+        session.setAttribute("following", dfw.getFollowingNum());
+        
 //        Dash dashObject = new Dash();
 //        request.setAttribute("user", dashObject);
         Configuration config = new Configuration(getServletConfig().getServletContext());
@@ -51,7 +70,14 @@ public class Dashboard extends HttpServlet {
         try {
 //            request.setAttribute("recentNews", renderNews( mongo.findDocumentById(matchIDs.get(0)) ));
 
+<<<<<<< HEAD
             List<String> matchIDs = searcher.search("Argentina + messi");
+=======
+            List<String> matchIDs = searcher.search("England");
+            for (String id : matchIDs)
+                System.out.println(id);
+            request.setAttribute("recentNewsCount", matchIDs.size());
+>>>>>>> 48bea339f9dba9b0583ece39f444a4e8c41ab0a2
 //>>>>>>> eb389f86a252d139b853ed9e36ee0e8b4b1dff4d
             request.setAttribute("recentNewsList", mongo.findAllDocumentByID(matchIDs.toArray(new String[matchIDs.size()])) );
         } catch (ParseException ex) {
