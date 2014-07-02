@@ -70,15 +70,9 @@ public class Dashboard extends HttpServlet {
         try {
 //            request.setAttribute("recentNews", renderNews( mongo.findDocumentById(matchIDs.get(0)) ));
 
-<<<<<<< HEAD
             List<String> matchIDs = searcher.search("Argentina + messi");
-=======
-            List<String> matchIDs = searcher.search("England");
             for (String id : matchIDs)
                 System.out.println(id);
-            request.setAttribute("recentNewsCount", matchIDs.size());
->>>>>>> 48bea339f9dba9b0583ece39f444a4e8c41ab0a2
-//>>>>>>> eb389f86a252d139b853ed9e36ee0e8b4b1dff4d
             request.setAttribute("recentNewsList", mongo.findAllDocumentByID(matchIDs.toArray(new String[matchIDs.size()])) );
         } catch (ParseException ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
