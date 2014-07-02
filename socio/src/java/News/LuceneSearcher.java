@@ -6,6 +6,7 @@
 
 package News;
 
+import akash.configuration.Configuration;
 import com.mongodb.DBObject;
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -36,6 +38,7 @@ import org.apache.lucene.queryparser.classic.QueryParser;
  * @author Akash
  */
 public class LuceneSearcher {
+    
     private String indexLocation;
     private Directory dir;
     private IndexSearcher searcher;
@@ -73,11 +76,13 @@ public class LuceneSearcher {
     
     public static void main(String[] args) {
         try {
-            LuceneSearcher searcher = new LuceneSearcher("/home/noones/Desktop/newsIndex");
+            ServletContext context;
+//            Configuration config = new Configuration(context);
+            LuceneSearcher searcher = new LuceneSearcher("E:/newsIndex");
             MongoWorker m = new MongoWorker("localhost", 27017, "newscrawl", "news");
 //            DisplayNews obj = m.findDocumentById(searcher.search("brazil").get(1));
 //            System.out.println( obj.getHeadLine() );
-            for(String id : searcher.search("brazil")){
+            for(String id : searcher.search("England")){
                 System.out.println(id);
                 DisplayNews obj = m.findDocumentById(id);
                 System.out.println( obj.getHeadLine() );
