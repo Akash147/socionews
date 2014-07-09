@@ -195,9 +195,9 @@ public class UserTimeline {
         return temp;
     }
     
-    public void storeKeywords(ArrayList<Tweets> T) {
+    public void storeKeywords(ArrayList<String> T) {
         ArrayList<String> keywords = new ArrayList<String>();
-        keywords = this.mergeKeywords(T);
+        keywords = T;
         try {
             DBCollection table = this.userMongoStart("tweetKeywords");
             BasicDBObject document = new BasicDBObject();
