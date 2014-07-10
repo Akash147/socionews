@@ -35,6 +35,7 @@ public final class Tweets{
         hashTags = tags;
         keywords = keys;
     }
+   
     public void setTweets(Status status, ServletContext context){
         this.setUserName(status);
         

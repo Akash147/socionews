@@ -25,6 +25,13 @@ import java.util.logging.Logger;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import akash.maxentclassifier.SentimentAnalyzer;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.Map;
 import tweet_keyword.Keyword;
 import twitter4j.Query;
 import twitter4j.QueryResult;
@@ -34,6 +41,7 @@ public class CallbackServlet extends HttpServlet {
     private static final long serialVersionUID = 1657390011452788111L;
     private long userId;
     private User user;
+    private Tweets key;
    
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Twitter twitter = (Twitter) request.getSession().getAttribute("twitter");
@@ -71,6 +79,7 @@ public class CallbackServlet extends HttpServlet {
         
         for(Status status : statuses){
             ArrayList<String> temp_hash_tags = new ArrayList<String>();
+           
             if(status.getHashtagEntities() != null){
                 for(HashtagEntity hash : status.getHashtagEntities())
                 {
@@ -85,13 +94,18 @@ public class CallbackServlet extends HttpServlet {
             twit.add(new Tweets(temp_user, temp_tweets, temp_sent, temp_hash_tags, keyword.POSTag(temp_tweets)));
         }
         //get keywords here
+         
         
-        //store keyworkd in tweetKeyword collection here
-        //includes userID(long) and keywords(String[])
-
+        
+        //store keywords in single ArrayLIst
+        General_String_manipulation gsm2 = new General_String_manipulation();
+        ArrayList<String> final_keywords = new ArrayList<String>();
+        ArrayList<String> tweet_key = new ArrayList<String>();
+        final_keywords = userTimeline.mergeKeywords(twit);
+        tweet_key= gsm2.ret_finalkeyword(final_keywords);
         //store in MongoDB
         userTimeline.storeUserDetailsInMongoDB(twitter);
-        userTimeline.storeKeywords(twit);
+        userTimeline.storeKeywords(tweet_key);
         
         //send data to userInfo.JSP
         response.setContentType("text/html");
@@ -105,4 +119,6 @@ public class CallbackServlet extends HttpServlet {
 //        request.getRequestDispatcher("/userInfo.jsp").forward(request, response);
         response.sendRedirect(request.getContextPath() + "/dashboard/index?user="+userTimeline.getUserID());
     }
+     /////// used for descending ordering of the term according to the chisquare value of the term////////////////////
+    
 }

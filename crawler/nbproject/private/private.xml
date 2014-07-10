@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/home/ravi/NetBeansProjects/socionews/crawler/src/newscrawl/CrawlerThread.java</file>
+            <file>file:/home/ravi/NetBeansProjects/socionews/crawler/src/newscrawl/Newscrawl.java</file>
+        </group>
+>>>>>>> ab77d52611d49bd4bbff63a19a1fc127987f4fb2
     </open-files>
 </project-private>

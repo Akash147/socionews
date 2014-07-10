@@ -270,7 +270,7 @@
                     <!-- Recommended News SideBar -->
                         <div class="span4">
                             <!-- Akash Here -->
-                            <div class="profile-side-box green">
+                            <div class="profile-side-box green sidebar">
                                 <div class="desk">
                                     <h1><i class="icon-filter"></i> Recommended News</h1>
                                     <c:forEach var="eachNews" items="${recentNewsList}">

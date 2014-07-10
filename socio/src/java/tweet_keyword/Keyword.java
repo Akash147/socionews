@@ -63,7 +63,7 @@ public class Keyword {
             for(int i=0;i<tags.length;i++){
 //            System.out.println(tags[i]);
 //            System.out.println(whitespaceTokenizerLine[i]);
-            if(("NN".equals(tags[i]) || "FW".equals(tags[i]) || "VB".equals(tags[i])|| "NNP".equals(tags[i])) && !keywords.contains(whitespaceTokenizerLine[i])){
+            if(("NN".equals(tags[i]) || "FW".equals(tags[i]) || "NNP".equals(tags[i])) && !keywords.contains(whitespaceTokenizerLine[i])){
                 keywords.add(whitespaceTokenizerLine[i]);
             }
         }
