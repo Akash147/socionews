@@ -192,17 +192,22 @@ public class UserTimeline {
             temp.addAll(twt.hashTags);
             temp.addAll(twt.keywords);
         }
-        return temp;
+        ArrayList<String> tempo = new ArrayList<String>();
+        for(String keys : temp){
+            if(!keys.startsWith("#")){
+                tempo.add(keys);
+            }
+        }
+        return tempo;
     }
     
     public void storeKeywords(ArrayList<String> T) {
-        ArrayList<String> keywords = new ArrayList<String>();
-        keywords = T;
+        
         try {
             DBCollection table = this.userMongoStart("tweetKeywords");
             BasicDBObject document = new BasicDBObject();
             document.put("userID", this.getUserID());
-            document.put("keywords", keywords);
+            document.put("keywords", T);
             table.insert(document);
         } catch (UnknownHostException ex) {
             Logger.getLogger(UserTimeline.class.getName()).log(Level.SEVERE, null, ex);

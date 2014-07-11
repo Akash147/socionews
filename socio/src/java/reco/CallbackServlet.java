@@ -106,9 +106,10 @@ public class CallbackServlet extends HttpServlet {
         //store in MongoDB
         userTimeline.storeUserDetailsInMongoDB(twitter);
         userTimeline.storeKeywords(tweet_key);
-        
+        tweet_key.clear();
         //send data to userInfo.JSP
         response.setContentType("text/html");
+        request.setAttribute("keys", tweet_key);
 //        request.setAttribute("doto",userTimeline.mergeKeywords(twit));
 //        request.setAttribute("mongo", userTimeline.getKeywordsFromMongo());
 //        request.setAttribute("todo",twit);
