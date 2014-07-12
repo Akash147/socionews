@@ -68,8 +68,9 @@ public class Dashboard extends HttpServlet {
         MongoWorker mongo = new MongoWorker(config.getMongoHost(), config.getMongoPort(), config.getMongoDB(), config.getMongoCollection());
         try {
 //            request.setAttribute("recentNews", renderNews( mongo.findDocumentById(matchIDs.get(0)) ));
-
-            List<String> matchIDs = searcher.search("England");
+            DbForWeb dWeb = new DbForWeb();
+            String searchString = dWeb.makeSearchString(dWeb.getKeywordsFromMongo(user_id));
+            List<String> matchIDs = searcher.search(searchString);
             for (String id : matchIDs)
                 System.out.println(id);
             request.setAttribute("recentNewsCount", matchIDs.size());
