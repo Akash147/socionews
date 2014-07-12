@@ -39,6 +39,10 @@ public class DbForWeb {
     
     public DbForWeb(){}
     
+    public DbForWeb(String collection_name){
+        
+    }
+    
     public void fetchAll(long user_id) {
         try {
             MongoClient mongo = new MongoClient("localhost", 27017);
@@ -97,4 +101,6 @@ public class DbForWeb {
     public String getLocation() {
         return this.location;
     }
+    
+    
 }
