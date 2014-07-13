@@ -42,6 +42,7 @@ public class General_String_manipulation {
         ArrayList<String> temp_twits = new ArrayList<String>();
          ArrayList<Integer> twit_count = new ArrayList<Integer>();
         for(String tweet_Keywords: key){
+            tweet_Keywords=tweet_Keywords.toLowerCase();
              if (!temp_twits.contains(tweet_Keywords)) {
                    temp_twits.add(tweet_Keywords);
                     }
@@ -49,7 +50,7 @@ public class General_String_manipulation {
         for(String temp_twit1:temp_twits){
             int count =0;
             for (String temp_twit2:key){
-               if (temp_twit1.equals(temp_twit2)){
+               if (temp_twit1.equalsIgnoreCase(temp_twit2)){
                    count ++;
                }
             }

@@ -25,8 +25,8 @@
         <%
 //            ArrayList<String> tweets = (ArrayList<String>)request.getAttribute("doto");
 //            out.println(tweets);
-            ArrayList<String> tweets = (ArrayList<String>)request.getAttribute("mongo");
-            out.println(tweets.size());
+            ArrayList<String> tweets = (ArrayList<String>)request.getAttribute("keys");
+            out.println(tweets);
                         
         %>
         <%
@@ -36,28 +36,23 @@
         <h1>Hello World!</h1>
         </br>
         <% 
-            ArrayList<Tweets> twet = (ArrayList<Tweets>)request.getAttribute("todo");
-            String len = (String)request.getAttribute("len");
-//            ArrayList<String> tags = (ArrayList)request.getAttribute("hast_tags");
-            for(Tweets twt : twet)
-         {
-             out.println(twt.cleanTweets);
-             out.println(twt.userName);
-             out.println(twt.hashTags);
-             out.println(twt.sentiment);
-             out.println();
-         }
-//            out.println(text);
-//            for()
-            out.println(len);
-            String accessToken = (String)request.getAttribute("accessToken");
-            String accessTokenSecret = (String)request.getAttribute("accessTokenSecret");
+//            ArrayList<Tweets> twet = (ArrayList<Tweets>)request.getAttribute("todo");
+//            String len = (String)request.getAttribute("len");
+////            ArrayList<String> tags = (ArrayList)request.getAttribute("hast_tags");
+//            for(Tweets twt : twet)
+//         {
+//             out.println(twt.cleanTweets);
+//             out.println(twt.userName);
+//             out.println(twt.hashTags);
+//             out.println(twt.sentiment);
+//             out.println();
+//         }
+////            out.println(text);
+////            for()
+//            out.println(len);
+//            String accessToken = (String)request.getAttribute("accessToken");
+//            String accessTokenSecret = (String)request.getAttribute("accessTokenSecret");
         %>
-        <p>
-            Access Token is <% out.print(accessToken); %>
-        </p>
-        <p>
-            Access TokenSecret is <% out.print(accessTokenSecret); %>
-        </p>
+        
     </body>
 </html>

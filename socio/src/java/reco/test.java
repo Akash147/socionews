@@ -77,7 +77,7 @@ public class test {
          
          
          
-         
+//         
 //         int document_count = 0;
 //            //check access token already exists
 //        try {
@@ -97,11 +97,65 @@ public class test {
 //            Logger.getLogger(UserTimeline.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //         System.out.println("the count of same document is "+document_count);
+//         
+////         DbForWeb hero = new DbForWeb();
+//         hero.fetchAll(1491849084);
+//         System.out.println("the full name is : "+hero.getFullName());
+//         System.out.println("the screen name is : "+hero.getScreenName());
+//         System.out.println("the ISO date is : "+hero.getStringDate());
          
-         DbForWeb hero = new DbForWeb();
-         hero.fetchAll(1491849084);
-         System.out.println("the full name is : "+hero.getFullName());
-         System.out.println("the screen name is : "+hero.getScreenName());
-         System.out.println("the ISO date is : "+hero.getStringDate());
+         
+         
+         
+         
+         
+//         General_String_manipulation gsm2 = new General_String_manipulation();
+//        ArrayList<String> final_keywords = new ArrayList<String>();
+//        ArrayList<String> final_key = new ArrayList<String>();
+//        ArrayList<String> tweet_key = new ArrayList<String>();
+//        final_keywords.add("ram");
+//        final_keywords.add("shyam");
+//        final_keywords.add("hai");
+//        final_keywords.add("hari");
+//        final_keywords.add("hari");
+//        final_keywords.add("rawwm");
+//        final_keywords.add("hari");
+//        final_keywords.add("radf");
+//        final_keywords.add("#3");
+//        final_keywords.add("#23232");
+//        final_keywords.add("#1223");
+//        final_keywords.add("ram");
+//        final_keywords.add("#djafjds;fja;");
+//        final_keywords.add("dfasdasdfdsafasdf");
+//        final_key.add("dfadfadfad");
+//        final_key.add("ram");
+//        final_key.add("ram");
+//        ArrayList<String> keywords = new ArrayList<String>();
+//        keywords.addAll(final_keywords);
+//        keywords.addAll(final_key);
+//        ArrayList<String> fs = new ArrayList<String>();
+//        for(String kw : keywords){
+//            if(!kw.startsWith("#")){
+//                fs.add(kw);
+//            }
+//        }
+//        
+//        tweet_key= gsm2.ret_finalkeyword(keywords);
+//         System.out.println(fs);
+         
+         
+         ArrayList<String> s= new ArrayList<String>();
+         s.add("ram");
+         s.add("shyam");
+         s.add("hari");
+        
+//        StringBuilder searchString = new StringBuilder();
+//        for(String str : s){
+//            searchString.append(str+"+");
+//        }
+        
+        DbForWeb dWeb = new DbForWeb();
+        String searchString = dWeb.makeSearchString(dWeb.getKeywordsFromMongo(1491849084));
+         System.out.println("the string is : "+searchString);
     }
 }

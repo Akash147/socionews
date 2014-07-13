@@ -70,7 +70,12 @@ public class Dashboard extends HttpServlet {
         try {
 //            request.setAttribute("recentNews", renderNews( mongo.findDocumentById(matchIDs.get(0)) ));
 
-            List<String> matchIDs = searcher.search("Argentina + messi");
+
+            //List<String> matchIDs = searcher.search("Argentina + messi");
+
+            DbForWeb dWeb = new DbForWeb();
+            String searchString = dWeb.makeSearchString(dWeb.getKeywordsFromMongo(user_id));
+            List<String> matchIDs = searcher.search(searchString);
             for (String id : matchIDs)
                 System.out.println(id);
             request.setAttribute("recentNewsList", mongo.findAllDocumentByID(matchIDs.toArray(new String[matchIDs.size()])) );
