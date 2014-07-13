@@ -8,7 +8,6 @@ import News.DisplayNews;
 import News.LuceneSearcher;
 import News.MongoWorker;
 import akash.configuration.Configuration;
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URI;
@@ -69,15 +68,13 @@ public class Dashboard extends HttpServlet {
         MongoWorker mongo = new MongoWorker(config.getMongoHost(), config.getMongoPort(), config.getMongoDB(), config.getMongoCollection());
         try {
 //            request.setAttribute("recentNews", renderNews( mongo.findDocumentById(matchIDs.get(0)) ));
-
-
-            //List<String> matchIDs = searcher.search("Argentina + messi");
-
             DbForWeb dWeb = new DbForWeb();
             String searchString = dWeb.makeSearchString(dWeb.getKeywordsFromMongo(user_id));
             List<String> matchIDs = searcher.search(searchString);
             for (String id : matchIDs)
                 System.out.println(id);
+            request.setAttribute("recentNewsCount", matchIDs.size());
+//>>>>>>> eb389f86a252d139b853ed9e36ee0e8b4b1dff4d
             request.setAttribute("recentNewsList", mongo.findAllDocumentByID(matchIDs.toArray(new String[matchIDs.size()])) );
         } catch (ParseException ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
@@ -85,7 +82,7 @@ public class Dashboard extends HttpServlet {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
         request.getRequestDispatcher("/dashboard/index.jsp").forward(request, response);
-        /* TODO output your page here. You may use following sample code. */
+        /* TODO output your page here. You may use following sample code. */;
         
     }
 
