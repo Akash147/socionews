@@ -1,42 +1,25 @@
+package dashboard;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-import News.DisplayNews;
-import News.LuceneSearcher;
-import News.MongoWorker;
-import akash.configuration.Configuration;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.lucene.queryparser.classic.ParseException;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
+
 /**
  *
  * @author noones
  */
-@WebServlet(urlPatterns = {"/news/"})
-public class ImageSelect extends HttpServlet {
-//    Elements newsContainer = doc.select("div[class^=cnn_strycntntlft]");
-//            //Elements filterScript = newsContainer.removeAttr("script");
-//            //Elements filterStyle = filterScript.removeAttr("styls");
-//            
-//            System.out.print(newsContainer.text());
-
+@WebServlet(urlPatterns = {"/about"})
+public class testing extends HttpServlet {
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -49,31 +32,17 @@ public class ImageSelect extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("id"); // news ID
-        if (id==null){
-            // @TODO
-        }
-        Configuration config = new Configuration(getServletConfig().getServletContext());
-        LuceneSearcher searcher = new LuceneSearcher(config.getLuceneLocation());
-        MongoWorker mongo = new MongoWorker(config.getMongoHost(), config.getMongoPort(), config.getMongoDB(), config.getMongoCollection());
-        try {
-            List<String> matchIDs = searcher.search("suarez");
-            
-            request.setAttribute("image", mongo.findAllDocumentByID(matchIDs.toArray(new String[matchIDs.size()])) );
-            //request.setAttribute("nowShowingNews", mongo.findDocumentById(id) );
-            
-        } catch (ParseException ex) {
-            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (URISyntaxException ex) {
-            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Object data = "Some data, can be a String or a Javabean";
+        About a = new About();
+        a.title="News Recommendation Based on Social Media Activity";
+        a.content="Get News what you like before you even realise!! We focus on your interests and filter out the rest."
+                + "For you ease,we will take care of all the news you need.When you have ";
+        request.setAttribute("data", a);
+        request.getRequestDispatcher("about.jsp").forward(request, response);
         
-        
-        request.getRequestDispatcher("/dashboard/news.jsp").forward(request, response);
-        /* TODO output your page here. You may use following sample code. */;
         
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

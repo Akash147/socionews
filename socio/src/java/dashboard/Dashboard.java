@@ -1,13 +1,15 @@
+package dashboard;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import News.DisplayNews;
 import News.LuceneSearcher;
 import News.MongoWorker;
 import akash.configuration.Configuration;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URI;
@@ -20,14 +22,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.lucene.queryparser.classic.ParseException;
+import reco.DbForWeb;
 
 /**
  *
  * @author noones
  */
-@WebServlet(urlPatterns = {"/news/"})
-public class ShowEachNews extends HttpServlet {
+@WebServlet(urlPatterns = {"/dashboard/index"})
+public class Dashboard extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,26 +45,45 @@ public class ShowEachNews extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String id = request.getParameter("id"); // news ID
-        if (id==null){
-            // @TODO
-        }
+        HttpSession session = request.getSession(true);
+        
+        session.setAttribute("testName", "Ganesh Pandey");
+        
+        DbForWeb dfw = new DbForWeb();
+//        String u_id = (String) session.getAttribute("user");
+        String u_id = request.getParameter("user");
+        long user_id = Long.parseLong(u_id);
+        session.setAttribute("UserID", user_id);
+        dfw.fetchAll(user_id);
+        session.setAttribute("screenName", dfw.getScreenName());
+        session.setAttribute("fullName", dfw.getFullName());
+        session.setAttribute("profileImage", dfw.getImageURL());
+        session.setAttribute("location", dfw.getLocation());
+        session.setAttribute("userDescription", dfw.getUserDescription());
+        session.setAttribute("createdDate", dfw.getStringDate());
+        session.setAttribute("following", dfw.getFollowingNum());
+        
+//        Dash dashObject = new Dash();
+//        request.setAttribute("user", dashObject);
         Configuration config = new Configuration(getServletConfig().getServletContext());
         LuceneSearcher searcher = new LuceneSearcher(config.getLuceneLocation());
         MongoWorker mongo = new MongoWorker(config.getMongoHost(), config.getMongoPort(), config.getMongoDB(), config.getMongoCollection());
         try {
-            List<String> matchIDs = searcher.search("suarez");
+//            request.setAttribute("recentNews", renderNews( mongo.findDocumentById(matchIDs.get(0)) ));
+
+            DbForWeb dWeb = new DbForWeb();
+            String searchString = dWeb.makeSearchString(dWeb.getKeywordsFromMongo(user_id));
+            List<String> matchIDs = searcher.search(searchString);
+            for (String id : matchIDs)
+                System.out.println(id);
             request.setAttribute("recentNewsList", mongo.findAllDocumentByID(matchIDs.toArray(new String[matchIDs.size()])) );
-            request.setAttribute("nowShowingNews", mongo.findDocumentById(id) );
         } catch (ParseException ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         } catch (URISyntaxException ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        request.getRequestDispatcher("/dashboard/news.jsp").forward(request, response);
-        /* TODO output your page here. You may use following sample code. */;
+        request.getRequestDispatcher("/dashboard/index.jsp").forward(request, response);
+        /* TODO output your page here. You may use following sample code. */
         
     }
 

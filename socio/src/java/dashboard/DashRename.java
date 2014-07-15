@@ -1,3 +1,5 @@
+package dashboard;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -21,7 +23,7 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 
 
-public class Dash {
+public class DashRename {
 private String category;
 private String miniContent;
 private String domain;
@@ -38,7 +40,7 @@ private final String host;
     private MongoClient mongoClient;
     private DBCollection collection;
 
-    public Dash(String host, int port, String dbName, String collectionName){
+    public DashRename(String host, int port, String dbName, String collectionName){
         this.host = host;
         this.port = port;
         this.dbName = dbName;
@@ -47,11 +49,11 @@ private final String host;
     } 
     
     public static void main(String[] args) {
-    Dash dashb = new Dash("localhost", 27017, "mydb", "testData");
+    DashRename dashb = new DashRename("localhost", 27017, "mydb", "testData");
     
 }
 
-    Dash() {
+    DashRename() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
