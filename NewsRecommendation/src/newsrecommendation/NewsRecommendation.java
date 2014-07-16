@@ -20,8 +20,10 @@ public class NewsRecommendation {
      */
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
-        XmlReader e = new XmlReader();
-        e.readXml();
+//        XmlReader e = new XmlReader();
+//        e.readXml();
+        CsvParser c = new CsvParser();
+        c.csvparse();
     }
     
 }

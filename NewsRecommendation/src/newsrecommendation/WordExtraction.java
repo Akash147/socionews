@@ -40,6 +40,7 @@ public class WordExtraction {
     List<String> titleWord = new ArrayList<>();
     List<Double> value_Chi = new ArrayList<>(); // to hold the chisquare value of the word
     List<Double> count = new ArrayList<>();
+    String[] tokewords;
     StopWord stop=new StopWord();
    
         
@@ -77,6 +78,8 @@ public class WordExtraction {
             }
 //           allWords.add(eachWord);
         }
+        tokewords = new String[tokenizedTerms.size()];
+        tokewords= (String[]) tokenizedTerms.toArray(tokewords);
         Combination <String> all=new Combination<>(allWords);
         permAllWords= all.getCombAllWords();
 //        System.out.println(tokenizedTerms);
@@ -96,38 +99,40 @@ public class WordExtraction {
         Map<String, Double> sortByValues_chi = sortByValues(m_chi);
         Map<String, Double> sortByCount = sortByValues(num_word);
 //        System.out.println(sortByValues_chi);
-         FileWriter writer = new FileWriter("/home/ravi/utput.txt");
-         Iterator it =sortByValues_chi.entrySet().iterator();
-    while (it.hasNext()) {
-        Map.Entry pairs = (Map.Entry)it.next();
-        System.out.println(pairs.getKey() + " = " + pairs.getValue());
-        writer.write(pairs.getKey()+" "+pairs.getValue()+"\n");
-//        it.remove(); // avoids a ConcurrentModificationException
-    }
-    Iterator it1 =sortByCount.entrySet().iterator();
-    while (it1.hasNext()) {
-        Map.Entry pairs = (Map.Entry)it1.next();
-        System.out.println(pairs.getKey() + " = " + pairs.getValue());
-        writer.write(pairs.getKey()+" "+pairs.getValue()+"\n");
-//        it.remove(); // avoids a ConcurrentModificationException
-    }
+         FileWriter writer = new FileWriter("/home/ravi/utput.csv");
+//         Iterator it =sortByValues_chi.entrySet().iterator();
+//    while (it.hasNext()) {
+//        Map.Entry pairs = (Map.Entry)it.next();
+//        System.out.println(pairs.getKey() + " = " + pairs.getValue());
+//        writer.write(pairs.getKey()+","+pairs.getValue()+"\n");
+////        it.remove(); // avoids a ConcurrentModificationException
+//    }
+//    Iterator it1 =sortByCount.entrySet().iterator();
+//    while (it1.hasNext()) {
+//        Map.Entry pairs = (Map.Entry)it1.next();
+//        System.out.println(pairs.getKey() + " = " + pairs.getValue());
+//        writer.write(pairs.getKey()+" "+pairs.getValue()+"\n");
+////        it.remove(); // avoids a ConcurrentModificationException
+//    }
 //        for (String key : sortByValues_chi.keySet()) {
 //            System.out.println(sortByValues_chi.values());
 //        
 //        writer.write(key+" ");
 ////        writer.write(val);
 //        }
-        writer.close();
+       writer.write(title +",");
         int count_keywordnum=0;
         for (String key : sortByValues_chi.keySet()) {
             keyword.add(key);
+            writer.write(" "+key);
             count_keywordnum++;
             if(count_keywordnum>4){
                 break;
             }
             
         }
-       
+        writer.write("\n");
+        writer.close();
         
         System.out.println(keyword);
         calculatePrecision();
@@ -153,7 +158,13 @@ public class WordExtraction {
     
     public void calculateChi(){
         double pg = 0;
-        for(String eachterm:tokenizedTerms){
+        for(int i=0;i<tokewords.length;i++){
+            String eachterm = tokewords[i];
+            String nextterm = "";
+            if(i<tokewords.length-2){nextterm = tokewords[i+1];}
+            else{
+               nextterm= tokewords[i];
+            }
             double chi=0;
             double nw=1;
            for(String eachWord:allWords){
@@ -176,12 +187,12 @@ public class WordExtraction {
                 freq++;
                 }
             }
-//            for(String ravi:allWords){
-//               if(ravi.equalsIgnoreCase(eachterm)){
-//                   pg++;
-//               }
-//            }
-            pg=nw/allWords.size();
+            for(String ravi:allWords){
+               if(ravi.equalsIgnoreCase(nextterm)){
+                   pg++;
+               }
+            }
+            pg=pg/allWords.size();
             chi=chi+ (Math.pow((freq-(nw*pg)),2))/(nw*pg);
             if(Double.isNaN(chi)){
                 chi=0;
