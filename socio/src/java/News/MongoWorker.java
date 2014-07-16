@@ -19,6 +19,8 @@ import java.util.List;
 import org.bson.types.ObjectId;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 /**
  *
@@ -64,6 +66,7 @@ public class MongoWorker {
         news.setSourceLink( dbObj.get("URL").toString() );
         news.setNewsId( dbObj.get("_id").toString() );
         news.setSourceDomain( getDomainName(dbObj.get("URL").toString()) );
+        news.setImageThumbs( getImageUrl(dbObj.get("Content").toString(), news.getSourceDomain() ) );
         return news;
     }
     
@@ -78,5 +81,29 @@ public class MongoWorker {
         URI uri = new URI(url);
         String domain = uri.getHost();
         return domain.startsWith("www.") ? domain.substring(4) : domain;
+    }
+    
+    public static String getImageUrl(String content, String domain) throws URISyntaxException {
+        Document doc = Jsoup.parse(content);
+        Elements tags = doc.select("img");
+//        System.out.println(tags);
+//        Elements imgs = tags.select("src");
+//        System.out.println(tags.get(0).attr("src"));
+        if (tags.size()>0){
+            for (Element each: tags){
+                String src = each.attr("src");
+                if ( src.contains(domain) )
+                    return src;
+            }
+        }
+        return "";
+    
+    }
+    
+    public static void main(String[] args) throws URISyntaxException {
+        MongoWorker mn = new MongoWorker("localhost", 27017, "newscrawl", "news");
+        DisplayNews news = mn.findDocumentById("537ed53fb760493946d21256");
+        String imageUrl = getImageUrl(news.getNewsContent(), news.getSourceDomain());
+        System.out.println(imageUrl);
     }
 }
