@@ -27,21 +27,21 @@ public class CsvParser {
 //        List<String> news = new ArrayList<String>();
          String[] news;
         String news1 = new String();
-         String title1;
+         String title1 = new String();
         boolean flag;
+        WordExtraction e= new WordExtraction();
         while((aline=textReader.readLine())!=null){            
 //            allWords.addAll(Arrays.asList(aline.replaceAll("[\\W&&[^\\s]]", "").split(" ")));  //to get individual terms
             List<String> words= new ArrayList<>();
             words.addAll(Arrays.asList(aline.split(",")));
             System.out.println(words);
-            for(String ne:words){
-                System.out.println(ne+"\n");
-            }
-            news=news1.split(" ");
+            news1= words.get(1);
+            title1 = words.get(0);
+//            news=news1.split(" ");
 //            title1=title1.split(" ").toString();
-            news1=news.toString();
-             WordExtraction e= new WordExtraction();
-//        e.parseFile(news1,title1);
+//            news1=news.toString();
+             
+        e.parseFile(news1,title1);
              
         }
 }

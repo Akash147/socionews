@@ -41,6 +41,7 @@ public class WordExtraction {
     List<Double> value_Chi = new ArrayList<>(); // to hold the chisquare value of the word
     List<Double> count = new ArrayList<>();
     String[] tokewords;
+    boolean flag= false;
     StopWord stop=new StopWord();
    
         
@@ -78,6 +79,7 @@ public class WordExtraction {
             }
 //           allWords.add(eachWord);
         }
+        
         tokewords = new String[tokenizedTerms.size()];
         tokewords= (String[]) tokenizedTerms.toArray(tokewords);
         Combination <String> all=new Combination<>(allWords);
@@ -99,7 +101,8 @@ public class WordExtraction {
         Map<String, Double> sortByValues_chi = sortByValues(m_chi);
         Map<String, Double> sortByCount = sortByValues(num_word);
 //        System.out.println(sortByValues_chi);
-         FileWriter writer = new FileWriter("/home/ravi/utput.csv");
+         FileWriter writer = new FileWriter("/home/ravi/utput.csv",flag);
+         flag=true;
 //         Iterator it =sortByValues_chi.entrySet().iterator();
 //    while (it.hasNext()) {
 //        Map.Entry pairs = (Map.Entry)it.next();
