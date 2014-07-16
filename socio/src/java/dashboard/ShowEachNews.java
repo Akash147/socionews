@@ -29,6 +29,7 @@ import org.apache.lucene.queryparser.classic.ParseException;
  * @author noones
  */
 @WebServlet(urlPatterns = {"/news/"})
+//@WebServlet(urlPatterns = {"/dahboard/"})
 public class ShowEachNews extends HttpServlet {
 
     /**
