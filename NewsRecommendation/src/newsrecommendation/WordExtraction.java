@@ -96,37 +96,43 @@ public class WordExtraction {
         Map<String, Double> sortByValues_chi = sortByValues(m_chi);
         Map<String, Double> sortByCount = sortByValues(num_word);
 //        System.out.println(sortByValues_chi);
-         FileWriter writer = new FileWriter("/home/ravi/utput.txt");
-         Iterator it =sortByValues_chi.entrySet().iterator();
-    while (it.hasNext()) {
-        Map.Entry pairs = (Map.Entry)it.next();
-        System.out.println(pairs.getKey() + " = " + pairs.getValue());
-        writer.write(pairs.getKey()+" "+pairs.getValue()+"\n");
-//        it.remove(); // avoids a ConcurrentModificationException
-    }
-    Iterator it1 =sortByCount.entrySet().iterator();
-    while (it1.hasNext()) {
-        Map.Entry pairs = (Map.Entry)it1.next();
-        System.out.println(pairs.getKey() + " = " + pairs.getValue());
-        writer.write(pairs.getKey()+" "+pairs.getValue()+"\n");
-//        it.remove(); // avoids a ConcurrentModificationException
-    }
+         FileWriter writer = new FileWriter("d:/utput.csv",true);
+//         Iterator it =sortByValues_chi.entrySet().iterator();
+//    while (it.hasNext()) {
+//        Map.Entry pairs = (Map.Entry)it.next();
+//        System.out.println(pairs.getKey() + " = " + pairs.getValue());
+//        writer.write(pairs.getKey()+","+pairs.getValue()+"\n");
+////        it.remove(); // avoids a ConcurrentModificationException
+//    }
+//    Iterator it1 =sortByCount.entrySet().iterator();
+//    while (it1.hasNext()) {
+//        Map.Entry pairs = (Map.Entry)it1.next();
+//        System.out.println(pairs.getKey() + " = " + pairs.getValue());
+//        writer.write(pairs.getKey()+" "+pairs.getValue()+"\n");
+////        it.remove(); // avoids a ConcurrentModificationException
+//    }
 //        for (String key : sortByValues_chi.keySet()) {
 //            System.out.println(sortByValues_chi.values());
 //        
 //        writer.write(key+" ");
 ////        writer.write(val);
 //        }
-        writer.close();
+         String jpt= "";
+        for(String title1:titleWord){
+            jpt+=title1+" ";
+        }
         int count_keywordnum=0;
         for (String key : sortByValues_chi.keySet()) {
             keyword.add(key);
             count_keywordnum++;
+            writer.write(key+" ");
             if(count_keywordnum>4){
                 break;
             }
             
         }
+        writer.write(","+jpt+"\n");
+        writer.close();
        
         
         System.out.println(keyword);
