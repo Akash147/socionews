@@ -101,8 +101,7 @@ public class WordExtraction {
         Map<String, Double> sortByValues_chi = sortByValues(m_chi);
         Map<String, Double> sortByCount = sortByValues(num_word);
 //        System.out.println(sortByValues_chi);
-         FileWriter writer = new FileWriter("/home/ravi/utput.csv",flag);
-         flag=true;
+         FileWriter writer = new FileWriter("/home/ravi/utput.csv",true);
 //         Iterator it =sortByValues_chi.entrySet().iterator();
 //    while (it.hasNext()) {
 //        Map.Entry pairs = (Map.Entry)it.next();
