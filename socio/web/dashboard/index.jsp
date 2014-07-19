@@ -66,15 +66,16 @@
                                 </div>
                             </div>
                             <div class="row-fluid">
-                                <div class="span4">
+                                
+                                <c:forEach var="eachNews" items="${recentNewsList}">
+                                 <div class="span4">
                                     <div class="thumbnail">
-                                        <img data-src="holder.js/300x200" alt="300x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4=">
+                                        <img alt="300x200" src="${eachNews.imageThumbs}">
                                         <div class="caption">
                                             <h3>
-                                                
-                                                ${UserID}
+                                                ${eachNews.headLine}
                                             </h3>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                                            <p>${eachNews.metaDescription}</p>
                                             <span><a href="#" class="btn btn-primary" role="button"><i class="icon-link"></i> Read</a> 
 
                                                 <div class="btn-group">
@@ -86,169 +87,8 @@
                                                 </div></span>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="span4">
-                                    <div class="thumbnail">
-                                        <img data-src="holder.js/300x200" alt="300x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4=">
-                                        <div class="caption">
-                                            <h3>Thumbnail label</h3>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                            <span><a href="#" class="btn btn-primary" role="button"><i class="icon-link"></i> Read</a> 
-
-                                                <div class="btn-group">
-                                                    <button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a href="#"><i class="icon-plus-sign"></i> Later</a></li>
-                                                        <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
-                                                    </ul>
-                                                </div></span>  
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="span4">
-                                    <div class="thumbnail">
-                                        <img data-src="holder.js/300x200" alt="300x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4=">
-                                        <div class="caption">
-                                            <h3>Thumbnail label</h3>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                            <span><a href="#" class="btn btn-primary" role="button"><i class="icon-link"></i> Read</a> 
-
-                                                <div class="btn-group">
-                                                    <button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a href="#"><i class="icon-plus-sign"></i> Later</a></li>
-                                                        <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
-                                                    </ul>
-                                                </div></span>  
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="row-fluid">
-                                <div class="span4">
-                                    <div class="thumbnail">
-                                        <img data-src="holder.js/300x200" alt="300x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4=">
-                                        <div class="caption">
-                                            <h3>Thumbnail label</h3>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                            <span><a href="#" class="btn btn-primary" role="button"><i class="icon-link"></i> Read</a> 
-
-                                                <div class="btn-group">
-                                                    <button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a href="#"><i class="icon-plus-sign"></i> Later</a></li>
-                                                        <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
-                                                    </ul>
-                                                </div></span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="span4">
-                                    <div class="thumbnail">
-                                        <img data-src="holder.js/300x200" alt="300x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4=">
-                                        <div class="caption">
-                                            <h3>Thumbnail label</h3>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                            <span><a href="#" class="btn btn-primary" role="button"><i class="icon-link"></i> Read</a> 
-
-                                                <div class="btn-group">
-                                                    <button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a href="#"><i class="icon-plus-sign"></i> Later</a></li>
-                                                        <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
-                                                    </ul>
-                                                </div></span>  
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="span4">
-                                    <div class="thumbnail">
-                                        <img data-src="holder.js/300x200" alt="300x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4=">
-                                        <div class="caption">
-                                            <h3>Thumbnail label</h3>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                            <span><a href="#" class="btn btn-primary" role="button"><i class="icon-link"></i> Read</a> 
-
-                                                <div class="btn-group">
-                                                    <button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a href="#"><i class="icon-plus-sign"></i> Later</a></li>
-                                                        <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
-                                                    </ul>
-                                                </div></span>  
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                            <div class="row-fluid">
-                                <div class="span4">
-                                    <div class="thumbnail">
-                                        <img data-src="holder.js/300x200" alt="300x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4=">
-                                        <div class="caption">
-                                            <h3>Thumbnail label</h3>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                            <span><a href="#" class="btn btn-primary" role="button"><i class="icon-link"></i> Read</a> 
-
-                                                <div class="btn-group">
-                                                    <button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a href="#"><i class="icon-plus-sign"></i> Later</a></li>
-                                                        <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
-                                                    </ul>
-                                                </div></span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="span4">
-                                    <div class="thumbnail">
-                                        <img data-src="holder.js/300x200" alt="300x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4=">
-                                        <div class="caption">
-                                            <h3>Thumbnail label</h3>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                            <span><a href="#" class="btn btn-primary" role="button"><i class="icon-link"></i> Read</a> 
-
-                                                <div class="btn-group">
-                                                    <button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a href="#"><i class="icon-plus-sign"></i> Later</a></li>
-                                                        <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
-                                                    </ul>
-                                                </div></span>  
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="span4">
-                                    <div class="thumbnail">
-                                        <img data-src="holder.js/300x200" alt="300x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4=">
-                                        <div class="caption">
-                                            <h3>Thumbnail label</h3>
-                                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                            <span><a href="#" class="btn btn-primary" role="button"><i class="icon-link"></i> Read</a> 
-
-                                                <div class="btn-group">
-                                                    <button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a href="#"><i class="icon-plus-sign"></i> Later</a></li>
-                                                        <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
-                                                    </ul>
-                                                </div></span>  
-                                        </div>
-                                    </div>
-                                </div>
-
+                                </div>  
+                                </c:forEach>
                             </div>
 
                             <div class="space10"></div>

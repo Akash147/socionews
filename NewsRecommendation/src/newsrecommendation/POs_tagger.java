@@ -48,7 +48,7 @@ public class POs_tagger {
             for(int i=0;i<tags.length;i++){
 //            System.out.println(tags[i]);
 //            System.out.println(whitespaceTokenizerLine[i]);
-            if("NN".equals(tags[i]) || "FW".equals(tags[i]) || "NNP".equals(tags[i]) || "ADJ".equals(tags[i]) || "AD".equals(tags[i])){
+            if("NN".equals(tags[i]) || "FW".equals(tags[i]) || "NNP".equals(tags[i])){
                 allWords.add(whitespaceTokenizerLine[i]);
             }
         }

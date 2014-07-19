@@ -82,7 +82,7 @@ public class LuceneSearcher {
             MongoWorker m = new MongoWorker("localhost", 27017, "newscrawl", "news");
 //            DisplayNews obj = m.findDocumentById(searcher.search("brazil").get(1));
 //            System.out.println( obj.getHeadLine() );
-            for(String id : searcher.search("England")){
+            for(String id : searcher.search("Brazil")){
                 System.out.println(id);
                 DisplayNews obj = m.findDocumentById(id);
                 System.out.println( obj.getHeadLine() );

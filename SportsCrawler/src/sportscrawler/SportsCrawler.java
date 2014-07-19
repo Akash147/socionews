@@ -23,9 +23,14 @@ public class SportsCrawler {
      */
 	public static void main(String[] args) throws IOException {
                 
+//  for (Map.Entry<String, String> entry : countries.entrySet()) {
+//    String key = entry.getKey();
+//    String value = entry.getValue();
+//    // ...
+//}
+            
 //		
 //                Document doc = Jsoup.connect("http://edition.cnn.com/SPORT/archive").get();
-//
 //		Elements Divs = doc.select("div[id^=archive-display-page]");    
 //                Elements Links = Divs.select("a[class^=cnn-social]");
 //                 //System.out.println(Links);  
