@@ -29,7 +29,9 @@ public class General_String_manipulation {
         if(str.contains("http")){
             str = str.substring(0, str.indexOf("http"));
         }
-        
+        if(str.contains("@")) {
+            str = str.substring(0, str.indexOf("@"));
+        }
         if(str.startsWith("RT")){
             str = str.substring(str.indexOf(":")+1);
         }
@@ -38,6 +40,27 @@ public class General_String_manipulation {
         }
         return str;
     }
+    
+    public String separateHyperlink(String status)
+    {
+        String str = status;
+        if(str.contains("http")){
+//            str = str.substring(0, str.indexOf("http"));
+            str = str.replaceAll("http?://\\S+\\s?", "");
+            str = str.replaceAll("https?://\\S+\\s?", "");
+        }
+        if(str.contains("@")) {
+            str = str.replace("@", "");
+        }
+        if(str.startsWith("RT")){
+            str = str.substring(str.indexOf(":")+1);
+        }
+        if(str.startsWith(" ")){
+            str = str.substring(str.indexOf(" ")+1);
+        }
+        return str;
+    }
+    
     public ArrayList<String> ret_finalkeyword(ArrayList<String> key){
         ArrayList<String> temp_twits = new ArrayList<String>();
          ArrayList<Integer> twit_count = new ArrayList<Integer>();
