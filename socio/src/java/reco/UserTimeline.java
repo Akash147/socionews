@@ -147,10 +147,46 @@ public class UserTimeline {
             } catch (MongoException e) {
                 e.printStackTrace();
             }
+        }    
+    }
+    //start of storing tweets with sentiment to userTweets
+    public void storeTweetsWithSentiment(ArrayList<Status> statuses , String sentiment){
+        try {
+            DBCollection table = this.userMongoStart("userTweets");
+            BasicDBObject document = new BasicDBObject();
+            //place values in a document to store
+            for(Status tweet : statuses){
+                if(!this.isTweetAlreadyExist(tweet.getText())){
+                    document.put("userID", this.getUserID());
+                    document.put("tweet", tweet.getText());
+                    document.put("sentiment", sentiment);
+                    table.insert(document);
+                }
+            }
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(UserTimeline.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
     
+    public boolean isTweetAlreadyExist(String status) {
+        boolean flag = false;
+        try {
+            DBCollection table = this.userMongoStart("userTweets");
+            BasicDBObject searchQuery = new BasicDBObject();
+            //search Tweets exits already
+            searchQuery.put("userID", this.getUserID());
+            searchQuery.put("tweet", status);
+            DBCursor cursor = table.find(searchQuery);
+            while(cursor.hasNext()){
+                flag = true;
+                break;
+            }
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(UserTimeline.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return flag;
+    }
+    //end of storing tweets with sentiment to userTweets
     public boolean checkRepeatOnMongoDB() {
         boolean flag = false;
         Integer document_count = 0;

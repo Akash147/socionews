@@ -105,6 +105,10 @@ public class DbForWeb {
         }
     }
     
+    public void storeNewsToBeRead(String newsID){
+        
+    }
+    
     public String getFullName() {
         return this.fullName;
     }
