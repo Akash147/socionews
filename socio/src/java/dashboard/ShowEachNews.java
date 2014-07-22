@@ -22,13 +22,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.lucene.queryparser.classic.ParseException;
+import reco.DbForWeb;
 
 /**
  *
  * @author noones
  */
-@WebServlet(urlPatterns = {"/news/"})
+@WebServlet(urlPatterns = {"/dashboard/news"})
 //@WebServlet(urlPatterns = {"/dahboard/"})
 public class ShowEachNews extends HttpServlet {
 
@@ -52,7 +54,11 @@ public class ShowEachNews extends HttpServlet {
         LuceneSearcher searcher = new LuceneSearcher(config.getLuceneLocation());
         MongoWorker mongo = new MongoWorker(config.getMongoHost(), config.getMongoPort(), config.getMongoDB(), config.getMongoCollection());
         try {
-            List<String> matchIDs = searcher.search("suarez");
+            HttpSession session = request.getSession(true);
+            long user_id = (Long)session.getAttribute("UserID");
+            DbForWeb dWeb = new DbForWeb();
+            String searchString = dWeb.makeSearchString(dWeb.getKeywordsFromMongo(user_id));
+            List<String> matchIDs = searcher.search(searchString);
             request.setAttribute("recentNewsList", mongo.findAllDocumentByID(matchIDs.toArray(new String[matchIDs.size()])) );
             request.setAttribute("nowShowingNews", mongo.findDocumentById(id) );
         } catch (ParseException ex) {
