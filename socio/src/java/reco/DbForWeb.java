@@ -14,7 +14,6 @@ import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import java.net.UnknownHostException;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,15 +36,20 @@ public class DbForWeb {
     private String location;
     private int following;
     public String temp;
-    
+    private MongoClient mongo;
     public DbForWeb(){}
+    
+    public DBCollection userMongoStart(String tableName) throws UnknownHostException {
+        mongo = new MongoClient("localhost", 27017);
+        DB db = mongo.getDB("userDB");
+        DBCollection table = db.getCollection(tableName);
+        return table;  
+    }
     
     public ArrayList<String> getKeywordsFromMongo(long id) {
         ArrayList<String> keywords = new ArrayList<String>();
         try {
-            MongoClient mongo = new MongoClient("localhost", 27017);
-            DB db = mongo.getDB("userDB");
-            DBCollection table = db.getCollection("tweetKeywords");
+            DBCollection table = this.userMongoStart("tweetKeywords");
             BasicDBObject searchQuery = new BasicDBObject();
             searchQuery.put("userID", id);
 
@@ -79,9 +83,8 @@ public class DbForWeb {
     
     public void fetchAll(long user_id) {
         try {
-            MongoClient mongo = new MongoClient("localhost", 27017);
-            DB db = mongo.getDB("userDB");
-            DBCollection table = db.getCollection("userProfileInfo");
+            
+            DBCollection table = this.userMongoStart("userProfileInfo");
             BasicDBObject searchQuery = new BasicDBObject();
             //searching parameter set to accessToken
             searchQuery.put("userID", user_id);
@@ -105,8 +108,26 @@ public class DbForWeb {
         }
     }
     
-    public void storeNewsToBeRead(String newsID){
-        
+    public void storeNewsToBeRead(String newsID, String newsHead, String newsMeta){
+        try {
+            DBCollection table = this.userMongoStart("newsToBeRead");
+            BasicDBObject newsToBe = new BasicDBObject();
+            newsToBe.put("newsID", newsID);
+            newsToBe.put("newsHead", newsHead);
+            newsToBe.put("newsShort", newsMeta);
+            table.insert(newsToBe);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(DbForWeb.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void checkReapeatedNews() {
+        try {
+            DBCollection table = this.userMongoStart("newsToBeREad");
+            BasicDBObject newsObj = new BasicDBObject();
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(DbForWeb.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public String getFullName() {

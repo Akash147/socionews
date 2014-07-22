@@ -33,7 +33,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="header.jsp" %>
 
-        <title>Dashboard: </title>
+        <title>Dashboard:<c:out value="${screenName}"></c:out> </title>
     </head>
     <body class="fixed-top">
         <%@include file="navigation.jsp" %>
@@ -66,28 +66,29 @@
                                 </div>
                             </div>
                             <div class="row-fluid">
-                                
+                                <%
+                                    int count = 1;
+                                %>
                                 <c:forEach var="eachNews" items="${recentNewsList}">
-                                 <div class="span4">
+                                 <div class="span4 ${eachNews.newsId}">
                                     <div class="thumbnail">
                                         <img alt="300x200" src="${eachNews.imageThumbs}">
-                                        <div class="caption">
-                                            <h3>
-                                                ${eachNews.headLine}
-                                            </h3>
+                                        <div class="caption" id="${eachNews.newsId}">
+                                            <h3>${eachNews.headLine}</h3>
                                             <p>${eachNews.metaDescription}</p>
                                             <span><a href="#" class="btn btn-primary" role="button"><i class="icon-link"></i> Read</a> 
 
                                                 <div class="btn-group">
                                                     <button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>
                                                     <ul class="dropdown-menu">
-                                                        <li><a href="#"><i class="icon-plus-sign"></i> Later</a></li>
-                                                        <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
+                                                        <li onclick="storeNews('${eachNews.newsId}')"><a href="#"><i class="icon-plus-sign"></i> Later</a></li>
+                                                        <li onclick="del('${eachNews.newsId}')"><a href="#"><i class="icon-trash"></i> Delete</a></li>
                                                     </ul>
                                                 </div></span>
                                         </div>
                                     </div>
                                 </div>  
+                                    
                                 </c:forEach>
                             </div>
 
@@ -136,4 +137,31 @@
             </div>
             <%@include file="footer.jsp" %>    
     </body>
+    <script>
+        function del(nid){
+            var search_id = ".span4." + nid;
+            $(search_id).remove();
+        }
+        function storeNews(ID){
+            var search_id = ".span4." + ID;
+            var search_headline = "#" + ID + " h3";
+            var search_newsMeta = "#" + ID + " p";
+                $.ajax({
+                type: "POST",
+                url: "NewsToBeRead",
+                data: {
+                    newsID : ID,
+                    newsHead : $(search_headline).text(),
+                    newsMeta : $(search_newsMeta).text()
+                  },
+                success: function(msg){
+//                  alert(msg + "\nNews To Be read Stored successfully");
+                    $(search_id).remove();
+                }
+                // error: function(msg,status,error){
+                // 	alert(msg.responseText);
+                // } 
+                });
+        }
+    </script>
 </html>

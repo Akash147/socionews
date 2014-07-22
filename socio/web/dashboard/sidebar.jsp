@@ -53,6 +53,15 @@
                     <span>Awesome Read</span>
                   </a>
               </li>
+              <li>
+                  
+              </li>
+              <li>
+                  <a href="javascript:;" class="">
+                      <i class="icon-refresh"></i>
+                      <span>Recheck Sentiment</span>                      
+                  </a>
+              </li>
           </ul>
          <!-- END SIDEBAR MENU -->
       </div>

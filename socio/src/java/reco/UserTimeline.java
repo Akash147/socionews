@@ -6,6 +6,7 @@
 
 package reco;
 
+import akash.configuration.Configuration;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -13,12 +14,15 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import twitter4j.IDs;
 import twitter4j.Paging;
 import twitter4j.Status;
@@ -150,18 +154,16 @@ public class UserTimeline {
         }    
     }
     //start of storing tweets with sentiment to userTweets
-    public void storeTweetsWithSentiment(ArrayList<Status> statuses , String sentiment){
+    public void storeTweetsWithSentiment(String tweet, String sentiment) {
         try {
             DBCollection table = this.userMongoStart("userTweets");
             BasicDBObject document = new BasicDBObject();
             //place values in a document to store
-            for(Status tweet : statuses){
-                if(!this.isTweetAlreadyExist(tweet.getText())){
-                    document.put("userID", this.getUserID());
-                    document.put("tweet", tweet.getText());
-                    document.put("sentiment", sentiment);
-                    table.insert(document);
-                }
+            if(!this.isTweetAlreadyExist(tweet)){
+                document.put("userID", this.getUserID());
+                document.put("tweet", tweet);
+                document.put("sentiment", sentiment);
+                table.insert(document);
             }
         } catch (UnknownHostException ex) {
             Logger.getLogger(UserTimeline.class.getName()).log(Level.SEVERE, null, ex);
