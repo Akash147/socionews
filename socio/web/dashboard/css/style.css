@@ -4628,3 +4628,10 @@ h3{
 .popover{
     position: fixed;
 }
+a.sentiment{
+    cursor : default;
+}
+.popover-title{
+    background-color: #2d2d2d;
+    color: #fff;
+}

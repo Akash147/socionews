@@ -112,22 +112,51 @@ public class DbForWeb {
         try {
             DBCollection table = this.userMongoStart("newsToBeRead");
             BasicDBObject newsToBe = new BasicDBObject();
-            newsToBe.put("newsID", newsID);
-            newsToBe.put("newsHead", newsHead);
-            newsToBe.put("newsShort", newsMeta);
-            table.insert(newsToBe);
+            if(!this.checkReapeatedNews(newsID)){
+                newsToBe.put("newsID", newsID);
+                newsToBe.put("newsHead", newsHead);
+                newsToBe.put("newsShort", newsMeta);
+                table.insert(newsToBe); 
+            }
+            mongo.close();
         } catch (UnknownHostException ex) {
             Logger.getLogger(DbForWeb.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public void checkReapeatedNews() {
+    public boolean checkReapeatedNews(String newsId) {
+        boolean flag = false;
         try {
-            DBCollection table = this.userMongoStart("newsToBeREad");
+            DBCollection table = this.userMongoStart("newsToBeRead");
             BasicDBObject newsObj = new BasicDBObject();
+            newsObj.put("newsID", newsId);
+            DBCursor cursor = table.find(newsObj);
+            while(cursor.hasNext()){
+                flag = true;
+                break;
+            }
+            mongo.close();
         } catch (UnknownHostException ex) {
             Logger.getLogger(DbForWeb.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return flag;
+    }
+    
+    public String[] getSentimentTweet(long Uid, int count){
+        String[] result = new String[2];
+        try {
+            DBCollection table = this.userMongoStart("userTweets");
+            BasicDBObject dbObj = new BasicDBObject();
+            dbObj.put("userID", Uid);
+            DBCursor cursor = table.find(dbObj);
+            for(int x = 1; x <= count; x++){
+                result[0] = cursor.next().get("tweet").toString();
+                result[1] = cursor.next().get("sentiment").toString();
+            }
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(DbForWeb.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
     }
     
     public String getFullName() {
