@@ -21,6 +21,10 @@
         <servlet-name>NewsToBeReadServlet</servlet-name>
         <servlet-class>reco.NewsToBeReadServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckSentimentServlet</servlet-name>
+        <servlet-class>reco.CheckSentimentServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TwitterSigninServlet</servlet-name>
         <url-pattern>/TwitterSignin</url-pattern>
@@ -40,6 +44,10 @@
     <servlet-mapping>
         <servlet-name>NewsToBeReadServlet</servlet-name>
         <url-pattern>/dashboard/NewsToBeRead</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckSentimentServlet</servlet-name>
+        <url-pattern>/dashboard/checkSentiment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

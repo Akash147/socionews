@@ -4624,7 +4624,9 @@ h3{
     /*vertical-align: bottom;*/
 }
 .thumbnail{
+
     //height: 380px;
+
 }
 .popover{
     position: fixed;
@@ -4635,4 +4637,12 @@ max-width: 248px;
 max-height:154px; 
 margin-right: auto;
 margin-left: auto;
+}
+
+a.sentiment{
+    cursor : default;
+}
+.popover-title{
+    background-color: #2d2d2d;
+    color: #fff;
 }

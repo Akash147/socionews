@@ -22,7 +22,7 @@ import java.util.List;
 public class StopWord {
     private final List<String> allStopWords=new ArrayList<>();; //to hold all stopwords
     void extractStopWords() throws FileNotFoundException, IOException{
-         FileReader readFile= new FileReader(File.separator+"d:"+File.separator+"output.txt");
+        FileReader readFile= new FileReader(File.separator+"d:"+File.separator+"output.txt");
         BufferedReader textReader = new BufferedReader(readFile);
         String aline;        
         while((aline=textReader.readLine())!=null){

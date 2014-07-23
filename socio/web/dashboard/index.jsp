@@ -79,9 +79,7 @@
                                     
                                  <div class="span4 ${eachNews.newsId}">
                                     <div class="thumbnail">
-                                        
                                         <img alt="300x200" src="${eachNews.imageThumbs}" />
-                                        
                                         <div class="caption" id="${eachNews.newsId}">
                                             <h3>${eachNews.headLine}</h3>
                                             <p>${eachNews.metaDescription}</p>
@@ -136,6 +134,7 @@
                                     <c:forEach var="eachNews" items="${recentNewsList}">
                                         <div class="row-fluid experience">
                                             <a href="<c:url value="../dashboard/news?id=${eachNews.newsId}"/>"><h4>${eachNews.headLine}</h4></a>
+
                                             <p>${eachNews.metaDescription}</p>
                                             <a href="http://${eachNews.sourceDomain}">${eachNews.sourceDomain}</a>
                                             <div class="pull-right" style="margin-right: 20px;">
