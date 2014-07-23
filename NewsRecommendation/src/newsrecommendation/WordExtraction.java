@@ -40,6 +40,7 @@ public class WordExtraction {
     List<String> titleWord = new ArrayList<>();
     List<Double> value_Chi = new ArrayList<>(); // to hold the chisquare value of the word
     List<Double> count = new ArrayList<>();
+    List<String> tokeword= new ArrayList<>();
     String[] tokewords;
     boolean flag= false;
     StopWord stop=new StopWord();
@@ -81,7 +82,7 @@ public class WordExtraction {
         }
         
         tokewords = new String[tokenizedTerms.size()];
-        tokewords= (String[]) tokenizedTerms.toArray(tokewords);
+        
         Combination <String> all=new Combination<>(allWords);
         permAllWords= all.getCombAllWords();
 //        System.out.println(tokenizedTerms);
@@ -91,15 +92,22 @@ public class WordExtraction {
 //                maxCountWord.put(tokenizedTerms.get(j), termCount.get(j));
 //        Map<String, Integer> sortByValues = sortByValues(maxCountWord);
 //        System.out.println(sortByValues);
+        count();
+        Map<String, Double> num_word = new HashMap<>();
+        for(int j = 0; j < tokenizedTerms.size(); j++)
+                num_word.put(tokenizedTerms.get(j), count.get(j));
+        Map<String, Double> sortByCount = sortByValues(num_word);
+//        tokeword=(List<String>) sortByCount.keySet();
+//        System.out.println("token "+ tokenizedTerms);
+        tokewords= (String[]) sortByCount.keySet().toArray(tokewords);
         calculateChi();
         Map<String, Double> m_chi = new HashMap<>();
-         Map<String, Double> num_word = new HashMap<>();
+         
             for(int j = 0; j < tokenizedTerms.size(); j++)
                 m_chi.put(tokenizedTerms.get(j), value_Chi.get(j));
-            for(int j = 0; j < tokenizedTerms.size(); j++)
-                num_word.put(tokenizedTerms.get(j), count.get(j));
+            
         Map<String, Double> sortByValues_chi = sortByValues(m_chi);
-        Map<String, Double> sortByCount = sortByValues(num_word);
+        
 //        System.out.println(sortByValues_chi);
 <<<<<<< HEAD
          FileWriter writer = new FileWriter("d:/utput.csv",true);
@@ -175,13 +183,24 @@ public class WordExtraction {
         }     
         return sortedMap;
     }
-    
+    public void count(){
+        for(String word:tokenizedTerms){
+            double cou=0;
+            for(String abc:allWords){
+               if(word.equalsIgnoreCase(abc)){
+                  cou++; 
+               } 
+            }
+            count.add(cou);
+        }
+    }
     public void calculateChi(){
         double pg = 0;
+        double freq = 0;
         for(int i=0;i<tokewords.length;i++){
             String eachterm = tokewords[i];
             String nextterm = "";
-            if(i<tokewords.length-2){nextterm = tokewords[i+1];}
+            if(i<=tokewords.length-2){nextterm = tokewords[i+1];}
             else{
                nextterm= tokewords[i];
             }
@@ -193,16 +212,20 @@ public class WordExtraction {
                }
                
         }
-           count.add(nw);
+//            System.out.println("first= "+eachterm);
+//            System.out.println("next= "+nextterm);
+//           count.add(nw);
         for(String term:tokenizedTerms){
-            double freq=0;
+            freq=0;
             
             pg=0;
             String word=null;
             String words=null;
-            word= eachterm + term;
-            words=term + eachterm;
+            word= eachterm +" "+ term;
+            words=term +" "+ eachterm;
+//            System.out.println("word"+words);
             for(String xyz: permAllWords){
+//                System.out.println("ayz= "+xyz);
                 if(word.equalsIgnoreCase(xyz)||words.equalsIgnoreCase(xyz)){
                 freq++;
                 }
@@ -212,13 +235,17 @@ public class WordExtraction {
                    pg++;
                }
             }
+            
+//            chi1.add(chi);
+        }
+//        System.out.println("frea"+freq);
+//            System.out.println("pg of"+nextterm+pg);
+//            System.out.println("nw of"+eachterm+nw);
             pg=pg/allWords.size();
             chi=chi+ (Math.pow((freq-(nw*pg)),2))/(nw*pg);
             if(Double.isNaN(chi)){
                 chi=0;
             }
-//            chi1.add(chi);
-        }
         value_Chi.add(chi);
         }
         
