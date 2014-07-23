@@ -143,6 +143,62 @@ public class WordExtraction {
     }
      
     
+    public List<String> getThings(String aline ,String title) throws FileNotFoundException, IOException{
+        this.allWords = new ArrayList<>();
+        this.titleWord = new ArrayList<>();
+        allWords.addAll(Arrays.asList(aline.toLowerCase().replaceAll("[\\W&&[^\\s]]", "").split(" ")));
+        titleWord.addAll(Arrays.asList(title.toLowerCase().replaceAll("[\\W&&[^\\s]]", "").split(" ")));  //to get title word
+//        Stemming stem = new Stemming();
+//        String stemmedWord= new String();
+        posTerm= POs_tagger.POSTag(aline.toLowerCase());
+        for (String eachWord : posTerm) {
+//            stemmedWord = stem.stripAffixes(eachWord);
+            if (!tokenizedTerms.contains(eachWord)) {
+                if (!this.stop.isStopWord(eachWord)) {
+                    tokenizedTerms.add(eachWord);
+                }
+            }
+//           allWords.add(eachWord);
+        }
+        
+        tokewords = new String[tokenizedTerms.size()];
+        tokewords= (String[]) tokenizedTerms.toArray(tokewords);
+        Combination <String> all=new Combination<>(allWords);
+        permAllWords= all.getCombAllWords();
+
+        calculateChi();
+        Map<String, Double> m_chi = new HashMap<>();
+         Map<String, Double> num_word = new HashMap<>();
+            for(int j = 0; j < tokenizedTerms.size(); j++)
+                m_chi.put(tokenizedTerms.get(j), value_Chi.get(j));
+            for(int j = 0; j < tokenizedTerms.size(); j++)
+                num_word.put(tokenizedTerms.get(j), count.get(j));
+        Map<String, Double> sortByValues_chi = sortByValues(m_chi);
+        Map<String, Double> sortByCount = sortByValues(num_word);
+//        System.out.println(sortByValues_chi);
+//         FileWriter writer = new FileWriter("/home/ravi/utput.csv",flag);
+         flag=true;
+//       writer.write(title +",");
+        int count_keywordnum=0;
+        for (String key : sortByValues_chi.keySet()) {
+            keyword.add(key);
+//            writer.write(" "+key);
+            count_keywordnum++;
+            if(count_keywordnum>4){
+                break;
+            }
+            
+        }
+//        writer.write("\n");
+//        writer.close();
+        
+        System.out.println(keyword);
+        calculatePrecision();
+        return keyword;
+//        System.out.println("after"+tokenizedTerms);
+    }
+    
+    
     /////// used for descending ordering of the term according to the chisquare value of the term////////////////////
     public static<K extends Comparable,V extends Comparable> Map<K,V> sortByValues(Map<K,V> map){
         List<Map.Entry<K,V>> entries = new LinkedList<>(map.entrySet());

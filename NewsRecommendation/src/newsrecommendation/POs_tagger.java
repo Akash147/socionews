@@ -25,10 +25,11 @@ import opennlp.tools.util.PlainTextByLineStream;
  * @author ravi
  */
 public class POs_tagger {
-     public static List<String> POSTag(String input) throws IOException {
-         List <String> allWords =new ArrayList<>();
-        POSModel model = new POSModelLoader()
+    private static POSModel model = new POSModelLoader()
                 .load(new File("en-pos-maxent.bin"));
+    public static List<String> POSTag(String input) throws IOException {
+         List <String> allWords =new ArrayList<>();
+
         PerformanceMonitor perfMon = new PerformanceMonitor(System.err, "sent");
         POSTaggerME tagger = new POSTaggerME(model);
 
