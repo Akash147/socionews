@@ -56,14 +56,30 @@
               <li>
                   
               </li>
-              <li>
-                  <a href="javascript:;" class="">
+              <li data-toggle="popover" title data-content="dfa;dsfadsf" data-original-title="ajds;fa">
+                  <a href="" class="sentiment">
                       <i class="icon-refresh"></i>
-                      <span>Recheck Sentiment</span>                      
-                  </a>
+                      <span>Recheck Sentiment</span>  
+                    </a>
+              </li>
+              <li>
+                  <a title="" rel='popover'>Default Popover</a>
               </li>
           </ul>
+         <script type="text/javascript">
+$(document).ready(function() {
+$("[rel='popover']").popover({
+placement : 'right', // top, bottom, left or right
+title : 'This is my Title', 
+html: 'true', 
+content : '<div style="z-index:-1;"> Argentina: all eyes on Lionel Messi as Albiceleste go for top spot in Group F - Telegraph</div>'
+});
+});
+</script>
+         
+         
          <!-- END SIDEBAR MENU -->
       </div>
       </div>
       <!-- END SIDEBAR -->
+                

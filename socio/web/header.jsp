@@ -12,11 +12,11 @@
     <link href="<c:url value="/dashboard/assets/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet" />
    <link href="<c:url value="/dashboard/assets/bootstrap/css/bootstrap-responsive.min.css"/>" rel="stylesheet" />
               
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="favicon.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="favicon.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="favicon.png">
-    <link rel="apple-touch-icon-precomposed" href="favicon.png">
-    <link rel="shortcut icon" href="favicon.png">
+   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<c:url value="/favicon.png"/>">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<c:url value="/favicon.png"/>">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<c:url value="/favicon.png"/>">
+    <link rel="apple-touch-icon-precomposed" href="<c:url value="/favicon.png"/>">
+    <link rel="shortcut icon" href="<c:url value="/favicon.png"/>">
           
     <title>Socionews</title>
 

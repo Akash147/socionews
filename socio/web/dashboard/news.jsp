@@ -65,7 +65,7 @@
                                             <p style="float: right">By: <a href="http://${nowShowingNews.sourceDomain}">${nowShowingNews.sourceDomain}</a>
                                                 <span>Jun 19, 2014</span></p>
                                         </div>
-                                        <div class="alert alert-success fade in" style="position: fixed;bottom: 0;right: 0; z-index: 1000; text-align:center";>
+<!--                                        <div class="alert alert-success fade in" style="position: fixed;bottom: 0;right: 0; z-index: 1000; text-align:center";>
                                             <h4>Feedback!</h4>
                                             <p>Helps us to improve your news dashboard.</p>
                                             <form>
@@ -80,7 +80,7 @@
                                             </div>
                                         </form>
                                             <button type="button" data-dismiss="alert" class="btn btn-medium btn-danger">feedback</button>
-                                        </div>
+                                        </div>-->
                                         
                                         <hr>
 
@@ -116,12 +116,11 @@
                                     
                                     <c:forEach var="eachNews" items="${recentNewsList}">
                                         <div class="row-fluid experience">
-                                            <a href="<c:url value="/news/?id=${eachNews.newsId}"/>"><h4>${eachNews.headLine}</h4></a>
+                                            <a href="<c:url value="../dashboard/news?id=${eachNews.newsId}"/>"><h4>${eachNews.headLine}</h4></a>
                                             <p>${eachNews.metaDescription}</p>
                                             <a href="http://${eachNews.sourceDomain}">${eachNews.sourceDomain}</a>
-                                            <img src ="${eachNews.imageThumbs} "/>
                                             <div class="pull-right" style="margin-right: 20px;">
-                                                <span class="small italic">Category:<a href="cricket.jsp">cricket </a></span>
+                                                <span class="small italic">Category:<a href="football.jsp">football </a></span>
                                             </div>
                                         </div>
                                     </c:forEach>
