@@ -109,11 +109,9 @@ public class WordExtraction {
         Map<String, Double> sortByValues_chi = sortByValues(m_chi);
         
 //        System.out.println(sortByValues_chi);
-<<<<<<< HEAD
-         FileWriter writer = new FileWriter("d:/utput.csv",true);
-=======
-         FileWriter writer = new FileWriter("/home/ravi/utput.csv",true);
->>>>>>> 8a3367ce71a99af8e60a158d011d534e269a9e03
+//         FileWriter writer = new FileWriter("d:/utput.csv",true);
+            FileWriter writer = new FileWriter("/home/ravi/utput.csv",true);
+
 //         Iterator it =sortByValues_chi.entrySet().iterator();
 //    while (it.hasNext()) {
 //        Map.Entry pairs = (Map.Entry)it.next();
@@ -134,14 +132,13 @@ public class WordExtraction {
 //        writer.write(key+" ");
 ////        writer.write(val);
 //        }
-<<<<<<< HEAD
          String jpt= "";
         for(String title1:titleWord){
             jpt+=title1+" ";
         }
-=======
+
        writer.write(title +",");
->>>>>>> 8a3367ce71a99af8e60a158d011d534e269a9e03
+
         int count_keywordnum=0;
         for (String key : sortByValues_chi.keySet()) {
             keyword.add(key);
@@ -153,14 +150,11 @@ public class WordExtraction {
             }
             
         }
-<<<<<<< HEAD
         writer.write(","+jpt+"\n");
         writer.close();
        
-=======
         writer.write("\n");
         writer.close();
->>>>>>> 8a3367ce71a99af8e60a158d011d534e269a9e03
         
         System.out.println(keyword);
         calculatePrecision();
