@@ -65,7 +65,7 @@
                                             <p style="float: right">By: <a href="http://${nowShowingNews.sourceDomain}">${nowShowingNews.sourceDomain}</a>
                                                 <span>Jun 19, 2014</span></p>
                                         </div>
-                                        <div class="alert alert-success fade in" style="position: fixed;bottom: 0;right: 0; z-index: 1000; text-align:center";>
+<!--                                        <div class="alert alert-success fade in" style="position: fixed;bottom: 0;right: 0; z-index: 1000; text-align:center";>
                                             <h4>Feedback!</h4>
                                             <p>Helps us to improve your news dashboard.</p>
                                             <form>
@@ -80,7 +80,7 @@
                                             </div>
                                         </form>
                                             <button type="button" data-dismiss="alert" class="btn btn-medium btn-danger">feedback</button>
-                                        </div>
+                                        </div>-->
                                         
                                         <hr>
 

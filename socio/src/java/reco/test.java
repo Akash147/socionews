@@ -142,20 +142,9 @@ public class test {
 //        
 //        tweet_key= gsm2.ret_finalkeyword(keywords);
 //         System.out.println(fs);
-         
-         
-         ArrayList<String> s= new ArrayList<String>();
-         s.add("ram");
-         s.add("shyam");
-         s.add("hari");
-        
-//        StringBuilder searchString = new StringBuilder();
-//        for(String str : s){
-//            searchString.append(str+"+");
-//        }
-        
-        DbForWeb dWeb = new DbForWeb();
-        String searchString = dWeb.makeSearchString(dWeb.getKeywordsFromMongo(1491849084));
-         System.out.println("the string is : "+searchString);
+        General_String_manipulation gsm = new General_String_manipulation();
+        String fine = gsm.separateHyperlink("this is not validating https://ddafsd.dasfd/dfasdf.fdaf?dfa=fasdfa forwarding @Akash for http://www.google.com/user?-fasdf better results.");
+         System.out.println(fine);
+              
     }
 }

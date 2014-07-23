@@ -4612,3 +4612,26 @@ font-weight: normal;
 line-height: 20px;
 
 }
+
+.thumbshow {
+    margin-bottom: 10px;
+}
+h3{
+    line-height: 30px;
+}
+.thumbnail span{
+    /*vertical-align: bottom;*/
+}
+.thumbnail{
+    height: 380px;
+}
+.popover{
+    position: fixed;
+}
+a.sentiment{
+    cursor : default;
+}
+.popover-title{
+    background-color: #2d2d2d;
+    color: #fff;
+}

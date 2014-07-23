@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/home/siranami/NetBeansProjects/socionews/NewsRecommendation/src/newsrecommendation/CsvParser.java</file>
             <file>file:/home/siranami/NetBeansProjects/socionews/NewsRecommendation/src/newsrecommendation/WordExtraction.java</file>
             <file>file:/home/siranami/NetBeansProjects/socionews/NewsRecommendation/src/newsrecommendation/StopWord.java</file>
+=======
+<<<<<<< Updated upstream
+            <file>file:/C:/Users/Prabesh/Documents/NetBeansProjects/socionews/NewsRecommendation/src/newsrecommendation/XmlReader.java</file>
+            <file>file:/C:/Users/Prabesh/Documents/NetBeansProjects/socionews/NewsRecommendation/src/newsrecommendation/StopWord.java</file>
+=======
+            <file>file:/home/ravi/NetBeansProjects/socionews/NewsRecommendation/src/newsrecommendation/WordExtraction.java</file>
+            <file>file:/home/ravi/NetBeansProjects/socionews/NewsRecommendation/src/newsrecommendation/POs_tagger.java</file>
+>>>>>>> Stashed changes
+>>>>>>> 3f6b45cb5650cc2b760a23b518f4765c6a35ea16
         </group>
     </open-files>
 </project-private>

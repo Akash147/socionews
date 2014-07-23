@@ -33,7 +33,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="header.jsp" %>
 
-        <title>Dashboard: </title>
+        <title>Dashboard:<c:out value="${screenName}"></c:out> </title>
     </head>
     <body class="fixed-top">
         <%@include file="navigation.jsp" %>
@@ -66,28 +66,45 @@
                                 </div>
                             </div>
                             <div class="row-fluid">
-                                
+                                <%
+                                    int count = 0;
+                                    int dcou = 0;
+                                %>
                                 <c:forEach var="eachNews" items="${recentNewsList}">
-                                 <div class="span4">
+                                <%
+                                    if(count%3 == 0){
+                                %>
+                                <div class="row-fluid thumbshow">
+                                    <% dcou++; }%>
+                                    
+                                 <div class="span4 ${eachNews.newsId}">
                                     <div class="thumbnail">
-                                        <img alt="300x200" src="${eachNews.imageThumbs}">
-                                        <div class="caption">
-                                            <h3>
-                                                ${eachNews.headLine}
-                                            </h3>
+                                        <img alt="300x200" src="${eachNews.imageThumbs}" />
+                                        <div class="caption" id="${eachNews.newsId}">
+                                            <h3>${eachNews.headLine}</h3>
                                             <p>${eachNews.metaDescription}</p>
-                                            <span><a href="#" class="btn btn-primary" role="button"><i class="icon-link"></i> Read</a> 
+                                            <span><a href="../dashboard/news?id=${eachNews.newsId}" class="btn btn-primary" role="button"><i class="icon-link"></i> Read</a> 
 
                                                 <div class="btn-group">
-                                                    <button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a href="#"><i class="icon-plus-sign"></i> Later</a></li>
-                                                        <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
+                                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li onclick="storeNews('${eachNews.newsId}')"><a href="#"><i class="icon-plus-sign"></i> Later</a></li>
+                                                        <li onclick="del('${eachNews.newsId}')"><a href="#"><i class="icon-trash"></i> Delete</a></li>
                                                     </ul>
-                                                </div></span>
+                                                </div>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>  
+                                
+                                <%
+                                    if(count%3 == 2){
+                                %> 
+                                </div>
+                                <%
+                                    }
+                                    count++;
+                                %>
                                 </c:forEach>
                             </div>
 
@@ -115,7 +132,7 @@
                                     <h1><i class="icon-filter"></i> Recommended News</h1>
                                     <c:forEach var="eachNews" items="${recentNewsList}">
                                         <div class="row-fluid experience">
-                                            <a href="<c:url value="/news/?id=${eachNews.newsId}"/>"><h4>${eachNews.headLine}</h4></a>
+                                            <a href="<c:url value="/dashboard/news?id=${eachNews.newsId}"/>"><h4>${eachNews.headLine}</h4></a>
                                             <p>${eachNews.metaDescription}</p>
                                             <a href="http://${eachNews.sourceDomain}">${eachNews.sourceDomain}</a>
                                             <div class="pull-right">
@@ -136,4 +153,31 @@
             </div>
             <%@include file="footer.jsp" %>    
     </body>
+    <script>
+        function del(nid){
+            var search_id = ".span4." + nid;
+            $(search_id).remove();
+        }
+        function storeNews(ID){
+            var search_id = ".span4." + ID;
+            var search_headline = "#" + ID + " h3";
+            var search_newsMeta = "#" + ID + " p";
+                $.ajax({
+                type: "POST",
+                url: "NewsToBeRead",
+                data: {
+                    newsID : ID,
+                    newsHead : $(search_headline).text(),
+                    newsMeta : $(search_newsMeta).text()
+                  },
+                success: function(msg){
+//                  alert(msg + "\nNews To Be read Stored successfully");
+//                    $(search_id).remove();
+                }
+                // error: function(msg,status,error){
+                //  alert(msg.responseText);
+                // } 
+                });
+        }
+    </script>
 </html>

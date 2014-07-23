@@ -6,6 +6,7 @@
 
 package reco;
 
+import akash.configuration.Configuration;
 import com.mongodb.BasicDBList;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
@@ -13,12 +14,15 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import twitter4j.IDs;
 import twitter4j.Paging;
 import twitter4j.Status;
@@ -147,10 +151,44 @@ public class UserTimeline {
             } catch (MongoException e) {
                 e.printStackTrace();
             }
+        }    
+    }
+    //start of storing tweets with sentiment to userTweets
+    public void storeTweetsWithSentiment(String tweet, String sentiment) {
+        try {
+            DBCollection table = this.userMongoStart("userTweets");
+            BasicDBObject document = new BasicDBObject();
+            //place values in a document to store
+            if(!this.isTweetAlreadyExist(tweet)){
+                document.put("userID", this.getUserID());
+                document.put("tweet", tweet);
+                document.put("sentiment", sentiment);
+                table.insert(document);
+            }
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(UserTimeline.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
     
+    public boolean isTweetAlreadyExist(String status) {
+        boolean flag = false;
+        try {
+            DBCollection table = this.userMongoStart("userTweets");
+            BasicDBObject searchQuery = new BasicDBObject();
+            //search Tweets exits already
+            searchQuery.put("userID", this.getUserID());
+            searchQuery.put("tweet", status);
+            DBCursor cursor = table.find(searchQuery);
+            while(cursor.hasNext()){
+                flag = true;
+                break;
+            }
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(UserTimeline.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return flag;
+    }
+    //end of storing tweets with sentiment to userTweets
     public boolean checkRepeatOnMongoDB() {
         boolean flag = false;
         Integer document_count = 0;

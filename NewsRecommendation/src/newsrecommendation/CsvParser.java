@@ -31,7 +31,7 @@ public class CsvParser {
         String news1 = "";
          String title1 = "";
         boolean flag;
-        WordExtraction e= new WordExtraction();
+         
         while((aline=textReader.readLine())!=null){            
 //            allWords.addAll(Arrays.asList(aline.replaceAll("[\\W&&[^\\s]]", "").split(" ")));  //to get individual terms
             List<String> words= new ArrayList<>();
@@ -44,6 +44,7 @@ public class CsvParser {
 //            news1=news.toString();
              
 //        e.parseFile(news1,title1);
+            WordExtraction e= new WordExtraction();
             List<String> keywords = e.getThings(news1, title1);
             System.out.println(keywords);
             String ravi = "";
