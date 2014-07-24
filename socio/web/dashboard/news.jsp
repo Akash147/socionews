@@ -116,10 +116,9 @@
                                     
                                     <c:forEach var="eachNews" items="${recentNewsList}">
                                         <div class="row-fluid experience">
-                                            <a href="<c:url value="/news/?id=${eachNews.newsId}"/>"><h4>${eachNews.headLine}</h4></a>
+                                            <a href="<c:url value="../dashboard/news?id=${eachNews.newsId}"/>"><h4>${eachNews.headLine}</h4></a>
                                             <p>${eachNews.metaDescription}</p>
                                             <a href="http://${eachNews.sourceDomain}">${eachNews.sourceDomain}</a>
-                                            <img src ="${eachNews.imageThumbs} "/>
                                             <div class="pull-right" style="margin-right: 20px;">
                                                 <span class="small italic">Category:<a href="cricket.jsp">cricket </a></span>
                                             </div>
