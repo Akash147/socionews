@@ -126,24 +126,26 @@
 
                     <!-- Recommended News SideBar -->
                         <div class="span4">
-                            <!-- Akash Here -->
-                            <div class="profile-side-box green sidebar">
-                                <div class="desk">
-                                    <h1><i class="icon-filter"></i> Recommended News</h1>
+                                       <!-- Akash Here -->
+                            <div class="profile-side-box green">
+                                <h1><i class="icon-filter"></i> Recommended News</h1>
+                                <div class="desk"><div style = "height:820px;overflow:scroll; overflow-x:hidden">
+                                    
                                     <c:forEach var="eachNews" items="${recentNewsList}">
                                         <div class="row-fluid experience">
-                                            <a href="<c:url value="/dashboard/news?id=${eachNews.newsId}"/>"><h4>${eachNews.headLine}</h4></a>
+                                            <a href="<c:url value="../dashboard/news?id=${eachNews.newsId}"/>"><h4>${eachNews.headLine}</h4></a>
+
                                             <p>${eachNews.metaDescription}</p>
                                             <a href="http://${eachNews.sourceDomain}">${eachNews.sourceDomain}</a>
-                                            <div class="pull-right">
-                                                <span class="small italic">Category:<a href="cricket.jsp">cricket </a></span>
+                                            <div class="pull-right" style="margin-right: 20px;">
+                                                <span class="small italic">Category:<a href="football.jsp">football </a></span>
                                             </div>
                                         </div>
                                     </c:forEach>
 
                                     <a href="#" class="pull-right">View all</a>
                                     <div class="clearfix no-top-space no-bottom-space"></div>
-                                </div>
+                                </div></div>
                             </div>
                             <!-- End of Akash here.. Remove this and make this code better -->
 

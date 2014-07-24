@@ -4365,6 +4365,7 @@ margin-right: 21px;
     padding: 0px;
     margin: 0;
     line-height: normal;
+    padding-right: 12px;
 }
 
 .profile-side-box .desk .experience h4 {
@@ -4623,11 +4624,21 @@ h3{
     /*vertical-align: bottom;*/
 }
 .thumbnail{
-    height: 380px;
+
+    //height: 380px;
+
 }
 .popover{
     position: fixed;
 }
+.thumbnail>img {
+display: block;
+max-width: 248px;
+max-height:154px; 
+margin-right: auto;
+margin-left: auto;
+}
+
 a.sentiment{
     cursor : default;
 }

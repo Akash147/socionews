@@ -5,7 +5,7 @@ mongoDB=newscrawl
 mongoCollection=news
 
 #Lucene params
-indexLocation=/home/noones/Desktop/newsIndex
+indexLocation=/home/noones/Desktop/newsCollected/newsIndex
 
 #Sentiment trained
 sentimentModel=/home/noones/Documents/socionews/socio/maxentClassifier.bin

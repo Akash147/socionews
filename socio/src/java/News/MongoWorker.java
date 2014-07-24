@@ -96,7 +96,7 @@ public class MongoWorker {
                     return src;
             }
         }
-        return "";
+        return "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTPSAN0R8783YBQgBMWai54WtJGMcMEBWcLw3AupC3VzM7EJDlW";
     
     }
     

@@ -120,7 +120,7 @@
                                             <p>${eachNews.metaDescription}</p>
                                             <a href="http://${eachNews.sourceDomain}">${eachNews.sourceDomain}</a>
                                             <div class="pull-right" style="margin-right: 20px;">
-                                                <span class="small italic">Category:<a href="cricket.jsp">cricket </a></span>
+                                                <span class="small italic">Category:<a href="football.jsp">football </a></span>
                                             </div>
                                         </div>
                                     </c:forEach>
