@@ -45,7 +45,7 @@ import java.util.Map;
         String aline;
         boolean flag;
         while((aline=textReader.readLine())!=null){            
-            tokenizedTerms.addAll(Arrays.asList(aline.replaceAll("[\\W&&[^\\s]]", "").split(" ")));  //to get individual terms
+            tokenizedTerms.addAll(Arrays.asList(aline.replaceAll("[\\W&&[^\\s]]", "").toLowerCase().split(" ")));  //to get individual terms
         }
         for (String eachWord : tokenizedTerms) {
 //            stemmedWord = stem.stripAffixes(eachWord);
