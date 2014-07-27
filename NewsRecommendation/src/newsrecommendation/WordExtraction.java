@@ -169,8 +169,8 @@ public class WordExtraction {
         titleWord.addAll(Arrays.asList(title.toLowerCase().replaceAll("[\\W&&[^\\s]]", "").split(" ")));  //to get title word
 //        Stemming stem = new Stemming();
 //        String stemmedWord= new String();
-        posTerm= POs_tagger.POSTag(aline.toLowerCase());
-        for (String eachWord : posTerm) {
+//        posTerm= POs_tagger.POSTag(aline.toLowerCase());
+        for (String eachWord : allWords) {
 //            stemmedWord = stem.stripAffixes(eachWord);
             if (!tokenizedTerms.contains(eachWord)) {
                 if (!this.stop.isStopWord(eachWord)) {
@@ -184,7 +184,7 @@ public class WordExtraction {
         tokewords= (String[]) tokenizedTerms.toArray(tokewords);
         Combination <String> all=new Combination<>(allWords);
         permAllWords= all.getCombAllWords();
-
+        count();
         calculateChi();
         Map<String, Double> m_chi = new HashMap<>();
          Map<String, Double> num_word = new HashMap<>();
