@@ -25,10 +25,11 @@ import opennlp.tools.util.PlainTextByLineStream;
  * @author ravi
  */
 public class POs_tagger {
-     public static List<String> POSTag(String input) throws IOException {
-         List <String> allWords =new ArrayList<>();
-        POSModel model = new POSModelLoader()
+    private static POSModel model = new POSModelLoader()
                 .load(new File("en-pos-maxent.bin"));
+    public static List<String> POSTag(String input) throws IOException {
+         List <String> allWords =new ArrayList<>();
+
         PerformanceMonitor perfMon = new PerformanceMonitor(System.err, "sent");
         POSTaggerME tagger = new POSTaggerME(model);
 
@@ -48,7 +49,7 @@ public class POs_tagger {
             for(int i=0;i<tags.length;i++){
 //            System.out.println(tags[i]);
 //            System.out.println(whitespaceTokenizerLine[i]);
-            if("NN".equals(tags[i]) || "FW".equals(tags[i]) || "NNP".equals(tags[i]) || "ADJ".equals(tags[i]) || "AD".equals(tags[i])){
+            if("NN".equals(tags[i]) || "FW".equals(tags[i]) || "NNP".equals(tags[i]) || "VB".equals(tags[i])){
                 allWords.add(whitespaceTokenizerLine[i]);
             }
         }

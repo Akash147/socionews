@@ -10,8 +10,6 @@ import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.auth.RequestToken;
 import twitter4j.User;
-import twitter4j.auth.AccessToken;
-import twitter4j.URLEntity;
 import twitter4j.HashtagEntity;
 
 import javax.servlet.ServletException;
@@ -23,18 +21,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.List;
-import javax.servlet.http.HttpSession;
-import akash.maxentclassifier.SentimentAnalyzer;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.Map;
 import tweet_keyword.Keyword;
-import twitter4j.Query;
-import twitter4j.QueryResult;
 import twitter4j.Status;
 
 public class CallbackServlet extends HttpServlet {
@@ -75,7 +62,7 @@ public class CallbackServlet extends HttpServlet {
         }
         
         //create Tweets objects
-//        Keyword key= new Keyword();
+        //        Keyword key= new Keyword();
         
         for(Status status : statuses){
             ArrayList<String> temp_hash_tags = new ArrayList<String>();
@@ -89,12 +76,15 @@ public class CallbackServlet extends HttpServlet {
             temp_user = status.getUser().getScreenName();
             temp_sent = analyzer.classify(status.getText());
             General_String_manipulation gsm = new General_String_manipulation();
-            temp_tweets = gsm.get_separateHyperlink(status);
+            temp_tweets = gsm.separateHyperlink(status.getText());
             
+            //store tweets along with sentiment for future training dataset
+            userTimeline.storeTweetsWithSentiment(status.getText(), temp_sent);
+            //store on Tweets objects
             twit.add(new Tweets(temp_user, temp_tweets, temp_sent, temp_hash_tags, keyword.POSTag(temp_tweets)));
         }
         //get keywords here
-         
+
         
         
         //store keywords in single ArrayLIst
@@ -120,6 +110,4 @@ public class CallbackServlet extends HttpServlet {
 //        request.getRequestDispatcher("/userInfo.jsp").forward(request, response);
         response.sendRedirect(request.getContextPath() + "/dashboard/index?user="+userTimeline.getUserID());
     }
-     /////// used for descending ordering of the term according to the chisquare value of the term////////////////////
-    
 }

@@ -10,6 +10,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,15 +22,16 @@ import java.util.List;
  */
 public class CsvParser {
     public void csvparse() throws FileNotFoundException, IOException{
-    FileReader readFile= new FileReader(File.separator+"home"+File.separator+"ravi"+File.separator+"newsEve.csv");
+    FileReader readFile= new FileReader("/media/Essentials/newsEve.csv");
+    FileWriter writeFile = new FileWriter("/media/Essentials/newsEveThings.csv");
         BufferedReader textReader = new BufferedReader(readFile);
         String aline;
 //        List<String> news = new ArrayList<String>();
          String[] news;
-        String news1 = new String();
-         String title1 = new String();
+        String news1 = "";
+         String title1 = "";
         boolean flag;
-        WordExtraction e= new WordExtraction();
+         
         while((aline=textReader.readLine())!=null){            
 //            allWords.addAll(Arrays.asList(aline.replaceAll("[\\W&&[^\\s]]", "").split(" ")));  //to get individual terms
             List<String> words= new ArrayList<>();
@@ -41,7 +43,14 @@ public class CsvParser {
 //            title1=title1.split(" ").toString();
 //            news1=news.toString();
              
-        e.parseFile(news1,title1);
+//        e.parseFile(news1,title1);
+            WordExtraction e= new WordExtraction();
+            List<String> keywords = e.getThings(news1, title1);
+            System.out.println(keywords);
+            String ravi = "";
+            for (String w : keywords)
+                ravi += w+" ";
+            writeFile.write(title1 + "," + news1 + "," + ravi + "\n");
              
         }
 }

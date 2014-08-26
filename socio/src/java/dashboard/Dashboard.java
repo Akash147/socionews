@@ -76,6 +76,9 @@ public class Dashboard extends HttpServlet {
             List<String> matchIDs = searcher.search(searchString);
             for (String id : matchIDs)
                 System.out.println(id);
+            if(mongo.findAllDocumentByID(matchIDs.toArray(new String[matchIDs.size()])) == null){
+                System.out.println("Hello How Are YOu?");
+            }
             request.setAttribute("recentNewsList", mongo.findAllDocumentByID(matchIDs.toArray(new String[matchIDs.size()])) );
         } catch (ParseException ex) {
             Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
