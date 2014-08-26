@@ -53,41 +53,17 @@
                     <span>Awesome Read</span>
                   </a>
               </li>
-<<<<<<< HEAD
-              <li>
-                  
-              </li>
-              <li data-toggle="popover" title data-content="dfa;dsfadsf" data-original-title="ajds;fa">
-                  <a href="" class="sentiment">
-                      <i class="icon-refresh"></i>
-                      <span>Recheck Sentiment</span>  
-                    </a>
-              </li>
-              <li>
-                  <a title="" rel='popover'>Default Popover</a>
-=======
-              
+
               <li rel='popover' onclick="callTweet('${UserID}')">
                   <a class="sentiment">
                       <i class="icon-refresh"></i>
                       <span>Recheck Sentiment</span>  
                     </a>
->>>>>>> ee0334f445c2d185beb1a63c32197b3abf0368c3
               </li>
               
           </ul>
-<<<<<<< HEAD
-         <script type="text/javascript">
-$(document).ready(function() {
-$("[rel='popover']").popover({
-placement : 'right', // top, bottom, left or right
-title : 'This is my Title', 
-html: 'true', 
-content : '<div style="z-index:-1;"> Argentina: all eyes on Lionel Messi as Albiceleste go for top spot in Group F - Telegraph</div>'
-});
-});
-</script>
-=======
+
+         
         <script type="text/javascript">
 //            var name = <%=(String)session.getAttribute("screenName")%>;
             var positive_counter = 1;
@@ -128,7 +104,6 @@ content : '<div style="z-index:-1;"> Argentina: all eyes on Lionel Messi as Albi
             }
             
         </script>
->>>>>>> ee0334f445c2d185beb1a63c32197b3abf0368c3
          
          
          <!-- END SIDEBAR MENU -->

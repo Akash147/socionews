@@ -40,12 +40,12 @@ public class TwitterSigninServlet extends HttpServlet {
         //Configuration file load
         Configuration config;
         config = new Configuration(getServletContext());
-        twitter.setOAuthConsumer(config.getConsumerKey(), config.getConsumerSecret());
+        twitter.setOAuthConsumer("yWLeugxpur5xZWhdSwa2fp3EB", "bI5W00rlneIomJybMl2Z5rtOb8Fv1KORHouCOvY9BVBtCKMYaK");
         try {
             StringBuffer callbackURL = request.getRequestURL();
             int index = callbackURL.lastIndexOf("/");
             callbackURL.replace(index, callbackURL.length(), "").append("/callback");
-
+            System.out.println("the callback is " + callbackURL.toString());
             RequestToken requestToken = twitter.getOAuthRequestToken(callbackURL.toString());
             request.getSession().setAttribute("requestToken", requestToken);
             response.sendRedirect(requestToken.getAuthenticationURL());

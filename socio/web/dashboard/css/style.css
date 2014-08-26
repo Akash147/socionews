@@ -4632,9 +4632,7 @@ h3{
     position: fixed;
 }
 .thumbnail>img {
-display: block;
-max-width: 248px;
-max-height:154px; 
+display: block; 
 margin-right: auto;
 margin-left: auto;
 }

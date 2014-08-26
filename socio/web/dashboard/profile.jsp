@@ -1,25 +1,45 @@
 
+<%@page import="reco.NewsToBe"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="reco.DbForWeb"%>
 <%-- 
     Document   : profile
     Created on : May 20, 2014, 12:47:32 PM
     Author     : noones
 --%>
 <% String category="cricket" ;%>
-<% String miniContent="This tutorial will help you to Boost your android Virtual device on Linux";%>
+<% String miniContent1="Alejandro Sabella has denied Argentina are over-dependent on captain Lionel Messi -- but stressed that his ";%>
+<% String miniContent2="Angel di Maria felt Argentina did not ‘get desperate’ during the last-gasp victory over Switzerland ...";%>
 <% String domain="www.techtach.com";%>
 <% String link="http://www.techtach.com";%>
-<% String headLine="Red Sox bats remain silent in loss to Tigers" ;%>
+<% String headLine1="Lionel Messi not over-relied on - Argentina coach Alejandro Sabella - ESPN FC" ;%>
+<% String headLine2="World Cup: Angel di Maria and Javier Mascherano praise Argentina's win over Switzerland | News" ;%>
 <% String time = "2 m" ;%>
 <% String userNames = "noones" ;%>
 <% String fullName = "Ganesh Pandey" ;%>
-<% String recentNews = ""
+<% String recentNews1 = ""
         + "<div class=\"row-fluid experience\">"
-        + "<h4>"+headLine+"</h4><p>"+miniContent+"</p>"
+        + "<h4>"+headLine1+"</h4><p>"+miniContent1+"</p>"
         + "<a href=\""+link+"#\">"+domain+"</a>"
         + "<div class=\"pull-right\">"
         + "<span class=\"small italic\">Category:<a href=\""+category+".jsp\">"+category+" </a></span></div>"
         + "</div><div class=\"space10\"></div>"; 
 %>
+<% String recentNews2 = ""
+        + "<div class=\"row-fluid experience\">"
+        + "<h4>"+headLine2+"</h4><p>"+miniContent2+"</p>"
+        + "<a href=\""+link+"#\">"+domain+"</a>"
+        + "<div class=\"pull-right\">"
+        + "<span class=\"small italic\">Category:<a href=\""+category+".jsp\">"+category+" </a></span></div>"
+        + "</div><div class=\"space10\"></div>"; 
+%>
+
+<%
+    DbForWeb dfw = new DbForWeb();
+    ArrayList<NewsToBe> newsT = new ArrayList<NewsToBe>();
+    newsT = dfw.getNewsToBeRead(Long.parseLong(session.getAttribute("UserID").toString()));
+%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -141,9 +161,27 @@
                           <div class="profile-side-box green">
                               <div class="desk">
                                      <h1>To be read </h1>
-                         <%for ( int f = 1; f <= 3; f++){ %>
-                                            <%= recentNews %>
-                                     <%}%>
+                                        <%
+                                            for(NewsToBe ntb : newsT){
+                                                %>
+                                                <div class="row-fluid experience">
+                                                    <h4>
+                                                        <a href="../dashboard/news?id=<% out.println(ntb.newsID); %>">
+                                                        <%
+                                                            out.println(ntb.newsHead);
+                                                        %>
+                                                        </a>
+                                                    </h4>
+                                                    <p>
+                                                        <%
+                                                            out.println(ntb.newsShort);
+                                                        %>
+                                                    </p>
+                                                </div>
+                                                <%
+                                            }
+                                        %>
+                                        
                              <a href="#" class="pull-right">View all</a>
                              <div class="clearfix no-top-space no-bottom-space"></div>
                               </div></div>
@@ -152,38 +190,7 @@
                              <div class="span4">
                                  <div class="profile-side-box red">
                                      <h1>You may also like</h1>
-                                     <div class="desk">
-                                         <div class="span4 row-fluid">
-                                           <div class="widget">
-                                           <span class="tools">
-                                                    <a href="javascript:;" class="icon-remove"></a> Tennis
-                                            </span>
-                                                 <div class="text-center">
-                                                     <a href="http://thevectorlab.net/metrolab/profile.html#"><img src="img/msmall.jpg" alt=""></a>
-                                                     <button class="btn btn-mini btn-primary" type="button">follow</button>                                                   
-                                                 </div>
-                                             </div></div>
-                                           <div class="span4 row-fluid"><div class="widget">
-                                           <span class="tools">
-                                                    <a href="javascript:;" class="icon-remove"></a> Tennis
-                                            </span>
-                                                 <div class="text-center">
-                                                     <a href="http://thevectorlab.net/metrolab/profile.html#"><img src="img/msmall.jpg" alt=""></a>
-                                                     <button class="btn btn-mini btn-primary" type="button">follow</button>                                                   
-                                                 </div>
-                                             </div></div>
-                                             
-                                             <div class="span4 row-fluid"><div class="widget">
-                                           <span class="tools">
-                                                    <a href="javascript:;" class="icon-remove"></a> Tennis
-                                            </span>
-                                                 <div class="text-center">
-                                                     <a href="http://thevectorlab.net/metrolab/profile.html#"><img src="img/msmall.jpg" alt=""></a>
-                                                     <button class="btn btn-mini btn-primary" type="button">follow</button>                                                   
-                                                 </div>
-                                             </div>      
-                                             </div>
-                                         </div>
+                                     
                                      </div>
                                  </div>
                                  
