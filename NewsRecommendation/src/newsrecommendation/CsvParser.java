@@ -22,8 +22,10 @@ import java.util.List;
  */
 public class CsvParser {
     public void csvparse() throws FileNotFoundException, IOException{
-    FileReader readFile= new FileReader("/media/Essentials/newsEve.csv");
-    FileWriter writeFile = new FileWriter("/media/Essentials/newsEveThings.csv");
+//    FileReader readFile= new FileReader("/media/Essentials/newsEve.csv");
+    FileReader readFile= new FileReader("/home/siranami/NetBeansProjects/MongotoCSV/sportsNews.csv");
+//    FileWriter writeFile = new FileWriter("/media/Essentials/newsEveThings.csv");
+    FileWriter writeFile = new FileWriter("/home/siranami/NetBeansProjects/MongotoCSV/sportsNewsThings.csv");
         BufferedReader textReader = new BufferedReader(readFile);
         String aline;
 //        List<String> news = new ArrayList<String>();
