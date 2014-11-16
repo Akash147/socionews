@@ -108,11 +108,12 @@ public class DbForWeb {
         }
     }
     
-    public void storeNewsToBeRead(String newsID, String newsHead, String newsMeta){
+    public void storeNewsToBeRead(String newsID, String newsHead, String newsMeta, long uid){
         try {
             DBCollection table = this.userMongoStart("newsToBeRead");
             BasicDBObject newsToBe = new BasicDBObject();
             if(!this.checkReapeatedNews(newsID)){
+                newsToBe.put("userID", uid);
                 newsToBe.put("newsID", newsID);
                 newsToBe.put("newsHead", newsHead);
                 newsToBe.put("newsShort", newsMeta);
@@ -157,6 +158,23 @@ public class DbForWeb {
             Logger.getLogger(DbForWeb.class.getName()).log(Level.SEVERE, null, ex);
         }
         return result;
+    }
+    
+    public ArrayList<NewsToBe> getNewsToBeRead(long Uid){
+        ArrayList<NewsToBe> newsT = new ArrayList<NewsToBe>();
+        try {
+            DBCollection table = this.userMongoStart("newsToBeRead");
+            BasicDBObject dbObj = new BasicDBObject();
+            dbObj.put("userID", Uid);
+            DBCursor cursor = table.find(dbObj);
+            while(cursor.hasNext()){
+                DBObject dbo = cursor.next();
+                newsT.add(new NewsToBe(dbo.get("newsID").toString(), dbo.get("newsHead").toString(), dbo.get("newsShort").toString(), Long.parseLong(dbo.get("userID").toString()) ));
+            }
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(DbForWeb.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return newsT;
     }
     
     public String getFullName() {

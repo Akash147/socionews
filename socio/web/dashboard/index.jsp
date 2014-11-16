@@ -58,13 +58,7 @@
                     <!-- Search End--><hr>
                     <div class="row-fluid">
                         <div class="span8">
-                            <div class="alert alert-success">you have <b>21</b> news recommendation <b>12</b> on <i>football</i> and <b>9</b> on <i>Cricket</i>
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <div class="progress">
-                                    <div class="bar bar-success" style="width: 65%;"></div>
-                                    <div class="bar bar-warning" style="width: 35%;"></div>
-                                </div>
-                            </div>
+                            
                             <div class="row-fluid">
                                 <%
                                     int count = 0;
@@ -168,6 +162,7 @@
                 type: "POST",
                 url: "NewsToBeRead",
                 data: {
+                    userID : <% out.println(session.getAttribute("UserID")); %>,
                     newsID : ID,
                     newsHead : $(search_headline).text(),
                     newsMeta : $(search_newsMeta).text()

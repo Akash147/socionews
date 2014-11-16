@@ -33,7 +33,15 @@ public final class Tweets{
         cleanTweets = twits;
         sentiment = senti;
         hashTags = tags;
-        keywords = keys;
+        if(keys != null){
+            keywords = keys;
+        }else{
+            keywords.add("EPL");
+            keywords.add("Manchester city");
+            keywords.add("Liverpool");
+            keywords.add("Gerard");
+            keywords.add("Chelsea FC");
+        }
     }
    
     public void setTweets(Status status, ServletContext context){

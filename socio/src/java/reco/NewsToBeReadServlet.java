@@ -34,8 +34,10 @@ public class NewsToBeReadServlet extends HttpServlet {
         String newsID = request.getParameter("newsID");
         String newsHead = request.getParameter("newsHead");
         String newsMeta = request.getParameter("newsMeta");
+        String uid = request.getParameter("userID");
+        long uids = Long.parseLong(uid);
         DbForWeb dfw = new DbForWeb();
-        dfw.storeNewsToBeRead(newsID, newsHead, newsMeta);
+        dfw.storeNewsToBeRead(newsID, newsHead, newsMeta, uids);
 //        response.getWriter().print(newsID);
     }
 

@@ -11,12 +11,15 @@ import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import twitter4j.JSONObject;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import twitter4j.JSONObject;
 import twitter4j.Paging;
+import twitter4j.ResponseList;
 import twitter4j.Status;
+import twitter4j.Trends;
+import twitter4j.Trend;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -31,28 +34,33 @@ public class test {
      public static void main(String[] args) {
         
          
-//         try {
-//            // gets Twitter instance with default credentials
-//            Twitter twitter = new TwitterFactory().getInstance();
-//            twitter.setOAuthConsumer("vJ3dChUEdLKrK7ciMdtbcXPjz", "XnbW32jqk9jTTY5ZtLHMh0FY9UNC1Wb1ohC0ehIaWUXfpJereQ");
-//            AccessToken aT = new AccessToken("1491849084-9cHPaMX5xgmM8KxobpngNOe6KhcybY6KSivHGyi","d5FSuYaZ8FEcaLFDaI2pt4bLGobWd3f2qIZX3KCT7Ikix");
-//            twitter.setOAuthAccessToken(aT);
-//            User user = twitter.verifyCredentials();
-//            Paging page;
-//            page = new Paging(1,200);
-//            List<Status> statuses = twitter.getHomeTimeline(page);
-//            System.out.println("Showing @" + user.getScreenName() + "'s home timeline.");
-//            for (Status status : statuses) {
-////                System.out.println("the since id is:"+page.getSinceId());
-////                System.out.println("the max id is:"+page.getMaxId());
-////                System.out.println("the count is:"+page.getCount());
-////                System.out.println("the status id is:"+status.getId());
-//                System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
-//            }
-//        } catch (TwitterException te) {
-//            te.printStackTrace();
-//            System.exit(-1);
-//        }
+         try {
+            // gets Twitter instance with default credentials
+            Twitter twitter = new TwitterFactory().getInstance();
+            twitter.setOAuthConsumer("vJ3dChUEdLKrK7ciMdtbcXPjz", "XnbW32jqk9jTTY5ZtLHMh0FY9UNC1Wb1ohC0ehIaWUXfpJereQ");
+            AccessToken aT = new AccessToken("1491849084-9cHPaMX5xgmM8KxobpngNOe6KhcybY6KSivHGyi","d5FSuYaZ8FEcaLFDaI2pt4bLGobWd3f2qIZX3KCT7Ikix");
+            twitter.setOAuthAccessToken(aT);
+            User user = twitter.verifyCredentials();
+            Trends tds = null;
+            ResponseList<Trend> td;
+            for(Trend t : tds.getTrends()){
+                System.out.println("Trend: " + t.getName());
+            }
+            Paging page;
+            page = new Paging(1,200);
+            List<Status> statuses = twitter.getHomeTimeline(page);
+            System.out.println("Showing @" + user.getScreenName() + "'s home timeline.");
+            for (Status status : statuses) {
+//                System.out.println("the since id is:"+page.getSinceId());
+//                System.out.println("the max id is:"+page.getMaxId());
+//                System.out.println("the count is:"+page.getCount());
+//                System.out.println("the status id is:"+status.getId());
+                System.out.println("@" + status.getUser().getScreenName() + " - " + status.getText());
+            }
+        } catch (TwitterException te) {
+            te.printStackTrace();
+            System.exit(-1);
+        }
          
          
          
@@ -142,9 +150,9 @@ public class test {
 //        
 //        tweet_key= gsm2.ret_finalkeyword(keywords);
 //         System.out.println(fs);
-        General_String_manipulation gsm = new General_String_manipulation();
-        String fine = gsm.separateHyperlink("this is not validating https://ddafsd.dasfd/dfasdf.fdaf?dfa=fasdfa forwarding @Akash for http://www.google.com/user?-fasdf better results.");
-         System.out.println(fine);
+//        General_String_manipulation gsm = new General_String_manipulation();
+//        String fine = gsm.separateHyperlink("this is not validating https://ddafsd.dasfd/dfasdf.fdaf?dfa=fasdfa forwarding @Akash for http://www.google.com/user?-fasdf better results.");
+//         System.out.println(fine);
               
     }
 }
